@@ -1,398 +1,871 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta name="generator" content="HTML Tidy for HTML5 for FreeBSD version 5.8.0">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maolan – Open Source Digital Audio Workstation</title>
-  <meta name="description" content="A modern Rust-based DAW for recording, MIDI editing, automation, and music production. Open source, transparent, and community-driven.">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap'); body { font-family: 'Inter', sans-serif; } code { font-family: 'JetBrains Mono', monospace; } .gradient-dark { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); } .gradient-accent { background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%); } .glow-blue { box-shadow: 0 0 30px rgba(0, 212, 255, 0.2); } .feature-card { background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%); border: 1px solid rgba(0, 212, 255, 0.1); transition: all 0.3s ease; } .feature-card:hover { border-color: rgba(0, 212, 255, 0.3); background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%); box-shadow: 0 0 20px rgba(0, 212, 255, 0.15); } .btn-primary { background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%); color: #0a0e27; font-weight: 600; transition: all 0.3s ease; } .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3); } .btn-secondary { border: 1.5px solid rgba(0, 212, 255, 0.5); color: #00d4ff; font-weight: 600; transition: all 0.3s ease; } .btn-secondary:hover { background: rgba(0, 212, 255, 0.1); border-color: #00d4ff; transform: translateY(-2px); } .section-title { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; } @media (max-width: 768px) { .section-title { font-size: 1.875rem; } } 
-  </style>
-</head>
-<body class="bg-slate-950 text-slate-100">
-  <!-- Navigation -->
-  <nav class="fixed w-full top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <div class="flex items-center space-x-2">
-        <div class="w-8 h-8 rounded-lg flex items-center justify-center">
-          <span class="text-xs font-bold text-slate-950">
-            <img src="img/logo.svg" />
-          </span>
-        </div>
-        <span class="font-bold text-lg">Maolan</span>
-      </div>
-      <div class="hidden md:flex items-center space-x-8">
-        <a href="features.html" class="text-sm text-slate-400 hover:text-slate-100 transition">Features</a>
-        <a href="workflow.html" class="text-sm text-slate-400 hover:text-slate-100 transition">Workflow</a>
-        <a href="shortcuts.html" class="text-sm text-slate-400 hover:text-slate-100 transition">Shortcuts</a>
-        <a href="#faq" class="text-sm text-slate-400 hover:text-slate-100 transition">FAQ</a>
-      </div>
-      <a href="https://github.com/maolan/maolan" target="_blank" class="text-sm font-medium text-slate-400 hover:text-slate-100 transition">GitHub</a>
-    </div>
-  </nav><!-- Hero Section -->
-  <section class="pt-32 pb-20 px-6 gradient-dark relative overflow-hidden">
-    <!-- Background elements -->
-    <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-blue-500/10 blur-3xl"></div>
-    <div class="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-cyan-500/10 blur-3xl"></div>
-    <div class="max-w-4xl mx-auto text-center relative z-10">
-      <h1 class="section-title mb-6 text-white">Maolan</h1>
-      <img src="img/logo.svg" />
-      <h1 class="section-title mb-6 text-cyan-400">An Open Source<br>Digital Audio Workstation</h1>
-      <p class="text-xl text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed">A modern Rust-based DAW for recording, MIDI editing, automation, plugin routing, and music production workflows. Built by the community, for the community.</p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="https://github.com/maolan/maolan" target="_blank" class="btn-primary px-8 py-3 rounded-lg inline-block">View on GitHub</a>
-        <a href="#support" class="btn-secondary px-8 py-3 rounded-lg inline-block">Support the Project</a>
-      </div>
-    </div>
-  </section><!-- Problem Section -->
-  <section class="py-20 px-6 bg-maolan-darker border-t border-gray-800">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold mb-4">See Maolan in Action</h2>
-        <p class="text-gray-400 text-lg max-w-2xl mx-auto">Explore the interface, workflow, and core production tools built into Maolan.</p>
-      </div><!-- DAW Interface Mockup -->
-      <img src="img/workspace.gif" />
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-        <div class="text-center">
-          <h3 class="font-semibold mb-2 text-xl text-cyan-400">Multi-Track Timeline</h3>
-          <p class="text-gray-400 text-lg">Organize and arrange unlimited tracks with precise timing controls.</p>
-        </div>
-        <div class="text-center">
-          <h3 class="font-semibold mb-2 text-xl text-cyan-400">Piano Roll Editor</h3>
-          <p class="text-gray-400 text-lg">Advanced MIDI editing with velocity, note properties, and automation.</p>
-        </div>
-        <div class="text-center">
-          <h3 class="font-semibold mb-2 text-xl text-cyan-400">Mixer & Routing</h3>
-          <p class="text-gray-400 text-lg">Flexible plugin hosting and track routing for complex mixing setups.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="py-20 px-6 bg-slate-900">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-center section-title mb-12 text-white">The Challenge</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div>
-          <h3 class="text-lg font-semibold mb-3 text-cyan-400">Closed Ecosystems</h3>
-          <p class="text-slate-400">Most modern DAWs are proprietary black boxes. You can't inspect the code, understand how they work, or modify them for your needs.</p>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold mb-3 text-cyan-400">High Costs</h3>
-          <p class="text-slate-400">Professional DAWs require expensive licenses. For students, hobbyists, and developers, this creates barriers to entry.</p>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold mb-3 text-cyan-400">Limited Flexibility</h3>
-          <p class="text-slate-400">Extending functionality or integrating custom workflows is difficult or impossible without source code access.</p>
-        </div>
-      </div>
-    </div>
-  </section><!-- Solution Section -->
-  <section class="py-20 px-6 bg-slate-950">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-center section-title mb-12 text-white">The Solution</h2>
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <p class="text-lg text-slate-300 mb-6 leading-relaxed">Maolan is a free, open-source DAW built in Rust. It prioritizes transparency, performance, and community-driven development.</p>
-          <p class="text-lg text-slate-300 mb-6 leading-relaxed">Inspect every line of code. Build custom features. Contribute improvements. Own your tools.</p>
-          <ul class="space-y-3">
-            <li class="flex-auto items-start space-x-3"><span class="text-cyan-400 font-bold mt-1">✓</span> <span class="text-slate-300">100% open source under a permissive license</span></li>
-            <li class="flex-auto items-start space-x-3"><span class="text-cyan-400 font-bold mt-1">✓</span> <span class="text-slate-300">Built with Rust for safety and performance</span></li>
-            <li class="flex-auto items-start space-x-3"><span class="text-cyan-400 font-bold mt-1">✓</span> <span class="text-slate-300">Community-driven development and improvements</span></li>
-            <li class="flex-auto items-start space-x-3"><span class="text-cyan-400 font-bold mt-1">✓</span> <span class="text-slate-300">Forever free, no licensing fees</span></li>
-          </ul>
-        </div>
-        <div class="bg-slate-800/50 rounded-lg p-8 border border-slate-700">
-          <p class="text-sm text-slate-400 mb-4">Modern, transparent audio production</p>
-          <div class="space-y-2 font-mono text-sm">
-            <div class="text-slate-500">
-              $ <span class="text-slate-300">git clone https://github.com/maolan/maolan</span>
-            </div>
-            <div class="text-slate-500">
-              $ <span class="text-slate-300">cd maolan</span>
-            </div>
-            <div class="text-slate-500">
-              $ <span class="text-slate-300">cargo run --release</span>
-            </div>
-            <div class="text-cyan-400 mt-4">
-              Ready to use. Ready to extend.
-            </div>
+  <head>
+    <meta
+      name="generator"
+      content="HTML Tidy for HTML5 for FreeBSD version 5.8.0"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maolan – Open Source Digital Audio Workstation</title>
+    <meta
+      name="description"
+      content="A modern Rust-based DAW for recording, MIDI editing, automation, and music production. Open source, transparent, and community-driven."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap");
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      code {
+        font-family: "JetBrains Mono", monospace;
+      }
+      .gradient-dark {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      }
+      .gradient-accent {
+        background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+      }
+      .glow-blue {
+        box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+      }
+      .feature-card {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.05) 0%,
+          rgba(255, 255, 255, 0.02) 100%
+        );
+        border: 1px solid rgba(0, 212, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+      .feature-card:hover {
+        border-color: rgba(0, 212, 255, 0.3);
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.08) 0%,
+          rgba(255, 255, 255, 0.03) 100%
+        );
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+        color: #0a0e27;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+      }
+      .btn-secondary {
+        border: 1.5px solid rgba(0, 212, 255, 0.5);
+        color: #00d4ff;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      .btn-secondary:hover {
+        background: rgba(0, 212, 255, 0.1);
+        border-color: #00d4ff;
+        transform: translateY(-2px);
+      }
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      @media (max-width: 768px) {
+        .section-title {
+          font-size: 1.875rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-slate-950 text-slate-100">
+    <!-- Navigation -->
+    <nav
+      class="fixed w-full top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800"
+    >
+      <div
+        class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"
+      >
+        <a href="/" class="flex items-center space-x-2">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center">
+            <span class="text-xs font-bold text-slate-950">
+              <img src="img/logo.svg" />
+            </span>
           </div>
-        </div>
-      </div>
-    </div>
-  </section><!-- Key Features Section -->
-  <section id="features" class="py-20 px-6 bg-slate-900">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-center section-title mb-12 text-white">Key Capabilities</h2>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="feature-card rounded-lg p-6">
-          <div class="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
-          </div>
-          <h3 class="text-lg font-semibold mb-2 text-white">Multi-Track Audio & MIDI</h3>
-          <p class="text-slate-400">Record and arrange unlimited audio and MIDI tracks with precise timing and flexible mixing.</p>
-        </div>
-        <div class="feature-card rounded-lg p-6">
-          <div class="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
-          </div>
-          <h3 class="text-lg font-semibold mb-2 text-white">Piano Roll MIDI Editing</h3>
-          <p class="text-slate-400">Intuitive piano roll interface for composing, editing, and refining MIDI performances.</p>
-        </div>
-        <div class="feature-card rounded-lg p-6">
-          <div class="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-          </div>
-          <h3 class="text-lg font-semibold mb-2 text-white">Automation & Envelopes</h3>
-          <p class="text-slate-400">Create dynamic automations for volume, pan, plugin parameters. Create session and track templates.</p>
-        </div>
-        <div class="feature-card rounded-lg p-6">
-          <div class="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>
-          </div>
-          <h3 class="text-lg font-semibold mb-2 text-white">Plugin Hosting & Routing</h3>
-          <p class="text-slate-400">Load VST3/LV2 plugins, create complex routing chains, and design custom signal flows.</p>
-        </div>
-        <div class="feature-card rounded-lg p-6">
-          <div class="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-          </div>
-          <h3 class="text-lg font-semibold mb-2 text-white">Export & Format Support</h3>
-          <p class="text-slate-400">Export to WAV, FLAC, MP3, and other common formats. Save projects in open formats.</p>
-        </div>
-        <div class="feature-card rounded-lg p-6">
-          <div class="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
-          </div>
-          <h3 class="text-lg font-semibold mb-2 text-white">Autosave & Recovery</h3>
-          <p class="text-slate-400">Automatic project backups and recovery features protect your work from unexpected interruptions.</p>
-        </div>
-      </div>
-    </div>
-  </section><!-- Workflow Section -->
-  <section id="workflow" class="py-20 px-6 bg-slate-950">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-center section-title mb-12 text-white">Complete Production Workflow</h2>
-      <div class="space-y-6">
-        <div class="flex gap-6">
-          <div class="flex-shrink-0">
-            <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-cyan-500/20">
-              <span class="text-cyan-400 font-bold">1</span>
-            </div>
-          </div>
-          <div>
-            <h3 class="text-lg font-semibold mb-2 text-white">Recording</h3>
-            <p class="text-slate-400">Record audio from your microphone or instruments. Monitor latency-free with multiple input sources simultaneously.</p>
-          </div>
-        </div>
-        <div class="flex gap-6">
-          <div class="flex-shrink-0">
-            <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-cyan-500/20">
-              <span class="text-cyan-400 font-bold">2</span>
-            </div>
-          </div>
-          <div>
-            <h3 class="text-lg font-semibold mb-2 text-white">Editing & Composition</h3>
-            <p class="text-slate-400">Edit audio clips and MIDI notes with precision. Use the piano roll for composing melodies and harmonies.</p>
-          </div>
-        </div>
-        <div class="flex gap-6">
-          <div class="flex-shrink-0">
-            <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-cyan-500/20">
-              <span class="text-cyan-400 font-bold">3</span>
-            </div>
-          </div>
-          <div>
-            <h3 class="text-lg font-semibold mb-2 text-white">Plugin & Routing</h3>
-            <p class="text-slate-400">Load VST3/LV2 plugins on tracks. Create complex routing chains for parallel processing and effects.</p>
-          </div>
-        </div>
-        <div class="flex gap-6">
-          <div class="flex-shrink-0">
-            <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-cyan-500/20">
-              <span class="text-cyan-400 font-bold">4</span>
-            </div>
-          </div>
-          <div>
-            <h3 class="text-lg font-semibold mb-2 text-white">Automation</h3>
-            <p class="text-slate-400">Automate any parameter across time. Create dynamic mixes with volume, pan, and plugin automation curves.</p>
-          </div>
-        </div>
-        <div class="flex gap-6">
-          <div class="flex-shrink-0">
-            <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-cyan-500/20">
-              <span class="text-cyan-400 font-bold">5</span>
-            </div>
-          </div>
-          <div>
-            <h3 class="text-lg font-semibold mb-2 text-white">Mixing & Mastering</h3>
-            <p class="text-slate-400">Balance levels, EQ, compress, and process your mix. Prepare your final master for distribution.</p>
-          </div>
-        </div>
-        <div class="flex gap-6">
-          <div class="flex-shrink-0">
-            <div class="flex items-center justify-center h-12 w-12 rounded-lg bg-cyan-500/20">
-              <span class="text-cyan-400 font-bold">6</span>
-            </div>
-          </div>
-          <div>
-            <h3 class="text-lg font-semibold mb-2 text-white">Export</h3>
-            <p class="text-slate-400">Export your final mix to WAV, FLAC, MP3, or other formats. Ready for streaming, distribution, or further processing.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section><!-- Open Source Section -->
-  <section id="open-source" class="py-20 px-6 bg-slate-900">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-center section-title mb-12 text-white">Open Source & Community Driven</h2>
-      <div class="grid md:grid-cols-2 gap-12">
-        <div>
-          <h3 class="text-xl font-semibold mb-4 text-cyan-400">Why Open Source?</h3>
-          <p class="text-slate-300 mb-4 leading-relaxed">Maolan is open source because we believe audio production tools should be transparent, accessible, and shaped by their users.</p>
-          <p class="text-slate-300 mb-4 leading-relaxed">You can inspect the code, understand how features work, and contribute improvements directly. The community drives the direction of the project.</p>
-          <ul class="space-y-3">
-            <li class="flex-auto items-start space-x-3"><span class="text-cyan-400 font-bold mt-1">→</span> <span class="text-slate-300"><strong>Contribute code</strong> to core features or plugins</span></li>
-            <li class="flex-auto items-start space-x-3"><span class="text-cyan-400 font-bold mt-1">→</span> <span class="text-slate-300"><strong>Report bugs</strong> and suggest improvements</span></li>
-            <li class="flex-auto items-start space-x-3"><span class="text-cyan-400 font-bold mt-1">→</span> <span class="text-slate-300"><strong>Write documentation</strong> and tutorials</span></li>
-            <li class="flex-auto items-start space-x-3"><span class="text-cyan-400 font-bold mt-1">→</span> <span class="text-slate-300"><strong>Build plugins</strong> and extensions</span></li>
-          </ul>
-        </div>
-        <div class="bg-slate-800/50 rounded-lg p-8 border border-slate-700">
-          <h3 class="text-lg font-semibold mb-4 text-white">Project Stats</h3>
-          <div class="space-y-4">
-            <div>
-              <p class="text-sm text-slate-400 mb-1">Repository</p>
-              <p class="font-mono text-cyan-400">github.com/maolan/maolan</p>
-            </div>
-            <div>
-              <p class="text-sm text-slate-400 mb-1">License</p>
-              <p class="text-slate-300">BSD-2-Clause</p>
-            </div>
-            <div>
-              <p class="text-sm text-slate-400 mb-1">Language</p>
-              <p class="text-slate-300">Rust</p>
-            </div>
-            <div>
-              <p class="text-sm text-slate-400 mb-1">Status</p>
-              <p class="text-cyan-400 font-semibold">Active Development</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section><!-- Get Started Section -->
-  <section class="py-20 px-6 bg-slate-950">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-center section-title mb-12 text-white">Get Started with Maolan</h2>
-      <div class="grid md:grid-cols-3 gap-6">
-        <a href="https://github.com/maolan/maolan" target="_blank" class="feature-card rounded-lg p-8 flex flex-col items-center text-center group cursor-pointer">
-          <div class="w-16 h-16 rounded-lg bg-cyan-500/20 flex items-center justify-center mb-4 group-hover:bg-cyan-500/30 transition">
-            <svg class="w-8 h-8 text-cyan-400" fill="currentcolor" viewbox="0 0 24 24">
-            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
-          </div>
-          <h3 class="text-lg font-semibold mb-2 text-white">Visit GitHub</h3>
-          <p class="text-slate-400 text-sm">View source code, releases, and contribute</p>
+          <span class="font-bold text-lg">Maolan</span>
         </a>
-        <a href="#" class="feature-card rounded-lg p-8 flex flex-col items-center text-center group cursor-pointer">
-          <div class="w-16 h-16 rounded-lg bg-cyan-500/20 flex items-center justify-center mb-4 group-hover:bg-cyan-500/30 transition">
-            <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C6.248 6.253 2 10.998 2 16.5c0 5.502 4.248 10.247 10 10.247s10-4.745 10-10.247c0-5.502-4.248-10.247-10-10.247z"></path></svg>
-          </div>
-          <h3 class="text-lg font-semibold mb-2 text-white">Documentation</h3>
-          <p class="text-slate-400 text-sm">Read guides, API docs, and tutorials</p>
-        </a>
-        <a href="#" class="feature-card rounded-lg p-8 flex flex-col items-center text-center group cursor-pointer">
-          <div class="w-16 h-16 rounded-lg bg-cyan-500/20 flex items-center justify-center mb-4 group-hover:bg-cyan-500/30 transition">
-            <svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21h18M3 10h18M3 7l9-4 9 4M4 10v11m5-11v11m6-11v11m5-11v11"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold mb-2 text-white">Support the Project</h3>
-          <p class="text-slate-400 text-sm">Help the development by keeping it sustainable</p>
-        </a>
+        <div class="hidden md:flex items-center space-x-8">
+          <a
+            href="features.html"
+            class="text-sm text-slate-400 hover:text-slate-100 transition"
+            >Features</a
+          >
+          <a
+            href="workflow.html"
+            class="text-sm text-slate-400 hover:text-slate-100 transition"
+            >Workflow</a
+          >
+          <a
+            href="shortcuts.html"
+            class="text-sm text-slate-400 hover:text-slate-100 transition"
+            >Shortcuts</a
+          >
+          <a
+            href="#faq"
+            class="text-sm text-slate-400 hover:text-slate-100 transition"
+            >FAQ</a
+          >
+        </div>
+        <a
+          href="https://github.com/maolan/maolan"
+          target="_blank"
+          class="text-sm font-medium text-slate-400 hover:text-slate-100 transition"
+          >GitHub</a
+        >
       </div>
-    </div>
-  </section>
-  <section class="py-20 px-6 bg-maolan-dark border-t border-gray-800" id="faq">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="text-4xl font-bold mb-12 text-center">Frequently Asked Questions</h2>
-      <div class="space-y-6">
-        <details class="group bg-gray-900 border border-gray-800 rounded-lg overflow-hidden">
-          <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-800/50 transition font-semibold">
-            <span>Is Maolan free?</span>
-            <span class="text-2xl group-open:rotate-180 transition">+</span>
-          </summary>
-          <div class="px-6 pb-6 text-gray-400">
-            <br />
-            Yes! Maolan is completely free and open source. There are no licensing fees, subscriptions, or paywalls. The source code is available on GitHub under an open-source license.
+    </nav>
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-6 gradient-dark relative overflow-hidden">
+      <!-- Background elements -->
+      <div
+        class="absolute top-0 right-0 w-96 h-96 rounded-full bg-blue-500/10 blur-3xl"
+      ></div>
+      <div
+        class="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-cyan-500/10 blur-3xl"
+      ></div>
+      <div class="max-w-4xl mx-auto text-center relative z-10">
+        <h1 class="section-title mb-6 text-white">Maolan</h1>
+        <img src="img/logo.svg" />
+        <h1 class="section-title mb-6 text-cyan-400">
+          An Open Source<br />Digital Audio Workstation
+        </h1>
+        <p
+          class="text-xl text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed"
+        >
+          A modern Rust-based DAW for recording, MIDI editing, automation,
+          plugin routing, and music production workflows. Built by the
+          community, for the community.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="https://github.com/maolan/maolan"
+            target="_blank"
+            class="btn-primary px-8 py-3 rounded-lg inline-block"
+            >View on GitHub</a
+          >
+          <a
+            href="#support"
+            class="btn-secondary px-8 py-3 rounded-lg inline-block"
+            >Support the Project</a
+          >
+        </div>
+      </div>
+    </section>
+    <!-- Problem Section -->
+    <section class="py-20 px-6 bg-maolan-darker border-t border-gray-800">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold mb-4">See Maolan in Action</h2>
+          <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+            Explore the interface, workflow, and core production tools built
+            into Maolan.
+          </p>
+        </div>
+        <!-- DAW Interface Mockup -->
+        <img src="img/workspace.gif" />
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+          <div class="text-center">
+            <h3 class="font-semibold mb-2 text-xl text-cyan-400">
+              Multi-Track Timeline
+            </h3>
+            <p class="text-gray-400 text-lg">
+              Organize and arrange unlimited tracks with precise timing
+              controls.
+            </p>
           </div>
-        </details>
-        <details class="group bg-gray-900 border border-gray-800 rounded-lg overflow-hidden">
-          <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-800/50 transition font-semibold">
-            <span>Which platforms are supported?</span>
-            <span class="text-2xl group-open:rotate-180 transition">+</span>
-          </summary>
-          <div class="px-6 pb-6 text-gray-400">
-            <br />
-            Maolan is built with Rust and currently supports Linux, and FreeBSD. You can build it from source on any of these platforms.
+          <div class="text-center">
+            <h3 class="font-semibold mb-2 text-xl text-cyan-400">
+              Piano Roll Editor
+            </h3>
+            <p class="text-gray-400 text-lg">
+              Advanced MIDI editing with velocity, note properties, and
+              automation.
+            </p>
           </div>
-        </details>
-        <details class="group bg-gray-900 border border-gray-800 rounded-lg overflow-hidden">
-          <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-800/50 transition font-semibold">
-            <span>Which plugin formats are supported?</span>
-            <span class="text-2xl group-open:rotate-180 transition">+</span>
-          </summary>
-          <div class="px-6 pb-6 text-gray-400">
-            <br />
-            Maolan currently supports VST3 and LV2 plugin formats. Support for additional formats may be added as the project develops. Check the GitHub repository for the latest plugin compatibility information.
+          <div class="text-center">
+            <h3 class="font-semibold mb-2 text-xl text-cyan-400">
+              Mixer & Routing
+            </h3>
+            <p class="text-gray-400 text-lg">
+              Flexible plugin hosting and track routing for complex mixing
+              setups.
+            </p>
           </div>
-        </details>
-        <details class="group bg-gray-900 border border-gray-800 rounded-lg overflow-hidden">
-          <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-800/50 transition font-semibold">
-            <span>How can I contribute?</span>
-            <span class="text-2xl group-open:rotate-180 transition">+</span>
-          </summary>
-          <div class="px-6 pb-6 text-gray-400 space-y-3">
-            <br />
-            <p>There are many ways to contribute to Maolan:</p>
-            <ul class="list-disc list-inside space-y-2">
-              <li><strong>Code:</strong> Submit pull requests for features, bug fixes, or improvements</li>
-              <li><strong>Documentation:</strong> Help improve guides, tutorials, and API docs</li>
-              <li><strong>Testing:</strong> Report bugs, test features, and provide feedback</li>
-              <li><strong>Design:</strong> Contribute UI/UX improvements and design ideas</li>
-              <li><strong>Community:</strong> Help other users, answer questions, and promote the project</li>
+        </div>
+      </div>
+    </section>
+    <section class="py-20 px-6 bg-slate-900">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-center section-title mb-12 text-white">
+          The Challenge
+        </h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-lg font-semibold mb-3 text-cyan-400">
+              Closed Ecosystems
+            </h3>
+            <p class="text-slate-400">
+              Most modern DAWs are proprietary black boxes. You can't inspect
+              the code, understand how they work, or modify them for your needs.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-3 text-cyan-400">High Costs</h3>
+            <p class="text-slate-400">
+              Professional DAWs require expensive licenses. For students,
+              hobbyists, and developers, this creates barriers to entry.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-3 text-cyan-400">
+              Limited Flexibility
+            </h3>
+            <p class="text-slate-400">
+              Extending functionality or integrating custom workflows is
+              difficult or impossible without source code access.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Solution Section -->
+    <section class="py-20 px-6 bg-slate-950">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-center section-title mb-12 text-white">The Solution</h2>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <p class="text-lg text-slate-300 mb-6 leading-relaxed">
+              Maolan is a free, open-source DAW built in Rust. It prioritizes
+              transparency, performance, and community-driven development.
+            </p>
+            <p class="text-lg text-slate-300 mb-6 leading-relaxed">
+              Inspect every line of code. Build custom features. Contribute
+              improvements. Own your tools.
+            </p>
+            <ul class="space-y-3">
+              <li class="flex-auto items-start space-x-3">
+                <span class="text-cyan-400 font-bold mt-1">✓</span>
+                <span class="text-slate-300"
+                  >100% open source under a permissive license</span
+                >
+              </li>
+              <li class="flex-auto items-start space-x-3">
+                <span class="text-cyan-400 font-bold mt-1">✓</span>
+                <span class="text-slate-300"
+                  >Built with Rust for safety and performance</span
+                >
+              </li>
+              <li class="flex-auto items-start space-x-3">
+                <span class="text-cyan-400 font-bold mt-1">✓</span>
+                <span class="text-slate-300"
+                  >Community-driven development and improvements</span
+                >
+              </li>
+              <li class="flex-auto items-start space-x-3">
+                <span class="text-cyan-400 font-bold mt-1">✓</span>
+                <span class="text-slate-300"
+                  >Forever free, no licensing fees</span
+                >
+              </li>
             </ul>
-            <p>Visit the GitHub repository to get started. All contributors are welcome!</p>
           </div>
-        </details>
-        <details class="group bg-gray-900 border border-gray-800 rounded-lg overflow-hidden">
-          <summary class="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-800/50 transition font-semibold">
-            <span>Can I reuse it in my Rust project?</span>
-            <span class="text-2xl group-open:rotate-180 transition">+</span>
-          </summary>
-          <div class="px-6 pb-6 text-gray-400">
-            <br />
-            Maolan is a two-part project: engine and GUI. The engine is independent of the GUI and you can use it in your project. If you need to import the engine in your Rust project use:
-            <br />
-            <br />
+          <div class="bg-slate-800/50 rounded-lg p-8 border border-slate-700">
+            <p class="text-sm text-slate-400 mb-4">
+              Modern, transparent audio production
+            </p>
             <div class="space-y-2 font-mono text-sm">
               <div class="text-slate-500">
-                $ <span class="text-slate-300">cargo add maolan_engine</span>
+                $
+                <span class="text-slate-300"
+                  >git clone https://github.com/maolan/maolan</span
+                >
+              </div>
+              <div class="text-slate-500">
+                $ <span class="text-slate-300">cd maolan</span>
+              </div>
+              <div class="text-slate-500">
+                $ <span class="text-slate-300">cargo run --release</span>
+              </div>
+              <div class="text-cyan-400 mt-4">
+                Ready to use. Ready to extend.
               </div>
             </div>
           </div>
-        </details>
+        </div>
       </div>
-    </div>
-  </section>
-</body>
+    </section>
+    <!-- Key Features Section -->
+    <section id="features" class="py-20 px-6 bg-slate-900">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-center section-title mb-12 text-white">
+          Key Capabilities
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="feature-card rounded-lg p-6">
+            <div
+              class="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-cyan-400"
+                fill="none"
+                stroke="currentcolor"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2 text-white">
+              Multi-Track Audio & MIDI
+            </h3>
+            <p class="text-slate-400">
+              Record and arrange unlimited audio and MIDI tracks with precise
+              timing and flexible mixing.
+            </p>
+          </div>
+          <div class="feature-card rounded-lg p-6">
+            <div
+              class="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-cyan-400"
+                fill="none"
+                stroke="currentcolor"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2 text-white">
+              Piano Roll MIDI Editing
+            </h3>
+            <p class="text-slate-400">
+              Intuitive piano roll interface for composing, editing, and
+              refining MIDI performances.
+            </p>
+          </div>
+          <div class="feature-card rounded-lg p-6">
+            <div
+              class="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-cyan-400"
+                fill="none"
+                stroke="currentcolor"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2 text-white">
+              Automation & Envelopes
+            </h3>
+            <p class="text-slate-400">
+              Create dynamic automations for volume, pan, plugin parameters.
+              Create session and track templates.
+            </p>
+          </div>
+          <div class="feature-card rounded-lg p-6">
+            <div
+              class="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-cyan-400"
+                fill="none"
+                stroke="currentcolor"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2 text-white">
+              Plugin Hosting & Routing
+            </h3>
+            <p class="text-slate-400">
+              Load VST3/LV2 plugins, create complex routing chains, and design
+              custom signal flows.
+            </p>
+          </div>
+          <div class="feature-card rounded-lg p-6">
+            <div
+              class="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-cyan-400"
+                fill="none"
+                stroke="currentcolor"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2 text-white">
+              Export & Format Support
+            </h3>
+            <p class="text-slate-400">
+              Export to WAV, FLAC, MP3, and other common formats. Save projects
+              in open formats.
+            </p>
+          </div>
+          <div class="feature-card rounded-lg p-6">
+            <div
+              class="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center mb-4"
+            >
+              <svg
+                class="w-6 h-6 text-cyan-400"
+                fill="none"
+                stroke="currentcolor"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2 text-white">
+              Autosave & Recovery
+            </h3>
+            <p class="text-slate-400">
+              Automatic project backups and recovery features protect your work
+              from unexpected interruptions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Workflow Section -->
+    <section id="workflow" class="py-20 px-6 bg-slate-950">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-center section-title mb-12 text-white">
+          Complete Production Workflow
+        </h2>
+        <div class="space-y-6">
+          <div class="flex gap-6">
+            <div class="flex-shrink-0">
+              <div
+                class="flex items-center justify-center h-12 w-12 rounded-lg bg-cyan-500/20"
+              >
+                <span class="text-cyan-400 font-bold">1</span>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2 text-white">Recording</h3>
+              <p class="text-slate-400">
+                Record audio from your microphone or instruments. Monitor
+                latency-free with multiple input sources simultaneously.
+              </p>
+            </div>
+          </div>
+          <div class="flex gap-6">
+            <div class="flex-shrink-0">
+              <div
+                class="flex items-center justify-center h-12 w-12 rounded-lg bg-cyan-500/20"
+              >
+                <span class="text-cyan-400 font-bold">2</span>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2 text-white">
+                Editing & Composition
+              </h3>
+              <p class="text-slate-400">
+                Edit audio clips and MIDI notes with precision. Use the piano
+                roll for composing melodies and harmonies.
+              </p>
+            </div>
+          </div>
+          <div class="flex gap-6">
+            <div class="flex-shrink-0">
+              <div
+                class="flex items-center justify-center h-12 w-12 rounded-lg bg-cyan-500/20"
+              >
+                <span class="text-cyan-400 font-bold">3</span>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2 text-white">
+                Plugin & Routing
+              </h3>
+              <p class="text-slate-400">
+                Load VST3/LV2 plugins on tracks. Create complex routing chains
+                for parallel processing and effects.
+              </p>
+            </div>
+          </div>
+          <div class="flex gap-6">
+            <div class="flex-shrink-0">
+              <div
+                class="flex items-center justify-center h-12 w-12 rounded-lg bg-cyan-500/20"
+              >
+                <span class="text-cyan-400 font-bold">4</span>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2 text-white">Automation</h3>
+              <p class="text-slate-400">
+                Automate any parameter across time. Create dynamic mixes with
+                volume, pan, and plugin automation curves.
+              </p>
+            </div>
+          </div>
+          <div class="flex gap-6">
+            <div class="flex-shrink-0">
+              <div
+                class="flex items-center justify-center h-12 w-12 rounded-lg bg-cyan-500/20"
+              >
+                <span class="text-cyan-400 font-bold">5</span>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2 text-white">
+                Mixing & Mastering
+              </h3>
+              <p class="text-slate-400">
+                Balance levels, EQ, compress, and process your mix. Prepare your
+                final master for distribution.
+              </p>
+            </div>
+          </div>
+          <div class="flex gap-6">
+            <div class="flex-shrink-0">
+              <div
+                class="flex items-center justify-center h-12 w-12 rounded-lg bg-cyan-500/20"
+              >
+                <span class="text-cyan-400 font-bold">6</span>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-lg font-semibold mb-2 text-white">Export</h3>
+              <p class="text-slate-400">
+                Export your final mix to WAV, FLAC, MP3, or other formats. Ready
+                for streaming, distribution, or further processing.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Open Source Section -->
+    <section id="open-source" class="py-20 px-6 bg-slate-900">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-center section-title mb-12 text-white">
+          Open Source & Community Driven
+        </h2>
+        <div class="grid md:grid-cols-2 gap-12">
+          <div>
+            <h3 class="text-xl font-semibold mb-4 text-cyan-400">
+              Why Open Source?
+            </h3>
+            <p class="text-slate-300 mb-4 leading-relaxed">
+              Maolan is open source because we believe audio production tools
+              should be transparent, accessible, and shaped by their users.
+            </p>
+            <p class="text-slate-300 mb-4 leading-relaxed">
+              You can inspect the code, understand how features work, and
+              contribute improvements directly. The community drives the
+              direction of the project.
+            </p>
+            <ul class="space-y-3">
+              <li class="flex-auto items-start space-x-3">
+                <span class="text-cyan-400 font-bold mt-1">→</span>
+                <span class="text-slate-300"
+                  ><strong>Contribute code</strong> to core features or
+                  plugins</span
+                >
+              </li>
+              <li class="flex-auto items-start space-x-3">
+                <span class="text-cyan-400 font-bold mt-1">→</span>
+                <span class="text-slate-300"
+                  ><strong>Report bugs</strong> and suggest improvements</span
+                >
+              </li>
+              <li class="flex-auto items-start space-x-3">
+                <span class="text-cyan-400 font-bold mt-1">→</span>
+                <span class="text-slate-300"
+                  ><strong>Write documentation</strong> and tutorials</span
+                >
+              </li>
+              <li class="flex-auto items-start space-x-3">
+                <span class="text-cyan-400 font-bold mt-1">→</span>
+                <span class="text-slate-300"
+                  ><strong>Build plugins</strong> and extensions</span
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="bg-slate-800/50 rounded-lg p-8 border border-slate-700">
+            <h3 class="text-lg font-semibold mb-4 text-white">Project Stats</h3>
+            <div class="space-y-4">
+              <div>
+                <p class="text-sm text-slate-400 mb-1">Repository</p>
+                <p class="font-mono text-cyan-400">github.com/maolan/maolan</p>
+              </div>
+              <div>
+                <p class="text-sm text-slate-400 mb-1">License</p>
+                <p class="text-slate-300">BSD-2-Clause</p>
+              </div>
+              <div>
+                <p class="text-sm text-slate-400 mb-1">Language</p>
+                <p class="text-slate-300">Rust</p>
+              </div>
+              <div>
+                <p class="text-sm text-slate-400 mb-1">Status</p>
+                <p class="text-cyan-400 font-semibold">Active Development</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Get Started Section -->
+    <section class="py-20 px-6 bg-slate-950">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-center section-title mb-12 text-white">
+          Get Started with Maolan
+        </h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <a
+            href="https://github.com/maolan/maolan"
+            target="_blank"
+            class="feature-card rounded-lg p-8 flex flex-col items-center text-center group cursor-pointer"
+          >
+            <div
+              class="w-16 h-16 rounded-lg bg-cyan-500/20 flex items-center justify-center mb-4 group-hover:bg-cyan-500/30 transition"
+            >
+              <svg
+                class="w-8 h-8 text-cyan-400"
+                fill="currentcolor"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2 text-white">Visit GitHub</h3>
+            <p class="text-slate-400 text-sm">
+              View source code, releases, and contribute
+            </p>
+          </a>
+          <a
+            href="#"
+            class="feature-card rounded-lg p-8 flex flex-col items-center text-center group cursor-pointer"
+          >
+            <div
+              class="w-16 h-16 rounded-lg bg-cyan-500/20 flex items-center justify-center mb-4 group-hover:bg-cyan-500/30 transition"
+            >
+              <svg
+                class="w-8 h-8 text-cyan-400"
+                fill="none"
+                stroke="currentcolor"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6.253v13m0-13C6.248 6.253 2 10.998 2 16.5c0 5.502 4.248 10.247 10 10.247s10-4.745 10-10.247c0-5.502-4.248-10.247-10-10.247z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2 text-white">Documentation</h3>
+            <p class="text-slate-400 text-sm">
+              Read guides, API docs, and tutorials
+            </p>
+          </a>
+          <a
+            href="#"
+            class="feature-card rounded-lg p-8 flex flex-col items-center text-center group cursor-pointer"
+          >
+            <div
+              class="w-16 h-16 rounded-lg bg-cyan-500/20 flex items-center justify-center mb-4 group-hover:bg-cyan-500/30 transition"
+            >
+              <svg
+                class="w-8 h-8 text-cyan-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 21h18M3 10h18M3 7l9-4 9 4M4 10v11m5-11v11m6-11v11m5-11v11"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold mb-2 text-white">
+              Support the Project
+            </h3>
+            <p class="text-slate-400 text-sm">
+              Help the development by keeping it sustainable
+            </p>
+          </a>
+        </div>
+      </div>
+    </section>
+    <section
+      class="py-20 px-6 bg-maolan-dark border-t border-gray-800"
+      id="faq"
+    >
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-4xl font-bold mb-12 text-center">
+          Frequently Asked Questions
+        </h2>
+        <div class="space-y-6">
+          <details
+            class="group bg-gray-900 border border-gray-800 rounded-lg overflow-hidden"
+          >
+            <summary
+              class="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-800/50 transition font-semibold"
+            >
+              <span>Is Maolan free?</span>
+              <span class="text-2xl group-open:rotate-180 transition">+</span>
+            </summary>
+            <div class="px-6 pb-6 text-gray-400">
+              <br />
+              Yes! Maolan is completely free and open source. There are no
+              licensing fees, subscriptions, or paywalls. The source code is
+              available on GitHub under an open-source license.
+            </div>
+          </details>
+          <details
+            class="group bg-gray-900 border border-gray-800 rounded-lg overflow-hidden"
+          >
+            <summary
+              class="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-800/50 transition font-semibold"
+            >
+              <span>Which platforms are supported?</span>
+              <span class="text-2xl group-open:rotate-180 transition">+</span>
+            </summary>
+            <div class="px-6 pb-6 text-gray-400">
+              <br />
+              Maolan is built with Rust and currently supports Linux, and
+              FreeBSD. You can build it from source on any of these platforms.
+            </div>
+          </details>
+          <details
+            class="group bg-gray-900 border border-gray-800 rounded-lg overflow-hidden"
+          >
+            <summary
+              class="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-800/50 transition font-semibold"
+            >
+              <span>Which plugin formats are supported?</span>
+              <span class="text-2xl group-open:rotate-180 transition">+</span>
+            </summary>
+            <div class="px-6 pb-6 text-gray-400">
+              <br />
+              Maolan currently supports VST3 and LV2 plugin formats. Support for
+              additional formats may be added as the project develops. Check the
+              GitHub repository for the latest plugin compatibility information.
+            </div>
+          </details>
+          <details
+            class="group bg-gray-900 border border-gray-800 rounded-lg overflow-hidden"
+          >
+            <summary
+              class="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-800/50 transition font-semibold"
+            >
+              <span>How can I contribute?</span>
+              <span class="text-2xl group-open:rotate-180 transition">+</span>
+            </summary>
+            <div class="px-6 pb-6 text-gray-400 space-y-3">
+              <br />
+              <p>There are many ways to contribute to Maolan:</p>
+              <ul class="list-disc list-inside space-y-2">
+                <li>
+                  <strong>Code:</strong> Submit pull requests for features, bug
+                  fixes, or improvements
+                </li>
+                <li>
+                  <strong>Documentation:</strong> Help improve guides,
+                  tutorials, and API docs
+                </li>
+                <li>
+                  <strong>Testing:</strong> Report bugs, test features, and
+                  provide feedback
+                </li>
+                <li>
+                  <strong>Design:</strong> Contribute UI/UX improvements and
+                  design ideas
+                </li>
+                <li>
+                  <strong>Community:</strong> Help other users, answer
+                  questions, and promote the project
+                </li>
+              </ul>
+              <p>
+                Visit the GitHub repository to get started. All contributors are
+                welcome!
+              </p>
+            </div>
+          </details>
+          <details
+            class="group bg-gray-900 border border-gray-800 rounded-lg overflow-hidden"
+          >
+            <summary
+              class="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-800/50 transition font-semibold"
+            >
+              <span>Can I reuse it in my Rust project?</span>
+              <span class="text-2xl group-open:rotate-180 transition">+</span>
+            </summary>
+            <div class="px-6 pb-6 text-gray-400">
+              <br />
+              Maolan is a two-part project: engine and GUI. The engine is
+              independent of the GUI and you can use it in your project. If you
+              need to import the engine in your Rust project use:
+              <br />
+              <br />
+              <div class="space-y-2 font-mono text-sm">
+                <div class="text-slate-500">
+                  $ <span class="text-slate-300">cargo add maolan_engine</span>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>
