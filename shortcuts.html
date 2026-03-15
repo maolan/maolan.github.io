@@ -1,0 +1,664 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maolan Shortcuts - Keyboard Shortcuts and Gestures</title>
+    <meta
+      name="description"
+      content="Reference for Maolan keyboard shortcuts, mouse gestures, transport controls, piano roll editing, markers, tempo editing, and plugin graph actions."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap");
+
+      :root {
+        --maolan-bg: #020617;
+        --maolan-panel: rgba(15, 23, 42, 0.78);
+        --maolan-line: rgba(56, 189, 248, 0.16);
+        --maolan-accent: #00d4ff;
+        --maolan-accent-strong: #0099ff;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background:
+          radial-gradient(circle at top right, rgba(0, 153, 255, 0.18), transparent 28%),
+          radial-gradient(circle at bottom left, rgba(0, 212, 255, 0.14), transparent 32%),
+          linear-gradient(180deg, #0f172a 0%, #020617 40%, #020617 100%);
+      }
+
+      code,
+      kbd {
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .gradient-dark {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      }
+
+      .glass-card {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.06) 0%,
+          rgba(255, 255, 255, 0.025) 100%
+        );
+        border: 1px solid var(--maolan-line);
+        box-shadow: 0 18px 48px rgba(2, 6, 23, 0.35);
+      }
+
+      .shortcut-row {
+        border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+      }
+
+      .shortcut-row:last-child {
+        border-bottom: 0;
+      }
+
+      .kbd {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 2rem;
+        padding: 0.35rem 0.65rem;
+        border-radius: 0.65rem;
+        border: 1px solid rgba(0, 212, 255, 0.22);
+        background: rgba(15, 23, 42, 0.92);
+        color: #d8f7ff;
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+
+      @media (max-width: 768px) {
+        .section-title {
+          font-size: 1.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-slate-950 text-slate-100">
+    <nav
+      class="fixed top-0 z-50 w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur-md"
+    >
+      <div
+        class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4"
+      >
+        <a href="/" class="flex items-center space-x-2">
+          <div class="flex h-8 w-8 items-center justify-center rounded-lg">
+            <span class="text-xs font-bold text-slate-950">
+              <img src="img/logo.svg" alt="Maolan logo" />
+            </span>
+          </div>
+          <span class="text-lg font-bold">Maolan</span>
+        </a>
+        <div class="hidden items-center space-x-8 md:flex">
+          <a
+            href="features.html"
+            class="text-sm text-slate-400 transition hover:text-slate-100"
+            >Features</a
+          >
+          <a
+            href="workflow.html"
+            class="text-sm text-slate-400 transition hover:text-slate-100"
+            >Workflow</a
+          >
+          <a href="shortcuts.html" class="text-sm text-cyan-400">Shortcuts</a>
+          <a
+            href="/#faq"
+            class="text-sm text-slate-400 transition hover:text-slate-100"
+            >FAQ</a
+          >
+        </div>
+        <a
+          href="https://github.com/maolan/maolan"
+          target="_blank"
+          rel="noreferrer"
+          class="text-sm font-medium text-slate-400 transition hover:text-slate-100"
+          >GitHub</a
+        >
+      </div>
+    </nav>
+
+    <main>
+      <section class="gradient-dark relative overflow-hidden px-6 pb-16 pt-32">
+        <div
+          class="absolute right-0 top-0 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl"
+        ></div>
+        <div
+          class="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl"
+        ></div>
+        <div class="relative z-10 mx-auto max-w-5xl">
+          <div class="mb-8 flex flex-wrap gap-3">
+            <span
+              class="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-medium text-cyan-300"
+              >Reference Sheet</span
+            >
+            <span
+              class="rounded-full border border-slate-700 bg-slate-900/50 px-4 py-2 text-sm text-slate-300"
+              >Updated 2026-03-15</span
+            >
+          </div>
+          <h1 class="section-title mb-6 text-white">
+            Maolan <span class="text-cyan-400">Shortcuts</span>
+          </h1>
+          <p class="max-w-3xl text-xl leading-relaxed text-slate-300">
+            Keyboard commands and pointer gestures for session management,
+            transport, clip editing, markers, timing lanes, piano roll work,
+            and plugin routing.
+          </p>
+          <div class="mt-10 grid gap-4 sm:grid-cols-3">
+            <div class="glass-card rounded-2xl p-5">
+              <div class="text-3xl font-bold text-cyan-400">13</div>
+              <div class="mt-2 text-sm text-slate-300">
+                Keyboard shortcuts
+              </div>
+            </div>
+            <div class="glass-card rounded-2xl p-5">
+              <div class="text-3xl font-bold text-cyan-400">27</div>
+              <div class="mt-2 text-sm text-slate-300">
+                Mouse and editing gestures
+              </div>
+            </div>
+            <div class="glass-card rounded-2xl p-5">
+              <div class="text-3xl font-bold text-cyan-400">7</div>
+              <div class="mt-2 text-sm text-slate-300">
+                Context menu action groups
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="border-t border-slate-800 bg-slate-950 px-6 py-10">
+        <div class="mx-auto flex max-w-6xl flex-wrap gap-3">
+          <a
+            href="#keyboard"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Keyboard</a
+          >
+          <a
+            href="#workspace"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Workspace</a
+          >
+          <a
+            href="#timeline"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Timeline</a
+          >
+          <a
+            href="#markers"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Markers</a
+          >
+          <a
+            href="#pianoroll"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Piano Roll</a
+          >
+          <a
+            href="#graph"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Plugin Graph</a
+          >
+          <a
+            href="#notes"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Notes</a
+          >
+        </div>
+      </section>
+
+      <section id="keyboard" class="bg-slate-950 px-6 py-12">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-8">
+            <h2 class="mb-3 text-3xl font-bold text-white">
+              Keyboard Shortcuts
+            </h2>
+            <p class="max-w-3xl text-slate-400">
+              Core commands for session control, playback, and piano-note
+              processing.
+            </p>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-3">
+            <div class="glass-card rounded-3xl p-6 lg:col-span-2">
+              <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                Global / Session
+              </h3>
+              <div>
+                <div
+                  class="shortcut-row grid gap-4 py-4 sm:grid-cols-[190px_minmax(0,1fr)]"
+                >
+                  <div><span class="kbd">Ctrl+N</span></div>
+                  <p class="text-slate-300">New session</p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[190px_minmax(0,1fr)]">
+                  <div><span class="kbd">Ctrl+O</span></div>
+                  <p class="text-slate-300">Open session</p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[190px_minmax(0,1fr)]">
+                  <div><span class="kbd">Ctrl+S</span></div>
+                  <p class="text-slate-300">Save session</p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[190px_minmax(0,1fr)]">
+                  <div><span class="kbd">Ctrl+Shift+S</span></div>
+                  <p class="text-slate-300">Save session as</p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[190px_minmax(0,1fr)]">
+                  <div><span class="kbd">Ctrl+I</span></div>
+                  <p class="text-slate-300">Import files</p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[190px_minmax(0,1fr)]">
+                  <div><span class="kbd">Ctrl+E</span></div>
+                  <p class="text-slate-300">Open export dialog</p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[190px_minmax(0,1fr)]">
+                  <div><span class="kbd">Ctrl+T</span></div>
+                  <p class="text-slate-300">Add track</p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[190px_minmax(0,1fr)]">
+                  <div><span class="kbd">Ctrl+Z</span></div>
+                  <p class="text-slate-300">Undo</p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[190px_minmax(0,1fr)]">
+                  <div><span class="kbd">Ctrl+Shift+Z</span></div>
+                  <p class="text-slate-300">Redo</p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[190px_minmax(0,1fr)]">
+                  <div><span class="kbd">Ctrl+Y</span></div>
+                  <p class="text-slate-300">Redo</p>
+                </div>
+                <div class="grid gap-4 py-4 sm:grid-cols-[190px_minmax(0,1fr)]">
+                  <div class="flex flex-wrap gap-2">
+                    <span class="kbd">Delete</span>
+                    <span class="kbd">Backspace</span>
+                  </div>
+                  <p class="text-slate-300">Remove selected item(s)</p>
+                </div>
+              </div>
+            </div>
+            <div class="space-y-6">
+              <div class="glass-card rounded-3xl p-6">
+                <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                  Transport
+                </h3>
+                <div class="shortcut-row grid gap-4 py-4">
+                  <div><span class="kbd">Space</span></div>
+                  <p class="text-slate-300">Toggle play/pause</p>
+                </div>
+                <div class="grid gap-4 py-4">
+                  <div><span class="kbd">Shift+Space</span></div>
+                  <p class="text-slate-300">Pause</p>
+                </div>
+              </div>
+              <div class="glass-card rounded-3xl p-6">
+                <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                  Piano Tools
+                </h3>
+                <div class="shortcut-row grid gap-4 py-4">
+                  <div><span class="kbd">Q</span></div>
+                  <p class="text-slate-300">Quantize selected notes</p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4">
+                  <div><span class="kbd">H</span></div>
+                  <p class="text-slate-300">Humanize selected notes</p>
+                </div>
+                <div class="grid gap-4 py-4">
+                  <div><span class="kbd">G</span></div>
+                  <p class="text-slate-300">Groove selected notes</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="workspace" class="bg-slate-900 px-6 py-12">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-8">
+            <h2 class="mb-3 text-3xl font-bold text-white">
+              Workspace and Track List
+            </h2>
+            <p class="max-w-3xl text-slate-400">
+              Track selection, track management, and context actions from the
+              main editor.
+            </p>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
+            <div class="glass-card rounded-3xl p-6">
+              <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[240px_minmax(0,1fr)]">
+                <div><span class="kbd">Left click track</span></div>
+                <p class="text-slate-300">Select track</p>
+              </div>
+              <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[240px_minmax(0,1fr)]">
+                <div><span class="kbd">Double click track</span></div>
+                <p class="text-slate-300">Open track plugin view</p>
+              </div>
+              <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[240px_minmax(0,1fr)]">
+                <div><span class="kbd">Right click track</span></div>
+                <p class="text-slate-300">Open track context menu</p>
+              </div>
+              <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[240px_minmax(0,1fr)]">
+                <div><span class="kbd">Drag track body</span></div>
+                <p class="text-slate-300">Reorder track</p>
+              </div>
+              <div class="grid gap-4 py-4 sm:grid-cols-[240px_minmax(0,1fr)]">
+                <div><span class="kbd">Drag bottom track edge</span></div>
+                <p class="text-slate-300">Resize track height</p>
+              </div>
+            </div>
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                Track Context Menu
+              </h3>
+              <ul class="space-y-3 text-slate-300">
+                <li>Automation lane add</li>
+                <li>Rename</li>
+                <li>Freeze, unfreeze, flatten</li>
+                <li>Save as template</li>
+                <li>VCA assignment</li>
+                <li>Aux send controls</li>
+                <li>MIDI learn arm and clear</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="timeline" class="bg-slate-950 px-6 py-12">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-8">
+            <h2 class="mb-3 text-3xl font-bold text-white">
+              Timeline, Selection, and Editing
+            </h2>
+            <p class="max-w-3xl text-slate-400">
+              Clip manipulation, marquee behavior, comping, ruler operations,
+              and timing-lane edits.
+            </p>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-2">
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                Timeline Clips
+              </h3>
+              <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
+                <div><span class="kbd">Left click clip</span></div>
+                <p class="text-slate-300">Select clip</p>
+              </div>
+              <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
+                <div><span class="kbd">Left click empty editor</span></div>
+                <p class="text-slate-300">Deselect clips</p>
+              </div>
+              <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
+                <div><span class="kbd">Left drag clip</span></div>
+                <p class="text-slate-300">
+                  Drag or move clip, or group when multi-selected
+                </p>
+              </div>
+              <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
+                <div><span class="kbd">Ctrl + drag clip</span></div>
+                <p class="text-slate-300">Copy clip while dragging</p>
+              </div>
+              <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
+                <div><span class="kbd">Drag clip edge</span></div>
+                <p class="text-slate-300">Resize clip bounds</p>
+              </div>
+              <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
+                <div><span class="kbd">Drag fade handles</span></div>
+                <p class="text-slate-300">Resize fade-in or fade-out</p>
+              </div>
+              <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
+                <div><span class="kbd">Middle click clip</span></div>
+                <p class="text-slate-300">
+                  Split clip at current cursor or snap position
+                </p>
+              </div>
+              <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
+                <div><span class="kbd">Double click MIDI clip</span></div>
+                <p class="text-slate-300">Open MIDI piano roll</p>
+              </div>
+              <div class="grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
+                <div><span class="kbd">Right click clip</span></div>
+                <p class="text-slate-300">Open clip context menu</p>
+              </div>
+            </div>
+
+            <div class="space-y-6">
+              <div class="glass-card rounded-3xl p-6">
+                <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                  Clip Context Menu
+                </h3>
+                <ul class="space-y-3 text-slate-300">
+                  <li>Rename</li>
+                  <li>Take lane commands</li>
+                  <li>Mute and unmute</li>
+                  <li>Fade enable and disable</li>
+                  <li>Audio warp actions for audio clips</li>
+                </ul>
+              </div>
+              <div class="glass-card rounded-3xl p-6">
+                <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                  Selection and Comping
+                </h3>
+                <div class="shortcut-row grid gap-4 py-4">
+                  <div><span class="kbd">Left drag on empty editor</span></div>
+                  <p class="text-slate-300">Marquee clip selection rectangle</p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4">
+                  <div><span class="kbd">Right drag on MIDI lane</span></div>
+                  <p class="text-slate-300">Create empty MIDI clip</p>
+                </div>
+                <div class="grid gap-4 py-4">
+                  <div><span class="kbd">Left drag across takes</span></div>
+                  <p class="text-slate-300">
+                    In Comp tool mode, swipe comp and promote the active take
+                    while muting others in range
+                  </p>
+                </div>
+              </div>
+              <div class="glass-card rounded-3xl p-6">
+                <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                  Ruler and Timing Lane
+                </h3>
+                <div class="shortcut-row grid gap-4 py-4">
+                  <div><span class="kbd">Left click ruler</span></div>
+                  <p class="text-slate-300">Move transport playhead</p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4">
+                  <div><span class="kbd">Left drag ruler</span></div>
+                  <p class="text-slate-300">Set loop range with snap awareness</p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4">
+                  <div><span class="kbd">Right click ruler</span></div>
+                  <p class="text-slate-300">Clear loop range</p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4">
+                  <div><span class="kbd">Left click marker</span></div>
+                  <p class="text-slate-300">Select tempo or time-signature marker</p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4">
+                  <div><span class="kbd">Shift+Left click marker</span></div>
+                  <p class="text-slate-300">Add or remove marker from selection</p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4">
+                  <div><span class="kbd">Left drag selected marker(s)</span></div>
+                  <p class="text-slate-300">Move marker(s) in time</p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4">
+                  <div><span class="kbd">Left click empty timing lane</span></div>
+                  <p class="text-slate-300">
+                    Clear timing selection or begin punch drag
+                  </p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4">
+                  <div><span class="kbd">Left drag empty timing lane</span></div>
+                  <p class="text-slate-300">Set punch range</p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4">
+                  <div><span class="kbd">Right click</span></div>
+                  <p class="text-slate-300">
+                    Decrement tempo or TS controls in the left zone, or open the
+                    marker context menu
+                  </p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4">
+                  <div><span class="kbd">Middle click tempo lane</span></div>
+                  <p class="text-slate-300">Add tempo point</p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4">
+                  <div><span class="kbd">Middle click TS lane</span></div>
+                  <p class="text-slate-300">Add time-signature point</p>
+                </div>
+                <div class="grid gap-4 py-4">
+                  <div><span class="kbd">Mouse wheel on left control zone</span></div>
+                  <p class="text-slate-300">
+                    Adjust tempo or time-signature values
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="markers" class="bg-slate-900 px-6 py-12">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-8">
+            <h2 class="mb-3 text-3xl font-bold text-white">
+              Track Header Markers
+            </h2>
+            <p class="max-w-3xl text-slate-400">
+              Marker creation, repositioning, and deletion from the header area.
+            </p>
+          </div>
+          <div class="glass-card rounded-3xl p-6">
+            <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[280px_minmax(0,1fr)]">
+              <div><span class="kbd">Right click empty marker/header area</span></div>
+              <p class="text-slate-300">
+                Open the create-marker dialog at the snapped timeline position
+              </p>
+            </div>
+            <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[280px_minmax(0,1fr)]">
+              <div><span class="kbd">Left drag marker</span></div>
+              <p class="text-slate-300">
+                Move marker horizontally with snap applied on drop
+              </p>
+            </div>
+            <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[280px_minmax(0,1fr)]">
+              <div><span class="kbd">Right click marker</span></div>
+              <p class="text-slate-300">Rename marker</p>
+            </div>
+            <div class="grid gap-4 py-4 sm:grid-cols-[280px_minmax(0,1fr)]">
+              <div><span class="kbd">Middle click marker</span></div>
+              <p class="text-slate-300">Delete marker</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="pianoroll" class="bg-slate-950 px-6 py-12">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-8">
+            <h2 class="mb-3 text-3xl font-bold text-white">Piano Roll</h2>
+            <p class="max-w-3xl text-slate-400">
+              Note editing, note creation, selection, and controller lane
+              manipulation.
+            </p>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+            <div class="glass-card rounded-3xl p-6">
+              <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
+                <div><span class="kbd">Click or drag notes</span></div>
+                <p class="text-slate-300">Select and move notes</p>
+              </div>
+              <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
+                <div><span class="kbd">Drag note edge</span></div>
+                <p class="text-slate-300">Resize note start or end</p>
+              </div>
+              <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
+                <div><span class="kbd">Drag rectangle</span></div>
+                <p class="text-slate-300">Box-select notes</p>
+              </div>
+              <div class="grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
+                <div><span class="kbd">Drag in empty area</span></div>
+                <p class="text-slate-300">Create notes</p>
+              </div>
+            </div>
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                Controller and SysEx Lanes
+              </h3>
+              <p class="leading-relaxed text-slate-300">
+                Insert, edit, move, and delete events according to the active
+                lane and current tool selection.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="graph" class="bg-slate-900 px-6 py-12">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-8">
+            <h2 class="mb-3 text-3xl font-bold text-white">Plugin Graph</h2>
+            <p class="max-w-3xl text-slate-400">
+              Routing and graph interactions for plugins, tracks, audio, and
+              MIDI connections.
+            </p>
+          </div>
+          <div class="glass-card rounded-3xl p-6">
+            <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[240px_minmax(0,1fr)]">
+              <div><span class="kbd">Double click track</span></div>
+              <p class="text-slate-300">Open the track plugin or routing graph</p>
+            </div>
+            <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[240px_minmax(0,1fr)]">
+              <div><span class="kbd">Drag plugin node</span></div>
+              <p class="text-slate-300">Move plugin node in graph</p>
+            </div>
+            <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[240px_minmax(0,1fr)]">
+              <div><span class="kbd">Drag from port to port</span></div>
+              <p class="text-slate-300">Create audio or MIDI connection</p>
+            </div>
+            <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[240px_minmax(0,1fr)]">
+              <div><span class="kbd">Select connection + delete</span></div>
+              <p class="text-slate-300">Remove selected graph connection</p>
+            </div>
+            <div class="grid gap-4 py-4 sm:grid-cols-[240px_minmax(0,1fr)]">
+              <div><span class="kbd">Port rendering</span></div>
+              <p class="text-slate-300">
+                Sidechain and auxiliary audio ports are rendered separately from
+                main ports
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="notes" class="border-t border-slate-800 bg-slate-950 px-6 py-16">
+        <div class="mx-auto max-w-4xl">
+          <div class="glass-card rounded-3xl p-8">
+            <h2 class="mb-4 text-3xl font-bold text-white">Notes</h2>
+            <ul class="space-y-4 text-slate-300">
+              <li>
+                Current keyboard handling is <span class="kbd">Ctrl</span>-based
+                in code paths.
+              </li>
+              <li>
+                Some actions depend on the current view, active tool, and
+                selection state.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
