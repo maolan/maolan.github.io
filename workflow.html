@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maolan Workflow - Operations, Routing, and Recovery</title>
+    <meta
+      name="description"
+      content="Operational reference for Maolan covering plugin routing, sidechains, session storage, templates, autosave recovery, diagnostics, and export behavior."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap");
+
+      :root {
+        --maolan-line: rgba(56, 189, 248, 0.16);
+        --maolan-accent: #00d4ff;
+        --maolan-accent-strong: #0099ff;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background:
+          radial-gradient(circle at top right, rgba(0, 153, 255, 0.18), transparent 28%),
+          radial-gradient(circle at bottom left, rgba(0, 212, 255, 0.14), transparent 32%),
+          linear-gradient(180deg, #0f172a 0%, #020617 38%, #020617 100%);
+      }
+
+      code {
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .gradient-dark {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      }
+
+      .glass-card {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.06) 0%,
+          rgba(255, 255, 255, 0.025) 100%
+        );
+        border: 1px solid var(--maolan-line);
+        box-shadow: 0 18px 48px rgba(2, 6, 23, 0.35);
+      }
+
+      .flow-line {
+        position: relative;
+      }
+
+      .flow-line::before {
+        content: "";
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+        bottom: 2rem;
+        width: 1px;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 212, 255, 0.45) 0%,
+          rgba(0, 153, 255, 0.08) 100%
+        );
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+
+      @media (max-width: 768px) {
+        .section-title {
+          font-size: 1.9rem;
+        }
+
+        .flow-line::before {
+          left: 1.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-slate-950 text-slate-100">
+    <nav
+      class="fixed top-0 z-50 w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur-md"
+    >
+      <div
+        class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4"
+      >
+        <a href="/" class="flex items-center space-x-2">
+          <div class="flex h-8 w-8 items-center justify-center rounded-lg">
+            <span class="text-xs font-bold text-slate-950">
+              <img src="img/logo.svg" alt="Maolan logo" />
+            </span>
+          </div>
+          <span class="text-lg font-bold">Maolan</span>
+        </a>
+        <div class="hidden items-center space-x-8 md:flex">
+          <a
+            href="features.html"
+            class="text-sm text-slate-400 transition hover:text-slate-100"
+            >Features</a
+          >
+          <a href="workflow.html" class="text-sm text-cyan-400">Workflow</a>
+          <a
+            href="shortcuts.html"
+            class="text-sm text-slate-400 transition hover:text-slate-100"
+            >Shortcuts</a
+          >
+          <a
+            href="/#faq"
+            class="text-sm text-slate-400 transition hover:text-slate-100"
+            >FAQ</a
+          >
+        </div>
+        <a
+          href="https://github.com/maolan/maolan"
+          target="_blank"
+          rel="noreferrer"
+          class="text-sm font-medium text-slate-400 transition hover:text-slate-100"
+          >GitHub</a
+        >
+      </div>
+    </nav>
+
+    <main>
+      <section class="gradient-dark relative overflow-hidden px-6 pb-20 pt-32">
+        <div
+          class="absolute right-0 top-0 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl"
+        ></div>
+        <div
+          class="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl"
+        ></div>
+        <div class="relative z-10 mx-auto max-w-6xl">
+          <div class="mb-8 flex flex-wrap gap-3">
+            <span
+              class="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-medium text-cyan-300"
+              >Workflow Reference</span
+            >
+            <span
+              class="rounded-full border border-slate-700 bg-slate-900/50 px-4 py-2 text-sm text-slate-300"
+              >Operations updated 2026-03-13</span
+            >
+            <span
+              class="rounded-full border border-slate-700 bg-slate-900/50 px-4 py-2 text-sm text-slate-300"
+              >Routing updated 2026-03-11</span
+            >
+          </div>
+
+          <div class="grid items-end gap-10 lg:grid-cols-[1.3fr_0.8fr]">
+            <div>
+              <h1 class="section-title mb-6 text-white">
+                Maolan <span class="text-cyan-400">Workflow</span>
+              </h1>
+              <p class="max-w-3xl text-xl leading-relaxed text-slate-300">
+                A practical map of how Maolan sessions move from track setup and
+                plugin routing to autosave recovery, diagnostics, templates, and
+                final export.
+              </p>
+              <div class="mt-10 flex flex-wrap gap-3">
+                <a
+                  href="#signal-flow"
+                  class="rounded-lg bg-cyan-400 px-6 py-3 font-semibold text-slate-950 transition hover:bg-cyan-300"
+                  >Explore Signal Flow</a
+                >
+                <a
+                  href="#recovery"
+                  class="rounded-lg border border-cyan-400/40 bg-slate-900/40 px-6 py-3 font-semibold text-cyan-300 transition hover:bg-cyan-400/10"
+                  >See Recovery Path</a
+                >
+              </div>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6">
+              <div class="mb-4 text-sm uppercase tracking-[0.24em] text-cyan-300">
+                At a glance
+              </div>
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-4">
+                  <div class="text-3xl font-bold text-cyan-400">15s</div>
+                  <p class="mt-2 text-sm text-slate-300">Autosave cadence</p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-4">
+                  <div class="text-3xl font-bold text-cyan-400">3</div>
+                  <p class="mt-2 text-sm text-slate-300">Plugin host formats on Linux / FreeBSD</p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-4">
+                  <div class="text-3xl font-bold text-cyan-400">5</div>
+                  <p class="mt-2 text-sm text-slate-300">Core session subdirectories</p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-4">
+                  <div class="text-3xl font-bold text-cyan-400">3</div>
+                  <p class="mt-2 text-sm text-slate-300">Diagnostics bundle files</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="border-t border-slate-800 bg-slate-950 px-6 py-10">
+        <div class="mx-auto flex max-w-6xl flex-wrap gap-3">
+          <a
+            href="#signal-flow"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Signal Flow</a
+          >
+          <a
+            href="#storage"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Storage</a
+          >
+          <a
+            href="#templates"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Templates</a
+          >
+          <a
+            href="#recovery"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Recovery</a
+          >
+          <a
+            href="#diagnostics"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Diagnostics</a
+          >
+          <a
+            href="#platform"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Platform Notes</a
+          >
+        </div>
+      </section>
+
+      <section id="signal-flow" class="bg-slate-950 px-6 py-14">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-10 max-w-3xl">
+            <h2 class="mb-4 text-3xl font-bold text-white">
+              Routing and Signal Flow
+            </h2>
+            <p class="text-lg leading-relaxed text-slate-400">
+              Maolan uses a per-track plugin graph rather than a fixed insert
+              chain. Audio and MIDI paths are explicit, so the graph itself is
+              the workflow.
+            </p>
+          </div>
+
+          <div class="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+            <div class="glass-card rounded-3xl p-6 sm:p-8">
+              <div class="mb-6 flex items-center justify-between gap-4">
+                <h3 class="text-2xl font-semibold text-cyan-400">
+                  Track Graph Model
+                </h3>
+                <span
+                  class="rounded-full border border-orange-400/30 bg-orange-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-orange-200"
+                  >Sidechains in orange</span
+                >
+              </div>
+              <div class="grid gap-4 md:grid-cols-2">
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <h4 class="mb-2 font-semibold text-white">Default track state</h4>
+                  <p class="text-sm leading-6 text-slate-400">
+                    New tracks start with passthrough audio routing from input to
+                    output, plus MIDI passthrough on the first input/output path.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <h4 class="mb-2 font-semibold text-white">Plugin loading</h4>
+                  <p class="text-sm leading-6 text-slate-400">
+                    Loading a plugin does not rewrite existing connections. The
+                    graph decides what actually receives or emits signal.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <h4 class="mb-2 font-semibold text-white">Audio nodes</h4>
+                  <p class="text-sm leading-6 text-slate-400">
+                    Main ports and extra auxiliary or sidechain ports are shown
+                    separately so unusual bus layouts remain visible.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <h4 class="mb-2 font-semibold text-white">MIDI nodes</h4>
+                  <p class="text-sm leading-6 text-slate-400">
+                    MIDI input and output are explicit too. If a plugin emits
+                    MIDI, it must be routed onward to keep events moving.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-8">
+              <h3 class="mb-5 text-2xl font-semibold text-white">
+                Typical Graph Paths
+              </h3>
+              <div class="space-y-5">
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <div class="mb-2 text-sm font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                    Serial insert
+                  </div>
+                  <code class="text-sm text-slate-200"
+                    >Track Input -> Plugin A -> Plugin B -> Track Output</code
+                  >
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <div class="mb-2 text-sm font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                    Sidechain
+                  </div>
+                  <p class="text-sm leading-6 text-slate-400">
+                    Keep the main audio input connected to the plugin’s main
+                    input, then route the source track or upstream output into
+                    the orange sidechain input separately.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <div class="mb-2 text-sm font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                    MIDI instrument / effect
+                  </div>
+                  <p class="text-sm leading-6 text-slate-400">
+                    Connect MIDI source to the plugin, then wire the plugin’s
+                    audio output to the next stage or track output. Route MIDI
+                    output explicitly if the plugin generates events.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="storage" class="border-t border-slate-800 bg-slate-900/60 px-6 py-14">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-10 max-w-3xl">
+            <h2 class="mb-4 text-3xl font-bold text-white">Session Storage</h2>
+            <p class="text-lg leading-relaxed text-slate-400">
+              Sessions are directory-based, with the main project state in
+              <code>session.json</code> and supporting assets stored alongside
+              it.
+            </p>
+          </div>
+
+          <div class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+            <div class="glass-card rounded-3xl p-6 sm:p-8">
+              <h3 class="mb-5 text-2xl font-semibold text-cyan-400">
+                Session Layout
+              </h3>
+              <div class="space-y-4 text-sm text-slate-300">
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-4">
+                  <code>session.json</code>
+                  <p class="mt-2 text-slate-400">
+                    Tracks, clips, connections, plugin graph topology, plugin
+                    state, transport state, metadata, export settings, MIDI
+                    learn bindings, and UI sizing values.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-4">
+                  <code>audio/</code>, <code>midi/</code>, <code>peaks/</code>,
+                  <code>plugins/</code>
+                  <p class="mt-2 text-slate-400">
+                    Imported media, waveform peak cache, and plugin session
+                    assets live inside the session directory.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-4">
+                  <code>.maolan_autosave/snapshots/</code>
+                  <p class="mt-2 text-slate-400">
+                    Timestamped recovery snapshots written beside the live
+                    session.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-8">
+              <h3 class="mb-5 text-2xl font-semibold text-white">
+                App-Level State
+              </h3>
+              <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                <div class="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                  Config file
+                </div>
+                <code class="text-sm text-slate-200"
+                  >~/.config/maolan/config.toml</code
+                >
+                <p class="mt-4 text-sm leading-6 text-slate-400">
+                  If the file does not exist, Maolan creates it on startup with
+                  defaults. It stores UI sizing, export defaults, preferred I/O
+                  devices, snap mode, bit depth, and recent session paths.
+                </p>
+              </div>
+              <div class="mt-5 grid gap-4 md:grid-cols-2">
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <h4 class="mb-2 font-semibold text-white">Recent sessions</h4>
+                  <p class="text-sm leading-6 text-slate-400">
+                    Stored in <code>recent_session_paths</code>, normalized
+                    before display, deduplicated, pruned when invalid, and
+                    capped to the configured limit.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <h4 class="mb-2 font-semibold text-white">Session save/load</h4>
+                  <p class="text-sm leading-6 text-slate-400">
+                    Saved sessions restore plugin graph topology, connections,
+                    and plugin state rather than just track ordering.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="templates" class="border-t border-slate-800 bg-slate-950 px-6 py-14">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-10 max-w-3xl">
+            <h2 class="mb-4 text-3xl font-bold text-white">
+              Templates and Restore Paths
+            </h2>
+            <p class="text-lg leading-relaxed text-slate-400">
+              Maolan separates full-session reuse from single-track reuse, while
+              keeping graph state part of both save and restore workflows.
+            </p>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-2">
+            <div class="glass-card rounded-3xl p-6 sm:p-8">
+              <h3 class="mb-4 text-2xl font-semibold text-cyan-400">
+                Session templates
+              </h3>
+              <code class="text-sm text-slate-200"
+                >~/.config/maolan/session_templates/&lt;name&gt;/</code
+              >
+              <p class="mt-4 text-sm leading-6 text-slate-400">
+                Each template includes <code>session.json</code> and the same
+                supporting subdirectories as a normal session.
+              </p>
+              <ul class="mt-5 space-y-3 text-sm text-slate-300">
+                <li>Includes track structure, routing, plugin graphs, plugin state, metadata, and export settings.</li>
+                <li>Excludes audio clips, MIDI clips, frozen render state, and frozen backups.</li>
+              </ul>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-8">
+              <h3 class="mb-4 text-2xl font-semibold text-cyan-400">
+                Track templates
+              </h3>
+              <code class="text-sm text-slate-200"
+                >~/.config/maolan/track_templates/&lt;name&gt;/</code
+              >
+              <p class="mt-4 text-sm leading-6 text-slate-400">
+                A track template stores <code>track.json</code> and a
+                <code>plugins/</code> directory for one reusable channel strip.
+              </p>
+              <ul class="mt-5 space-y-3 text-sm text-slate-300">
+                <li>Includes track settings, plugin graph, plugin state, and connections involving that track.</li>
+                <li>Excludes audio clips and MIDI clips.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-6 glass-card rounded-3xl p-6 sm:p-8">
+            <h3 class="mb-4 text-2xl font-semibold text-white">
+              Cross-format restore behavior
+            </h3>
+            <p class="max-w-4xl text-sm leading-7 text-slate-400">
+              Mixed Unix graphs containing LV2 and CLAP plugins are restored in
+              saved order. VST3 state is preserved through the current host
+              restore path as well, so sessions and templates retain routing
+              intent instead of reconstructing a simplified chain.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="recovery" class="border-t border-slate-800 bg-slate-900/60 px-6 py-14">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-10 max-w-3xl">
+            <h2 class="mb-4 text-3xl font-bold text-white">
+              Autosave and Recovery
+            </h2>
+            <p class="text-lg leading-relaxed text-slate-400">
+              Recovery is built around timestamped snapshots saved inside the
+              session folder, with the newest valid snapshot preferred first.
+            </p>
+          </div>
+
+          <div class="grid gap-6 lg:grid-cols-[1fr_0.95fr]">
+            <div class="glass-card flow-line rounded-3xl p-6 sm:p-8">
+              <div class="space-y-8">
+                <div class="relative pl-12">
+                  <div
+                    class="absolute left-0 top-1 flex h-8 w-8 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 text-sm font-semibold text-cyan-300"
+                  >
+                    1
+                  </div>
+                  <h3 class="mb-2 text-xl font-semibold text-white">
+                    Snapshot generation
+                  </h3>
+                  <p class="text-sm leading-6 text-slate-400">
+                    Every 15 seconds, Maolan writes a snapshot to
+                    <code>&lt;session&gt;/.maolan_autosave/snapshots/&lt;timestamp&gt;/</code>.
+                  </p>
+                </div>
+                <div class="relative pl-12">
+                  <div
+                    class="absolute left-0 top-1 flex h-8 w-8 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 text-sm font-semibold text-cyan-300"
+                  >
+                    2
+                  </div>
+                  <h3 class="mb-2 text-xl font-semibold text-white">
+                    Validity check
+                  </h3>
+                  <p class="text-sm leading-6 text-slate-400">
+                    A snapshot is considered valid when it contains
+                    <code>session.json</code>.
+                  </p>
+                </div>
+                <div class="relative pl-12">
+                  <div
+                    class="absolute left-0 top-1 flex h-8 w-8 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 text-sm font-semibold text-cyan-300"
+                  >
+                    3
+                  </div>
+                  <h3 class="mb-2 text-xl font-semibold text-white">
+                    Startup / open comparison
+                  </h3>
+                  <p class="text-sm leading-6 text-slate-400">
+                    On startup or open, Maolan can detect when the latest
+                    autosave is newer than the live session file.
+                  </p>
+                </div>
+                <div class="relative pl-12">
+                  <div
+                    class="absolute left-0 top-1 flex h-8 w-8 items-center justify-center rounded-full border border-cyan-400/30 bg-cyan-400/10 text-sm font-semibold text-cyan-300"
+                  >
+                    4
+                  </div>
+                  <h3 class="mb-2 text-xl font-semibold text-white">
+                    Preview and restore
+                  </h3>
+                  <p class="text-sm leading-6 text-slate-400">
+                    Recovery preview summarizes track, audio-clip, and MIDI-clip
+                    count deltas. Restoring a snapshot loads it as current state
+                    and marks the session as unsaved.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-8">
+              <h3 class="mb-5 text-2xl font-semibold text-cyan-400">
+                Recovery boundaries
+              </h3>
+              <div class="space-y-4">
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <h4 class="mb-2 font-semibold text-white">Newest-first sorting</h4>
+                  <p class="text-sm leading-6 text-slate-400">
+                    Snapshot selection prefers the most recent valid entry rather
+                    than trying to merge newer pieces from multiple points in
+                    time.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <h4 class="mb-2 font-semibold text-white">Unsaved state after restore</h4>
+                  <p class="text-sm leading-6 text-slate-400">
+                    Restore is a recovery load, not a silent replacement of the
+                    live project file, so the session remains dirty until saved.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <h4 class="mb-2 font-semibold text-white">Undo / redo note</h4>
+                  <p class="text-sm leading-6 text-slate-400">
+                    Graph connection edits and plugin load or unload actions are
+                    covered by undo and redo. Low-level state-restore mechanics
+                    are internal replay behavior, not user-facing history items.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="diagnostics" class="border-t border-slate-800 bg-slate-950 px-6 py-14">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-10 max-w-3xl">
+            <h2 class="mb-4 text-3xl font-bold text-white">
+              Diagnostics and Export
+            </h2>
+            <p class="text-lg leading-relaxed text-slate-400">
+              The workflow closes with session inspection and multi-format export
+              behavior that persists relevant settings back into the project.
+            </p>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-2">
+            <div class="glass-card rounded-3xl p-6 sm:p-8">
+              <h3 class="mb-5 text-2xl font-semibold text-cyan-400">
+                Diagnostics bundle
+              </h3>
+              <div class="space-y-4 text-sm text-slate-300">
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <p class="font-semibold text-white">UI reports</p>
+                  <p class="mt-2 text-slate-400">
+                    Session Diagnostics, MIDI Mappings Report, and Export
+                    Diagnostics Bundle are exposed in the interface.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <p class="font-semibold text-white">Bundle location</p>
+                  <p class="mt-2 text-slate-400">
+                    Written to
+                    <code>&lt;session&gt;/maolan_diagnostics_&lt;unix-seconds&gt;/</code>
+                    when a session is open, otherwise to
+                    <code>/tmp/maolan_diagnostics_&lt;unix-seconds&gt;/</code>.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <p class="font-semibold text-white">Bundle contents</p>
+                  <p class="mt-2 text-slate-400">
+                    <code>session_diagnostics.txt</code>,
+                    <code>midi_mappings.txt</code>, and
+                    <code>ui_summary.json</code>.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-8">
+              <h3 class="mb-5 text-2xl font-semibold text-cyan-400">
+                Export behavior
+              </h3>
+              <div class="space-y-4 text-sm text-slate-300">
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <p class="font-semibold text-white">Mixdown and stems</p>
+                  <p class="mt-2 text-slate-400">
+                    Mixdown renders selected hardware output ports. Stem export
+                    writes one file per eligible selected track into
+                    <code>&lt;base&gt;_stems/</code>.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <p class="font-semibold text-white">Formats and limits</p>
+                  <p class="mt-2 text-slate-400">
+                    Multiple output formats can be written in a single export
+                    run. MP3 export is limited to mono or stereo output.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <p class="font-semibold text-white">Persisted settings</p>
+                  <p class="mt-2 text-slate-400">
+                    Normalization and master-limiter settings are stored in the
+                    session file along with export dialog settings.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="platform" class="border-t border-slate-800 bg-slate-900/60 px-6 py-14">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-10 max-w-3xl">
+            <h2 class="mb-4 text-3xl font-bold text-white">Platform Notes</h2>
+            <p class="text-lg leading-relaxed text-slate-400">
+              Runtime behavior differs by OS and plugin host path, which affects
+              how the workflow starts before any session is even opened.
+            </p>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-3">
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-3 text-xl font-semibold text-cyan-400">
+                Linux / FreeBSD
+              </h3>
+              <p class="text-sm leading-6 text-slate-400">
+                Startup forces the X11 backend by unsetting
+                <code>WAYLAND_DISPLAY</code> and <code>WAYLAND_SOCKET</code>.
+                Plugin discovery runs for LV2, VST3, and CLAP.
+              </p>
+            </div>
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-3 text-xl font-semibold text-cyan-400">
+                Debugging
+              </h3>
+              <p class="text-sm leading-6 text-slate-400">
+                Passing <code>--debug</code> enables tracing output to stdout for
+                low-level startup and runtime inspection.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -6,59 +6,82 @@
       content="HTML Tidy for HTML5 for FreeBSD version 5.8.0"
     />
     <meta charset="UTF-8" />
-    <title>
-      Maolan Features - Modern Open-Source Digital Audio Workstation
-    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maolan – Open Source Digital Audio Workstation</title>
     <meta
       name="description"
-      content="Explore Maolan's comprehensive features: multi-track recording, advanced MIDI editing, automation, plugin hosting, and professional export capabilities in a modern open-source DAW."
+      content="A modern Rust-based DAW for recording, MIDI editing, automation, and music production. Open source, transparent, and community-driven."
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="canonical" href="https://maolan.io/features" />
-    <meta
-      property="og:title"
-      content="Maolan Features - Modern Open-Source Digital Audio Workstation"
-    />
-    <meta
-      property="og:description"
-      content="Explore Maolan's comprehensive features: multi-track recording, advanced MIDI editing, automation, plugin hosting, and professional export capabilities in a modern open-source DAW."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://maolan.io/features" />
-    <meta property="og:image" content="https://maolan.io/og-features.jpg" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="Maolan Features - Modern Open-Source Digital Audio Workstation"
-    />
-    <meta
-      name="twitter:description"
-      content="Explore Maolan's comprehensive features: multi-track recording, advanced MIDI editing, automation, plugin hosting, and professional export capabilities in a modern open-source DAW."
-    />
-    <meta name="twitter:image" content="https://maolan.io/og-features.jpg" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap");
       body {
-        background-color: #020617;
-        color: #e2e8f0;
+        font-family: "Inter", sans-serif;
       }
-      .accent-cyan {
+      code {
+        font-family: "JetBrains Mono", monospace;
+      }
+      .gradient-dark {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      }
+      .gradient-accent {
+        background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+      }
+      .glow-blue {
+        box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+      }
+      .feature-card {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.05) 0%,
+          rgba(255, 255, 255, 0.02) 100%
+        );
+        border: 1px solid rgba(0, 212, 255, 0.1);
+        transition: all 0.3s ease;
+      }
+      .feature-card:hover {
+        border-color: rgba(0, 212, 255, 0.3);
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.08) 0%,
+          rgba(255, 255, 255, 0.03) 100%
+        );
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+        color: #0a0e27;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+      }
+      .btn-secondary {
+        border: 1.5px solid rgba(0, 212, 255, 0.5);
         color: #00d4ff;
+        font-weight: 600;
+        transition: all 0.3s ease;
       }
-      .bg-accent-cyan {
-        background-color: #00d4ff;
-      }
-      .border-accent-cyan {
+      .btn-secondary:hover {
+        background: rgba(0, 212, 255, 0.1);
         border-color: #00d4ff;
+        transform: translateY(-2px);
       }
-      .glow-cyan {
-        box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      @media (max-width: 768px) {
+        .section-title {
+          font-size: 1.875rem;
+        }
       }
     </style>
   </head>
   <body class="bg-slate-950 text-slate-100">
-    <!-- Navigation -->
     <nav
       class="fixed w-full top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800"
     >
@@ -1620,25 +1643,5 @@
         </div>
       </div>
     </footer>
-    <script>
-      document.addEventListener(
-        "click",
-        function (e) {
-          let target = e.target.closest("a");
-          if (target && target.href && target.href !== window.location.href) {
-            e.preventDefault();
-            const urlToNavigate = target.href;
-            window.parent.postMessage(
-              {
-                type: "NAVIGATE_REQUEST",
-                url: urlToNavigate,
-              },
-              "*",
-            );
-          }
-        },
-        true,
-      );
-    </script>
   </body>
 </html>
