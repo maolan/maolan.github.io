@@ -142,7 +142,7 @@
             >
             <span
               class="rounded-full border border-slate-700 bg-slate-900/50 px-4 py-2 text-sm text-slate-300"
-              >Operations updated 2026-03-13</span
+              >Operations updated 2026-03-18</span
             >
             <span
               class="rounded-full border border-slate-700 bg-slate-900/50 px-4 py-2 text-sm text-slate-300"
@@ -353,15 +353,17 @@
                   <p class="mt-2 text-slate-400">
                     Tracks, clips, connections, plugin graph topology, plugin
                     state, transport state, metadata, export settings, MIDI
-                    learn bindings, and UI sizing values.
+                    learn bindings, pitch-correction segment settings, and UI
+                    sizing values.
                   </p>
                 </div>
                 <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-4">
                   <code>audio/</code>, <code>midi/</code>, <code>peaks/</code>,
-                  <code>plugins/</code>
+                  <code>pitch/</code>, <code>plugins/</code>
                   <p class="mt-2 text-slate-400">
-                    Imported media, waveform peak cache, and plugin session
-                    assets live inside the session directory.
+                    Imported media, waveform peak cache, cached pitch analysis
+                    data, and plugin session assets live inside the session
+                    directory.
                   </p>
                 </div>
                 <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-4">
@@ -390,6 +392,17 @@
                   defaults. It stores UI sizing, export defaults, preferred I/O
                   devices, snap mode, bit depth, and recent session paths.
                 </p>
+                <ul class="mt-4 space-y-1 text-sm text-slate-300">
+                  <li>font_size</li>
+                  <li>mixer_height</li>
+                  <li>track_width</li>
+                  <li>default_export_sample_rate_hz</li>
+                  <li>default_snap_mode</li>
+                  <li>default_audio_bit_depth</li>
+                  <li>default_output_device_id</li>
+                  <li>default_input_device_id</li>
+                  <li>recent_session_paths</li>
+                </ul>
               </div>
               <div class="mt-5 grid gap-4 md:grid-cols-2">
                 <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
@@ -543,8 +556,10 @@
                   </h3>
                   <p class="text-sm leading-6 text-slate-400">
                     Recovery preview summarizes track, audio-clip, and MIDI-clip
-                    count deltas. Restoring a snapshot loads it as current state
-                    and marks the session as unsaved.
+                    count deltas. If newer snapshots fail to restore, older
+                    snapshots are offered as fallback candidates. Restoring a
+                    snapshot loads it as current state and marks the session as
+                    unsaved.
                   </p>
                 </div>
               </div>
@@ -577,6 +592,33 @@
                     covered by undo and redo. Low-level state-restore mechanics
                     are internal replay behavior, not user-facing history items.
                   </p>
+                  <ul class="mt-3 space-y-2 text-slate-300">
+                    <li>Playback/record toggles are intentionally non-undoable.</li>
+                    <li>
+                      Loop and punch-range actions are also excluded from history
+                      to avoid noisy playback-driven snapshots.
+                    </li>
+                    <li>
+                      Track automation level, balance, and mute updates are runtime
+                      path edits and are also excluded.
+                    </li>
+                    <li>
+                      Transport/query/report actions are intentionally kept out of
+                      history.
+                    </li>
+                    <li>
+                      High-frequency automation playback adjustments are also
+                      excluded to avoid history noise.
+                    </li>
+                    <li>
+                      MIDI learn arm actions are excluded; actual mapping changes
+                      remain history-recorded.
+                    </li>
+                    <li>
+                      Plugin discovery and host-state introspection actions are not
+                      recorded in history.
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -624,6 +666,42 @@
                     <code>session_diagnostics.txt</code>,
                     <code>midi_mappings.txt</code>, and
                     <code>ui_summary.json</code>.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-8">
+              <h3 class="mb-5 text-2xl font-semibold text-cyan-400">
+                Pitch-correction cache and render flow
+              </h3>
+              <div class="space-y-4 text-sm text-slate-300">
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <p class="font-semibold text-white">Session requirement</p>
+                  <p class="mt-2 text-slate-400">
+                    Opening pitch correction for an audio clip requires a
+                    saved/opened session.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <p class="font-semibold text-white">Cached source analysis</p>
+                  <p class="mt-2 text-slate-400">
+                    Analysis results are cached under <code>pitch/</code> and
+                    reused for matching source file+offset+length combinations.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <p class="font-semibold text-white">Apply and playback</p>
+                  <p class="mt-2 text-slate-400">
+                    Apply saves correction points/settings to the clip and keeps
+                    source audio untouched while enabling real-time playback.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <p class="font-semibold text-white">Freeze pipeline</p>
+                  <p class="mt-2 text-slate-400">
+                    Frozen audio previews render through the pitch-corrected
+                    signal path so exported/flattened results match.
                   </p>
                 </div>
               </div>
@@ -692,6 +770,15 @@
                 low-level startup and runtime inspection.
               </p>
             </div>
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-3 text-xl font-semibold text-cyan-400">
+                macOS host discovery
+              </h3>
+              <p class="text-sm leading-6 text-slate-400">
+                macOS builds discover CLAP and VST3 plugins on startup. LV2
+                support remains Unix-only.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -730,21 +817,21 @@
             <ul class="space-y-2">
               <li>
                 <a
-                  href="/features.html"
+                  href="features.html"
                   class="text-slate-400 hover:text-white transition-colors"
                   >Features</a
                 >
               </li>
               <li>
                 <a
-                  href="/workflow.html"
+                  href="workflow.html"
                   class="text-slate-400 hover:text-white transition-colors"
                   >Workflow</a
                 >
               </li>
               <li>
                 <a
-                  href="/shortcuts.html"
+                  href="shortcuts.html"
                   class="text-slate-400 hover:text-white transition-colors"
                   >Shortcuts</a
                 >

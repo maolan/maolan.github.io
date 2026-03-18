@@ -143,7 +143,7 @@
             >
             <span
               class="rounded-full border border-slate-700 bg-slate-900/50 px-4 py-2 text-sm text-slate-300"
-              >Updated 2026-03-16</span
+              >Updated 2026-03-18</span
             >
           </div>
           <h1 class="section-title mb-6 text-white">
@@ -156,19 +156,19 @@
           </p>
           <div class="mt-10 grid gap-4 sm:grid-cols-3">
             <div class="glass-card rounded-2xl p-5">
-              <div class="text-3xl font-bold text-cyan-400">17</div>
+                <div class="text-3xl font-bold text-cyan-400">18</div>
               <div class="mt-2 text-sm text-slate-300">
                 Keyboard shortcuts
               </div>
             </div>
             <div class="glass-card rounded-2xl p-5">
-              <div class="text-3xl font-bold text-cyan-400">55</div>
+                <div class="text-3xl font-bold text-cyan-400">63</div>
               <div class="mt-2 text-sm text-slate-300">
                 Mouse and editing gestures
               </div>
             </div>
             <div class="glass-card rounded-2xl p-5">
-              <div class="text-3xl font-bold text-cyan-400">3</div>
+                <div class="text-3xl font-bold text-cyan-400">4</div>
               <div class="mt-2 text-sm text-slate-300">
                 Context menu action groups
               </div>
@@ -350,7 +350,7 @@
               </div>
               <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[240px_minmax(0,1fr)]">
                 <div><span class="kbd">Double click track</span></div>
-                <p class="text-slate-300">Open track plugin view</p>
+                <p class="text-slate-300">Open track plugin/routing graph</p>
               </div>
               <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[240px_minmax(0,1fr)]">
                 <div><span class="kbd">Right click track</span></div>
@@ -420,6 +420,12 @@
                 <p class="text-slate-300">Resize clip bounds</p>
               </div>
               <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
+                <div><span class="kbd">Shift + drag clip left/right edge</span></div>
+                <p class="text-slate-300">
+                  Stretch audio clip with Rubber Band on drop (when available)
+                </p>
+              </div>
+              <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
                 <div><span class="kbd">Drag fade handles</span></div>
                 <p class="text-slate-300">Resize fade-in/fade-out</p>
               </div>
@@ -450,7 +456,55 @@
                   <li>Mute/unmute</li>
                   <li>Fade toggle</li>
                   <li>Audio warp actions for audio clips</li>
+                  <li>Pitch correction</li>
                 </ul>
+              </div>
+              <div class="glass-card rounded-3xl p-6">
+                <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                  Pitch Correction
+                </h3>
+                <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
+                  <div>
+                    <span class="kbd">Right click audio clip &rarr; Pitch Correction</span>
+                  </div>
+                  <p class="text-slate-300">
+                    Open pitch-correction editor when transport is stopped
+                  </p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
+                  <div><span class="kbd">Left click pitch segment</span></div>
+                  <p class="text-slate-300">Select one segment</p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
+                  <div>
+                    <span class="kbd">Shift + Left click pitch segment</span>
+                  </div>
+                  <p class="text-slate-300">Add/remove a segment from the selection</p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
+                  <div><span class="kbd">Left drag selected pitch segment(s)</span></div>
+                  <p class="text-slate-300">
+                    Retarget one or many selected segments vertically
+                  </p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
+                  <div><span class="kbd">Left drag empty area</span></div>
+                  <p class="text-slate-300">Box-select pitch segments</p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
+                  <div><span class="kbd">Shift + Left drag empty area</span></div>
+                  <p class="text-slate-300">
+                    Add box-selected segments to current selection
+                  </p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
+                  <div><span class="kbd">Double click pitch segment</span></div>
+                  <p class="text-slate-300">Snap clicked segment(s) to nearest semitone</p>
+                </div>
+                <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
+                  <div><span class="kbd">Ctrl+Z</span> / <span class="kbd">Ctrl+Shift+Z</span> / <span class="kbd">Ctrl+Y</span> in pitch view</div>
+                  <p class="text-slate-300">Undo and redo local correction edits</p>
+                </div>
               </div>
               <div class="glass-card rounded-3xl p-6">
                 <h3 class="mb-4 text-xl font-semibold text-cyan-400">
@@ -729,9 +783,19 @@
                 Some actions depend on the current view, active tool, and
                 selection state.
               </li>
+              <li>Q/H/G apply to the current selected notes in the piano roll.</li>
+              <li>
+                Audio stretch and pitch-correction actions require
+                <code>rubberband</code> to be available on
+                <code>PATH</code>.
+              </li>
               <li>
                 The main editor zoom is geometric rather than linear, so equal
                 slider movement produces equal zoom-ratio changes.
+              </li>
+              <li>
+                Undo/redo in the pitch-correction view only changes local
+                correction history; it is separate from global history.
               </li>
             </ul>
           </div>
@@ -772,21 +836,21 @@
             <ul class="space-y-2">
               <li>
                 <a
-                  href="/features.html"
+                  href="features.html"
                   class="text-slate-400 hover:text-white transition-colors"
                   >Features</a
                 >
               </li>
               <li>
                 <a
-                  href="/workflow.html"
+                  href="workflow.html"
                   class="text-slate-400 hover:text-white transition-colors"
                   >Workflow</a
                 >
               </li>
               <li>
                 <a
-                  href="/shortcuts.html"
+                  href="shortcuts.html"
                   class="text-slate-400 hover:text-white transition-colors"
                   >Shortcuts</a
                 >

@@ -368,10 +368,10 @@
                   >
                     Multi-track Sessions
                   </summary>
-                  <div class="mt-4 text-slate-300 space-y-2">
+                <div class="mt-4 text-slate-300 space-y-2">
                     <p>• Multi-track audio + MIDI sessions</p>
-                    <p>• Track selection and reordering</p>
-                    <p>• Track templates and session templates</p>
+                    <p>• Track selection, rename, reordering, and resizing</p>
+                    <p>• Session templates and track templates save/load</p>
                   </div>
                 </details>
                 <details
@@ -382,10 +382,19 @@
                   >
                     Session Management
                   </summary>
-                  <div class="mt-4 text-slate-300 space-y-2">
+                <div class="mt-4 text-slate-300 space-y-2">
                     <p>• Session save/open/save-as</p>
                     <p>• Recent session tracking</p>
-                    <p>• Session metadata editing</p>
+                    <p>• Dirty-state tracking and close-guard prompts</p>
+                    <p>
+                      • Transport and timeline workflow coverage including
+                      play/pause/stop/record, loop/punch ranges, tempo and
+                      time-signature edits, metronome control, and panic reset
+                    </p>
+                    <p>
+                      • Session metadata editing (author, album, year, track number,
+                      genre)
+                    </p>
                   </div>
                 </details>
               </div>
@@ -512,7 +521,8 @@
               </h3>
               <p class="text-slate-400">
                 Add time-stretch markers to audio clips for tempo matching and
-                creative time manipulation.
+                creative time manipulation, with reset and half-speed/double-speed
+                helpers.
               </p>
             </div>
             <div
@@ -540,7 +550,10 @@
               </h3>
               <p class="text-slate-400">
                 Mute, rename, and organize clips with comprehensive metadata and
-                visual feedback.
+                visual feedback, including take-lane workflows for overlap-based
+                stacking, dedicated comping actions, active-take cycling, take
+                move up/down, unmute-in-range operations, take pin/unpin, and
+                take lock/unlock controls.
               </p>
             </div>
             <div
@@ -624,11 +637,12 @@
                       ></path>
                     </svg>
                   </summary>
-                  <div class="mt-3 text-slate-400 space-y-2">
+                <div class="mt-3 text-slate-400 space-y-2">
                     <p>• Note editing with precise timing and pitch control</p>
                     <p>• Chord generation and harmonic tools</p>
                     <p>• Scale snap for modal composition</p>
                     <p>• Legato and articulation controls</p>
+                    <p>• Configurable scale root, chord types, and major/minor mode</p>
                   </div>
                 </details>
                 <details class="group">
@@ -676,11 +690,12 @@
                       ></path>
                     </svg>
                   </summary>
-                  <div class="mt-3 text-slate-400 space-y-2">
-                    <p>• SysEx editing for hardware integration</p>
+                <div class="mt-3 text-slate-400 space-y-2">
+                    <p>• SysEx point create, edit, move, and delete</p>
                     <p>• Quantize with multiple grid options</p>
                     <p>• Multi-channel MIDI support</p>
                     <p>• Real-time MIDI input recording</p>
+                    <p>• Configurable groove, humanize, and velocity-shape values</p>
                   </div>
                 </details>
               </div>
@@ -724,8 +739,8 @@
                     Track Automation Lanes
                   </h3>
                   <p class="text-slate-400">
-                    Dedicated automation lanes for volume, pan, and send levels
-                    with visual curve editing and breakpoint manipulation.
+                    Dedicated automation lanes for volume, balance, and send levels,
+                    with insert/delete/edit point controls and visual curve editing.
                   </p>
                 </div>
               </div>
@@ -753,7 +768,9 @@
                   </h3>
                   <p class="text-slate-400">
                     Automate plugin parameters with smooth interpolation and
-                    multiple curve shapes for expressive control.
+                    multiple curve shapes for expressive control across CLAP, VST3,
+                    and LV2 hosts, including automation lane creation from loaded
+                    plugin parameters.
                   </p>
                 </div>
               </div>
@@ -895,17 +912,27 @@
                   Track Controls
                 </h3>
                 <ul class="space-y-3 text-slate-300">
-                  <li class="flex items-center">
-                    <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
-                    Track arm, mute, and solo
+                <li class="flex items-center">
+                  <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
+                    Track arm, mute, solo, input monitor, and disk monitor
                   </li>
                   <li class="flex items-center">
                     <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
-                    Volume, pan, and sends
+                    Volume, balance, aux send level/pan, pre/post send routing,
+                    and VCA/group routing
                   </li>
                   <li class="flex items-center">
                     <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
-                    Aux buses and submix routing
+                    MIDI learn targets for volume, mute, solo, track toggles,
+                    and global transport actions (play/stop/record)
+                  </li>
+                  <li class="flex items-center">
+                    <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
+                    Audio/MIDI passthrough defaults and aux send management
+                  </li>
+                  <li class="flex items-center">
+                    <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
+                    Aux return creation from selected tracks
                   </li>
                 </ul>
               </div>
@@ -927,6 +954,18 @@
                   <li class="flex items-center">
                     <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
                     Session-wide mixing organization
+                  </li>
+                  <li class="flex items-center">
+                    <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
+                    CLAP/VST3/LV2 per-track graph and plugin automation paths
+                  </li>
+                  <li class="flex items-center">
+                    <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
+                    Plugin scan/load/unload and graph restore for CLAP/VST3/LV2
+                  </li>
+                  <li class="flex items-center">
+                    <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
+                    Offline plugin bounce path for freeze/export workflows
                   </li>
                 </ul>
               </div>
@@ -986,7 +1025,7 @@
                     </h3>
                     <p class="text-slate-400">
                       Render processing-heavy tracks to audio while keeping the
-                      arrangement intact.
+                      arrangement intact, with progress and cancel controls.
                     </p>
                   </div>
                 </div>
@@ -1013,8 +1052,9 @@
                       Keep original sources
                     </h3>
                     <p class="text-slate-400">
-                      Maintain unfrozen backups so you can return to live
-                      editing when needed.
+                      Maintain reversible frozen backups so you can return to live
+                      editing when needed; mutable operations are guarded by
+                      freeze-state constraints.
                     </p>
                   </div>
                 </div>
@@ -1094,11 +1134,31 @@
                     </li>
                     <li class="flex items-center gap-3">
                       <div class="w-2 h-2 bg-cyan-400 rounded-full"></div>
-                      Normalization modes
+                      Peak and loudness normalization modes
                     </li>
                     <li class="flex items-center gap-3">
                       <div class="w-2 h-2 bg-cyan-400 rounded-full"></div>
-                      Master limiter support
+                      Master-limiter + dBTP ceiling
+                    </li>
+                    <li class="flex items-center gap-3">
+                      <div class="w-2 h-2 bg-cyan-400 rounded-full"></div>
+                      Multiple output formats in a single run
+                    </li>
+                    <li class="flex items-center gap-3">
+                      <div class="w-2 h-2 bg-cyan-400 rounded-full"></div>
+                      Real-time fallback render mode
+                    </li>
+                    <li class="flex items-center gap-3">
+                      <div class="w-2 h-2 bg-cyan-400 rounded-full"></div>
+                      MP3/OGG codec settings and metadata tagging
+                    </li>
+                    <li class="flex items-center gap-3">
+                      <div class="w-2 h-2 bg-cyan-400 rounded-full"></div>
+                      MP3 export constrained to mono/stereo
+                    </li>
+                    <li class="flex items-center gap-3">
+                      <div class="w-2 h-2 bg-cyan-400 rounded-full"></div>
+                      Settings persist with the session project
                     </li>
                   </ul>
                 </div>
@@ -1168,7 +1228,8 @@
                 Unsaved Changes Protection
               </h3>
               <p class="text-slate-300 text-sm">
-                Smart change detection helps prevent accidental loss of work.
+                Smart change detection tracks dirty state and guards close actions
+                until the session is saved.
               </p>
             </div>
             <div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
@@ -1176,7 +1237,8 @@
                 Startup Recovery Prompts
               </h3>
               <p class="text-slate-300 text-sm">
-                Recovery options appear after unexpected closures.
+                Recovery options appear after unexpected closures, including hints
+                from the last opened session context.
               </p>
             </div>
             <div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
@@ -1223,7 +1285,9 @@
                 MIDI Mapping Reports
               </h3>
               <p class="text-slate-300 text-sm">
-                Inspect controller mappings and configuration status.
+                Inspect controller mappings, import/export mappings, clear-all, and
+                persist mapping changes in session state with collision/conflict
+                protection.
               </p>
             </div>
             <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
@@ -1250,7 +1314,7 @@
           <div class="flex justify-center">
             <div class="space-y-6">
               <h2 class="text-3xl font-bold text-white text-center">Platform Notes</h2>
-              <div class="flex justify-center space-x-4">
+              <div class="flex flex-wrap justify-center gap-3">
                 <div
                   class="p-4 bg-slate-900/50 rounded-lg border border-slate-800"
                 >
@@ -1269,6 +1333,16 @@
                   </h3>
                   <p class="text-slate-300">
                     Linux and FreeBSD builds currently use the X11 backend.
+                  </p>
+                </div>
+                <div
+                  class="p-4 bg-slate-900/50 rounded-lg border border-slate-800"
+                >
+                  <h3 class="text-lg font-semibold text-cyan-400 mb-2">
+                    MIDI 2.0 Roadmap
+                  </h3>
+                  <p class="text-slate-300">
+                    FreeBSD roadmap notes still mark MIDI 2.0 support as N/A.
                   </p>
                 </div>
               </div>
@@ -1336,22 +1410,43 @@
               and editable correction windows.
             </p>
           </div>
-          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
-            <div class="rounded-lg border border-slate-700 bg-slate-800/50 mb-4 overflow-hidden">
-              <img
-                src="img/pitch-correction.png"
-                alt="Pitch correction interface"
-                class="w-full h-auto block"
-              />
+            <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+              <div class="rounded-lg border border-slate-700 bg-slate-800/50 mb-4 overflow-hidden">
+                <img
+                  src="img/pitch-correction.png"
+                  alt="Pitch correction interface"
+                  class="w-full h-auto block"
+                />
+              </div>
+              <ul class="text-slate-300 space-y-2 list-disc list-inside">
+                <li>
+                  Cached source analysis per session in the <code>pitch/</code>
+                  directory for quick revisits.
+                </li>
+                <li>
+                  Saved clip correction points can reopen without re-analyzing when
+                  source segment details still match.
+                </li>
+                <li>
+                  Tune detection granularity and merge-aware segmentation.
+                </li>
+                <li>
+                  Manual retargeting, optional inertia/merging behavior, and
+                  formant compensation support.
+                </li>
+                <li>
+                  Local segment editing is undoable and can be applied without
+                  destructively rewriting source audio.
+                </li>
+                <li>
+                  Real-time playback and freeze rendering use the corrected output
+                  path for exports and monitoring.
+                </li>
+                <li>MP3/OGG/FLAC/WAV export targets remain standard outputs.</li>
+              </ul>
             </div>
-            <ul class="text-slate-300 space-y-2 list-disc list-inside">
-              <li>Cached in-memory pitch scan for fast revisits</li>
-              <li>Tune detection granularity and merge-aware segment workflows</li>
-              <li>Manual segment retargeting, inertia control, and formant options</li>
-            </ul>
           </div>
-        </div>
-      </section>
+        </section>
       <section class="py-20 bg-slate-950">
         <div class="max-w-4xl mx-auto px-6 text-center">
           <div class="mb-12">
@@ -1454,21 +1549,21 @@
             <ul class="space-y-2">
               <li>
                 <a
-                  href="/features.html"
+                  href="features.html"
                   class="text-slate-400 hover:text-white transition-colors"
                   >Features</a
                 >
               </li>
               <li>
                 <a
-                  href="/workflow.html"
+                  href="workflow.html"
                   class="text-slate-400 hover:text-white transition-colors"
                   >Workflow</a
                 >
               </li>
               <li>
                 <a
-                  href="/shortcuts.html"
+                  href="shortcuts.html"
                   class="text-slate-400 hover:text-white transition-colors"
                   >Shortcuts</a
                 >
