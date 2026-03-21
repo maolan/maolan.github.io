@@ -143,7 +143,7 @@
             >
             <span
               class="rounded-full border border-slate-700 bg-slate-900/50 px-4 py-2 text-sm text-slate-300"
-              >Updated 2026-03-18</span
+              >Updated 2026-03-21</span
             >
           </div>
           <h1 class="section-title mb-6 text-white">
@@ -439,6 +439,12 @@
                 <div><span class="kbd">Double click MIDI clip</span></div>
                 <p class="text-slate-300">Open MIDI piano roll</p>
               </div>
+              <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
+                <div><span class="kbd">Double click audio clip</span></div>
+                <p class="text-slate-300">
+                  Open per-clip plugin graph on supported Unix builds
+                </p>
+              </div>
               <div class="grid gap-4 py-4 sm:grid-cols-[220px_minmax(0,1fr)]">
                 <div><span class="kbd">Right click clip</span></div>
                 <p class="text-slate-300">Open clip context menu</p>
@@ -451,6 +457,7 @@
                   Clip Context Menu
                 </h3>
                 <ul class="space-y-3 text-slate-300">
+                  <li>Group/ungroup</li>
                   <li>Rename</li>
                   <li>Take-lane controls</li>
                   <li>Mute/unmute</li>
@@ -780,14 +787,27 @@
                 in code paths, including on macOS builds.
               </li>
               <li>
+                Maolan also ships a <code>maolan-cli</code> binary that can
+                play, pause, stop, send panic, and export the current session.
+              </li>
+              <li>
                 Some actions depend on the current view, active tool, and
                 selection state.
               </li>
               <li>Q/H/G apply to the current selected notes in the piano roll.</li>
               <li>
-                Audio stretch and pitch-correction actions require
-                <code>rubberband</code> to be available on
-                <code>PATH</code>.
+                Audio stretch requires <code>rubberband</code> to be available
+                on <code>PATH</code>; pitch correction uses per-session cached
+                analysis and local undo/redo in its own editor.
+              </li>
+              <li>
+                Group is only enabled when two or more non-group clips of the
+                same type are selected on the same track, and grouped clips must
+                be ungrouped before splitting.
+              </li>
+              <li>
+                Per-clip plugin graphs are audio-only and currently available on
+                supported Unix non-macOS builds.
               </li>
               <li>
                 The main editor zoom is geometric rather than linear, so equal

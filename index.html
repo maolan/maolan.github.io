@@ -92,7 +92,7 @@
         <a href="/" class="flex items-center space-x-2">
           <div class="w-8 h-8 rounded-lg flex items-center justify-center">
             <span class="text-xs font-bold text-slate-950">
-              <img src="img/logo.svg" />
+              <img src="img/logo.svg" alt="Maolan logo" />
             </span>
           </div>
           <span class="font-bold text-lg">Maolan</span>
@@ -138,7 +138,7 @@
       ></div>
       <div class="max-w-4xl mx-auto text-center relative z-10">
         <h1 class="section-title mb-6 text-white">Maolan</h1>
-        <img src="img/logo.svg" />
+        <img src="img/logo.svg" alt="Maolan logo mark" />
         <h1 class="section-title mb-6 text-cyan-400">
           An Open Source<br />Digital Audio Workstation
         </h1>
@@ -175,7 +175,7 @@
           </p>
         </div>
         <!-- DAW Interface Mockup -->
-        <img src="img/workspace.gif" />
+        <img src="img/workspace.gif" alt="Maolan workspace interface" />
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
           <div class="text-center">
             <h3 class="font-semibold mb-2 text-xl text-cyan-400">
@@ -388,8 +388,9 @@
               Automation & Envelopes
             </h3>
             <p class="text-slate-400">
-              Create dynamic automations for volume, pan, plugin parameters.
-              Create session and track templates.
+              Create track and plugin automation for volume, balance, mute, and
+              loaded CLAP, VST3, or LV2 parameters. Save session and track
+              templates for repeatable setups.
             </p>
           </div>
           <div class="feature-card rounded-lg p-6">
@@ -414,8 +415,9 @@
               Plugin Hosting & Routing
             </h3>
             <p class="text-slate-400">
-              Load VST3/LV2 plugins, create complex routing chains, and design
-              custom signal flows.
+              Load CLAP, VST3, and LV2 plugins, create complex routing chains,
+              and design custom signal flows with explicit audio, MIDI, and
+              sidechain paths.
             </p>
           </div>
           <div class="feature-card rounded-lg p-6">
@@ -440,8 +442,8 @@
               Export & Format Support
             </h3>
             <p class="text-slate-400">
-              Export to WAV, FLAC, MP3, and other common formats. Save projects
-              in open formats.
+              Export mixdowns or stems to WAV, MP3, OGG, and FLAC with
+              normalization and master-limiter options saved in the session.
             </p>
           </div>
           <div class="feature-card rounded-lg p-6">
@@ -510,7 +512,8 @@
               </h3>
               <p class="text-slate-400">
                 Edit audio clips and MIDI notes with precision. Use the piano
-                roll for composing melodies and harmonies.
+                roll for composing melodies and harmonies, with clip grouping
+                and per-clip FX available for deeper editing workflows.
               </p>
             </div>
           </div>
@@ -527,8 +530,9 @@
                 Plugin & Routing
               </h3>
               <p class="text-slate-400">
-                Load VST3/LV2 plugins on tracks. Create complex routing chains
-                for parallel processing and effects.
+                Load CLAP, VST3, and LV2 plugins on tracks. Create explicit
+                routing chains for parallel processing, sidechains, and MIDI
+                flow.
               </p>
             </div>
           </div>
@@ -781,8 +785,9 @@
             </summary>
             <div class="px-6 pb-6 text-gray-400">
               <br />
-              Maolan is built with Rust and currently supports Linux, and
-              FreeBSD. You can build it from source on any of these platforms.
+              Maolan is built with Rust and supports Linux, FreeBSD, and macOS.
+              Linux and FreeBSD builds currently force the X11 backend at
+              startup, while macOS uses the native host path.
             </div>
           </details>
           <details
@@ -796,9 +801,45 @@
             </summary>
             <div class="px-6 pb-6 text-gray-400">
               <br />
-              Maolan currently supports VST3 and LV2 plugin formats. Support for
-              additional formats may be added as the project develops. Check the
-              GitHub repository for the latest plugin compatibility information.
+              Maolan currently supports CLAP, VST3, and LV2 plugin formats on
+              Linux and FreeBSD. macOS builds support CLAP and VST3, while LV2
+              remains Unix-only in the current codebase.
+            </div>
+          </details>
+          <details
+            class="group bg-gray-900 border border-gray-800 rounded-lg overflow-hidden"
+          >
+            <summary
+              class="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-800/50 transition font-semibold"
+            >
+              <span>How does autosave and recovery work?</span>
+              <span class="text-2xl group-open:rotate-180 transition">+</span>
+            </summary>
+            <div class="px-6 pb-6 text-gray-400">
+              <br />
+              Maolan writes autosave snapshots every 15 seconds into
+              <code>&lt;session&gt;/.maolan_autosave/snapshots/&lt;timestamp&gt;/</code>.
+              On startup or when opening a session, it can detect when a newer
+              snapshot exists, preview track and clip count changes, and recover
+              the latest valid snapshot first.
+            </div>
+          </details>
+          <details
+            class="group bg-gray-900 border border-gray-800 rounded-lg overflow-hidden"
+          >
+            <summary
+              class="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-800/50 transition font-semibold"
+            >
+              <span>Does Maolan support templates?</span>
+              <span class="text-2xl group-open:rotate-180 transition">+</span>
+            </summary>
+            <div class="px-6 pb-6 text-gray-400">
+              <br />
+              Yes. Session templates preserve track structure, routing, plugin
+              graphs, plugin state, metadata, and export settings. Track
+              templates preserve one track's settings, plugin graph, plugin
+              state, and that track's connections, while intentionally leaving
+              out audio and MIDI clips.
             </div>
           </details>
           <details

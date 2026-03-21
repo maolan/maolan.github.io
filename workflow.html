@@ -276,6 +276,14 @@
                   </p>
                 </div>
                 <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <h4 class="mb-2 font-semibold text-white">Per-clip FX</h4>
+                  <p class="text-sm leading-6 text-slate-400">
+                    Audio clips on supported Unix builds can open their own
+                    plugin graph. If a clip has no saved graph yet, Maolan
+                    seeds a default passthrough clip graph first.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
                   <h4 class="mb-2 font-semibold text-white">Audio nodes</h4>
                   <p class="text-sm leading-6 text-slate-400">
                     Main ports and extra auxiliary or sidechain ports are shown
@@ -325,6 +333,16 @@
                     output explicitly if the plugin generates events.
                   </p>
                 </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <div class="mb-2 text-sm font-semibold uppercase tracking-[0.18em] text-cyan-300">
+                    Grouped audio render order
+                  </div>
+                  <p class="text-sm leading-6 text-slate-400">
+                    Child clips render first, then group-level fades are
+                    applied, and finally the group clip plugin graph is
+                    processed.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -353,8 +371,10 @@
                   <p class="mt-2 text-slate-400">
                     Tracks, clips, connections, plugin graph topology, plugin
                     state, transport state, metadata, export settings, MIDI
-                    learn bindings, pitch-correction segment settings, and UI
-                    sizing values.
+                    learn bindings, clip-group membership in
+                    <code>grouped_clips</code>, per-audio-clip plugin graph
+                    state in <code>plugin_graph_json</code>,
+                    pitch-correction segment settings, and UI sizing values.
                   </p>
                 </div>
                 <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-4">
@@ -417,7 +437,8 @@
                   <h4 class="mb-2 font-semibold text-white">Session save/load</h4>
                   <p class="text-sm leading-6 text-slate-400">
                     Saved sessions restore plugin graph topology, connections,
-                    and plugin state rather than just track ordering.
+                    plugin state, clip groups, and per-audio-clip plugin graphs
+                    rather than just track ordering.
                   </p>
                 </div>
               </div>
