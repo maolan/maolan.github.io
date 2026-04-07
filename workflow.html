@@ -699,6 +699,61 @@
 
             <div class="glass-card rounded-3xl p-6 sm:p-8">
               <h3 class="mb-5 text-2xl font-semibold text-cyan-400">
+                maolan-generate operations
+              </h3>
+              <div class="space-y-4 text-sm text-slate-300">
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <p class="font-semibold text-white">GUI launch path</p>
+                  <p class="mt-2 text-slate-400">
+                    The desktop app launches the local
+                    <code>maolan-generate</code> binary and exchanges progress
+                    and result data over a socketpair IPC path.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <p class="font-semibold text-white">Runtime split</p>
+                  <p class="mt-2 text-slate-400">
+                    Prompt generation runs in a dedicated HeartMuLa
+                    token-generation subprocess, then decode continues
+                    in-process with HeartCodec.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <p class="font-semibold text-white">Model resolution</p>
+                  <p class="mt-2 text-slate-400">
+                    Without <code>--model-dir &lt;path&gt;</code>, model assets
+                    are resolved through the Hugging Face cache using
+                    <code>hf-hub</code>.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <p class="font-semibold text-white">Expected repos and files</p>
+                  <p class="mt-2 text-slate-400">
+                    HeartMuLa uses
+                    <code>maolandaw/HeartMuLa-happy-new-year-burn</code> or
+                    <code>maolandaw/HeartMuLa-RL-oss-3B-20260123</code> with
+                    <code>heartmula.bpk</code>, <code>tokenizer.json</code>,
+                    and <code>gen_config.json</code>. HeartCodec uses
+                    <code>maolandaw/HeartCodec-oss-20260123-burn</code> with
+                    <code>heartcodec.bpk</code>.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <p class="font-semibold text-white">CLI boundaries</p>
+                  <p class="mt-2 text-slate-400">
+                    The current CLI supports
+                    <code>--model &lt;happy-new-year|RL&gt;</code>,
+                    <code>--length</code> in milliseconds,
+                    <code>--decode-only</code> with
+                    <code>--frames-json</code>, and decode-only worker control
+                    through <code>--decode-threads</code>.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-8">
+              <h3 class="mb-5 text-2xl font-semibold text-cyan-400">
                 Pitch-correction cache and render flow
               </h3>
               <div class="space-y-4 text-sm text-slate-300">

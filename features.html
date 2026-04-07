@@ -549,6 +549,78 @@
       </div>
     </section>
     <section class="py-16 bg-slate-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 items-start">
+          <div class="order-2 lg:order-1">
+            <div class="bg-slate-950/70 border border-slate-800 rounded-2xl p-6 shadow-2xl">
+              <div class="flex flex-wrap gap-3 mb-5">
+                <span class="px-3 py-1 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-300 text-sm font-medium">AI Audio Generation</span>
+                <span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-300 text-sm">maolan-generate</span>
+              </div>
+              <pre class="overflow-x-auto rounded-2xl border border-cyan-400/10 bg-slate-950 p-5 text-sm leading-7 text-slate-200"><code>cargo run -p maolan-generate --release -- \
+  --model happy-new-year \
+  --backend vulkan \
+  --tags "ambient, cinematic, downtempo" \
+  --length 12000 \
+  --cfg-scale 1.5 \
+  --topk 50 \
+  --temperature 1.0 \
+  --ode-steps 10 \
+  --output output.wav \
+  --lyrics "stars drift over the late train home"</code></pre>
+              <div class="grid sm:grid-cols-2 gap-4 mt-6">
+                <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+                  <h3 class="text-white font-semibold mb-2">Backends</h3>
+                  <p class="text-slate-400 text-sm">CPU and Vulkan execution paths are available in the current Burn-based generate flow.</p>
+                </div>
+                <div class="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+                  <h3 class="text-white font-semibold mb-2">Modes</h3>
+                  <p class="text-slate-400 text-sm">Prompt or lyrics generation, plus decode-only reconstruction from a saved frames JSON.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="order-1 lg:order-2">
+            <h2 class="text-3xl font-bold text-white mb-6">maolan-generate</h2>
+            <p class="text-slate-300 text-lg mb-8">Maolan includes a separate generation crate and CLI for HeartMuLa text-to-audio work, with the same runtime pieces used by the desktop app for in-process decode.</p>
+            <div class="space-y-6">
+              <div>
+                <h3 class="text-xl font-semibold text-white mb-3">Current capabilities</h3>
+                <ul class="space-y-2 text-slate-300">
+                  <li class="flex items-center gap-3"><div class="w-2 h-2 bg-cyan-400 rounded-full"></div>Prompt-driven or lyrics-driven audio generation with optional style tags</li>
+                  <li class="flex items-center gap-3"><div class="w-2 h-2 bg-cyan-400 rounded-full"></div>Model choices: <code>happy-new-year</code> and <code>RL</code></li>
+                  <li class="flex items-center gap-3"><div class="w-2 h-2 bg-cyan-400 rounded-full"></div>Controls for CFG scale, top-k, temperature, ODE steps, decoder seed, and output length in milliseconds</li>
+                  <li class="flex items-center gap-3"><div class="w-2 h-2 bg-cyan-400 rounded-full"></div><code>--decode-only</code> mode using <code>--frames-json</code> for saved token-frame output</li>
+                  <li class="flex items-center gap-3"><div class="w-2 h-2 bg-cyan-400 rounded-full"></div><code>--decode-threads</code> override for decode-only CPU worker count</li>
+                  <li class="flex items-center gap-3"><div class="w-2 h-2 bg-cyan-400 rounded-full"></div><code>--model-dir</code> override for local Burn exports instead of cache-based lookup</li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-white mb-3">Expected model assets</h3>
+                <div class="grid sm:grid-cols-2 gap-4">
+                  <div class="bg-slate-950 border border-slate-800 rounded-xl p-5">
+                    <p class="text-cyan-400 font-semibold mb-2">HeartMuLa repos</p>
+                    <p class="text-slate-300 text-sm mb-2"><code>maolandaw/HeartMuLa-happy-new-year-burn</code></p>
+                    <p class="text-slate-300 text-sm mb-2"><code>maolandaw/HeartMuLa-RL-oss-3B-20260123</code></p>
+                    <p class="text-slate-400 text-sm">Expected files: <code>heartmula.bpk</code>, <code>tokenizer.json</code>, <code>gen_config.json</code>.</p>
+                  </div>
+                  <div class="bg-slate-950 border border-slate-800 rounded-xl p-5">
+                    <p class="text-cyan-400 font-semibold mb-2">HeartCodec repo</p>
+                    <p class="text-slate-300 text-sm mb-2"><code>maolandaw/HeartCodec-oss-20260123-burn</code></p>
+                    <p class="text-slate-400 text-sm">Expected file: <code>heartcodec.bpk</code>.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="bg-slate-950 border border-slate-800 rounded-xl p-5">
+                <h3 class="text-xl font-semibold text-white mb-3">Integration path</h3>
+                <p class="text-slate-300 text-sm">The CLI is not just a side tool. The desktop application uses the same generate crate and runtime components when launching AI audio generation from the GUI.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-16 bg-slate-900">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold text-white mb-4">Session Safety and Recovery</h2>
