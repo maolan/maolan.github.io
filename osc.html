@@ -148,7 +148,7 @@
             >
             <span
               class="rounded-full border border-slate-700 bg-slate-900/50 px-4 py-2 text-sm text-slate-300"
-              >Updated 2026-03-22</span
+              >Transport reference</span
             >
           </div>
           <h1 class="section-title mb-6 text-white">
@@ -312,21 +312,21 @@
                 <p class="text-slate-300">Pause transport.</p>
               </div>
               <div class="detail-row grid gap-4 py-4 sm:grid-cols-[240px_minmax(0,1fr)]">
-                <div><span class="code-pill">/transport/jump_to_start</span></div>
+                <div><span class="code-pill">/transport/start</span></div>
                 <p class="text-slate-300">Jump to session start.</p>
               </div>
               <div class="grid gap-4 py-4 sm:grid-cols-[240px_minmax(0,1fr)]">
-                <div><span class="code-pill">/transport/jump_to_end</span></div>
+                <div><span class="code-pill">/transport/end</span></div>
                 <p class="text-slate-300">Jump to session end.</p>
               </div>
             </div>
             <div class="glass-card rounded-3xl p-6">
               <h3 class="mb-4 text-xl font-semibold text-cyan-400">
-                Transport Coverage
+                Compatibility Aliases
               </h3>
               <ul class="space-y-3 text-slate-300">
-                <li><code>play</code>, <code>stop</code>, and <code>pause</code> cover live transport state.</li>
-                <li><code>jump_to_start</code> and <code>jump_to_end</code> handle quick navigation.</li>
+                <li><code>/transport/jump_to_start</code> and <code>/transport/start_of_session</code> also jump to the session start.</li>
+                <li><code>/transport/jump_to_end</code> and <code>/transport/end_of_session</code> also jump to the session end.</li>
               </ul>
             </div>
           </div>
@@ -363,8 +363,8 @@
                 <p><code>play</code> sends <code>/transport/play</code></p>
                 <p><code>stop</code> sends <code>/transport/stop</code></p>
                 <p><code>pause</code> sends <code>/transport/pause</code></p>
-                <p><code>start</code> sends <code>/transport/jump_to_start</code></p>
-                <p><code>end</code> sends <code>/transport/jump_to_end</code></p>
+                <p><code>start</code> sends <code>/transport/start</code></p>
+                <p><code>end</code> sends <code>/transport/end</code></p>
               </div>
             </div>
             <div class="glass-card rounded-3xl p-6">

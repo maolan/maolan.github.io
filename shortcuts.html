@@ -780,7 +780,6 @@
           <h2 class="mb-4 text-3xl font-bold text-white">Notes</h2>
           <ul class="space-y-4 text-slate-300">
             <li>Current keyboard handling is <span class="kbd">Ctrl</span>-based in code paths, including on macOS builds.</li>
-            <li>Maolan also ships a <code>maolan-cli</code> binary that can play, pause, stop, send panic, and export the current session.</li>
             <li>Some actions depend on the current view, active tool, and selection state.</li>
             <li>Q/H/G apply to the current selected notes in the piano roll.</li>
             <li>Audio stretch requires <code>rubberband</code> to be available on <code>PATH</code>; pitch correction uses per-session cached analysis and local undo/redo in its own editor.</li>
@@ -788,6 +787,7 @@
             <li>Per-clip plugin graphs are audio-only and currently available on supported Unix non-macOS builds.</li>
             <li>The main editor zoom is geometric rather than linear, so equal slider movement produces equal zoom-ratio changes.</li>
             <li>Undo/redo in the pitch-correction view only changes local correction history; it is separate from global history.</li>
+            <li>Maolan also ships a <code>maolan-cli</code> binary that can play, pause, stop, send panic, and export the current session.</li>
           </ul>
         </div>
       </div>
