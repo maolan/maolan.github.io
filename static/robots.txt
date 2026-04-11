@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://maolan.github.io/sitemap.xml

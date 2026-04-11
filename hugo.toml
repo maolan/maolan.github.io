@@ -1,8 +1,13 @@
 baseURL = "https://maolan.github.io/"
-languageCode = "en-us"
+languageCode = "en"
 title = "Maolan"
 theme = "maolan"
 paginate = 8
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
 
 [caches]
   [caches.images]
@@ -47,7 +52,7 @@ paginate = 8
 [params]
   author = "Maolan"
   avatar = "/img/logo.svg"
-  description = "Open source digital audio workstation built in Rust for recording, MIDI editing, automation, routing, and community-driven production workflows."
+  description = "Maolan is a modern, open-source Digital Audio Workstation (DAW) built in Rust. Designed for performance, transparency, and community-driven music production workflows."
   menu_item_separator = " · "
 
   [[params.social]]

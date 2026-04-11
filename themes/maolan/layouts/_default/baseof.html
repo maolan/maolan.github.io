@@ -1,15 +1,19 @@
 <!doctype html>
-<html lang="{{ .Site.LanguageCode | default "en-us" }}">
+<html lang="{{ .Site.LanguageCode | default "en" }}">
   <head>
-    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} // {{ .Site.Title }}{{ end }}</title>
-    <link rel="shortcut icon" href="{{ .Site.Params.favicon | default "/favicon.ico" }}" />
     <meta charset="utf-8" />
-    {{ hugo.Generator }}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="author" content="{{ .Site.Params.author | default "John Doe" }}" />
+    <title>{{ if .IsHome }}{{ .Site.Title }} - {{ .Site.Params.description }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+    <link rel="canonical" href="{{ .Permalink }}" />
+    <link rel="shortcut icon" href="{{ .Site.Params.favicon | default "/favicon.ico" }}" />
+    <meta name="robots" content="index, follow" />
+    {{ hugo.Generator }}
+    <meta name="author" content="{{ .Site.Params.author | default "Maolan" }}" />
     <meta name="description" content="{{ if .Params.description }}{{ .Params.description }}{{ else if .IsHome }}{{ .Site.Params.description }}{{ else }}{{ .Title }}{{ end }}" />
+
     {{ $style := resources.Get "css/main.scss" | resources.ExecuteAsTemplate "css/main.scss" . | css.Sass | resources.Minify | resources.Fingerprint -}}
-    <link defer rel="stylesheet" href="{{ $style.RelPermalink }}" />
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" />
+
     {{ with .OutputFormats.Get "rss" -}}
     {{ printf `<link rel=%q type=%q href=%q title=%q>` .Rel .MediaType.Type .Permalink site.Title | safeHTML }}
     {{ end }}
@@ -17,13 +21,12 @@
     {{ template "_internal/google_analytics.html" . }}
     {{ template "_internal/twitter_cards.html" . }}
     {{ template "_internal/opengraph.html" . }}
-
   </head>
   <body>
     <nav class="site-nav">
       <div class="site-nav-inner">
         <a class="site-brand" href="{{ "/" | relURL }}">
-          <img fetchpriority="high" src="{{ .Site.Params.avatar | default "avatar.jpg" | relURL }}" alt="{{ .Site.Title }}" />
+          <img fetchpriority="high" src="{{ .Site.Params.avatar | default "avatar.jpg" | relURL }}" alt="Maolan logo: Open Source Digital Audio Workstation" width="32" height="32" />
           <span>{{ .Site.Title }}</span>
         </a>
         {{- with .Site.Menus.main }}

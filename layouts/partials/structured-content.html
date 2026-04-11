@@ -1,6 +1,7 @@
 {{- $chunks := split .Content `<h2 id="` -}}
 {{- $hero := index $chunks 0 -}}
-{{- $hero = replace $hero `<p><img src="/img/logo.svg" alt="Maolan logo mark"></p>` `<div class="hero-logo"><img class="hero-logo-image" src="/img/logo.svg" alt="Maolan logo mark"></div>` -}}
+{{- $hero = replace $hero `<p><img src="/img/logo.svg" alt="Maolan logo mark"></p>` `<div class="hero-logo"><img class="hero-logo-image" src="/img/logo.svg" alt="Maolan logo: Open Source Digital Audio Workstation" width="200" height="200"></div>` -}}
+{{- $hero = replace $hero `<div class="hero-logo"><img class="hero-logo-image" src="/img/logo.svg" alt="Maolan logo mark"></div>` `<div class="hero-logo"><img class="hero-logo-image" src="/img/logo.svg" alt="Maolan logo: Open Source Digital Audio Workstation" width="200" height="200"></div>` -}}
 {{- $hero = replace $hero `<p><a href="https://github.com/maolan/maolan">View on GitHub</a> <a href="/features/">Browse Features</a> <a href="/workflow/">Read Workflow Notes</a></p>` `<p class="hero-actions"><a href="https://github.com/maolan/maolan">View on GitHub</a> <a href="/features/">Browse Features</a> <a href="/workflow/">Read Workflow Notes</a></p>` -}}
 
 <article class="content-page {{ if .IsHome }}home-page{{ end }}">
