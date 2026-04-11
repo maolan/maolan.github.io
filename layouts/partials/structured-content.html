@@ -1,0 +1,48 @@
+{{- $chunks := split .Content `<h2 id="` -}}
+{{- $hero := index $chunks 0 -}}
+{{- $hero = replace $hero `<p><img src="/img/logo.svg" alt="Maolan logo mark"></p>` `<div class="hero-logo"><img class="hero-logo-image" src="/img/logo.svg" alt="Maolan logo mark"></div>` -}}
+{{- $hero = replace $hero `<p><a href="https://github.com/maolan/maolan">View on GitHub</a> <a href="/features/">Browse Features</a> <a href="/workflow/">Read Workflow Notes</a></p>` `<p class="hero-actions"><a href="https://github.com/maolan/maolan">View on GitHub</a> <a href="/features/">Browse Features</a> <a href="/workflow/">Read Workflow Notes</a></p>` -}}
+
+<article class="content-page {{ if .IsHome }}home-page{{ end }}">
+  <div class="content-hero">
+    {{ $hero | safeHTML }}
+  </div>
+
+  {{- range after 1 $chunks }}
+    {{- $section := . -}}
+    {{- $sectionID := replaceRE `(?s)^([^"]+)".*` "$1" $section -}}
+    {{- $sectionTitle := replaceRE `(?s)^[^"]+">(.+?)</h2>.*` "$1" $section -}}
+    {{- $sectionBody := replaceRE `(?s)^[^"]+".*?</h2>(.*)` "$1" $section -}}
+    {{- $cardChunks := split $sectionBody `<h3 id="` -}}
+    {{- $sectionLead := index $cardChunks 0 -}}
+    <section id="{{ $sectionID }}" class="content-section">
+      <div class="content-section-header">
+        <h2>{{ $sectionTitle | safeHTML }}</h2>
+        {{- if and (gt (len $cardChunks) 1) (ne (trim $sectionLead " \n\t") "") }}
+          <div class="content-section-lead">
+            {{ $sectionLead | safeHTML }}
+          </div>
+        {{- end }}
+      </div>
+      {{- if gt (len $cardChunks) 1 }}
+        <div class="content-card-grid">
+          {{- range after 1 $cardChunks }}
+            {{- $card := . -}}
+            {{- $cardTitle := replaceRE `(?s)^[^"]+">(.+?)</h3>.*` "$1" $card -}}
+            {{- $cardBody := replaceRE `(?s)^[^"]+".*?</h3>(.*)` "$1" $card -}}
+            <section class="content-card">
+              <h3>{{ $cardTitle | safeHTML }}</h3>
+              <div class="content-card-body">
+                {{ $cardBody | safeHTML }}
+              </div>
+            </section>
+          {{- end }}
+        </div>
+      {{- else if ne (trim $sectionBody " \n\t") "" }}
+        <div class="content-section-body">
+          {{ $sectionBody | safeHTML }}
+        </div>
+      {{- end }}
+    </section>
+  {{- end }}
+</article>

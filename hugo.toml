@@ -1,0 +1,63 @@
+baseURL = "https://maolan.github.io/"
+languageCode = "en-us"
+title = "Maolan"
+theme = "maolan"
+paginate = 8
+
+[caches]
+  [caches.images]
+    dir = ":cacheDir/images"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    identifier = "features"
+    name = "Features"
+    url = "/features/"
+    weight = 2
+
+  [[menu.main]]
+    identifier = "workflow"
+    name = "Workflow"
+    url = "/workflow/"
+    weight = 3
+
+  [[menu.main]]
+    identifier = "shortcuts"
+    name = "Shortcuts"
+    url = "/shortcuts/"
+    weight = 4
+
+  [[menu.main]]
+    identifier = "osc"
+    name = "OSC"
+    url = "/osc/"
+    weight = 5
+
+[params]
+  author = "Maolan"
+  avatar = "/img/logo.svg"
+  description = "Open source digital audio workstation built in Rust for recording, MIDI editing, automation, routing, and community-driven production workflows."
+  menu_item_separator = " · "
+
+  [[params.social]]
+    icon = "github"
+    name = "GitHub"
+    url = "https://github.com/maolan/maolan"
+
+  [params.style]
+    darkestColor = "#020617"
+    darkColor = "#0f172a"
+    lightColor = "#cbd5e1"
+    lightestColor = "#f8fafc"
+    primaryColor = "#22d3ee"

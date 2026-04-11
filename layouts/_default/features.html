@@ -1,28 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta name="generator" content="HTML Tidy for HTML5 for FreeBSD version 5.8.0">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maolan – Open Source Digital Audio Workstation</title>
-  <meta name="description" content="A modern Rust-based DAW for recording, MIDI editing, automation, and music production. Open source, transparent, and community-driven.">
-  <link rel="stylesheet" href="styles/site.css">
-</head>
-<body class="bg-slate-950 text-slate-100">
-  <nav class="fixed w-full top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="/" class="flex items-center space-x-2">
-      <div class="w-8 h-8 rounded-lg flex items-center justify-center">
-        <span class="text-xs font-bold text-slate-950">
-          <img src="img/logo.svg" alt="Maolan logo" fetchpriority="high" />
-        </span>
-      </div><span class="font-bold text-lg">Maolan</span></a>
-      <div class="hidden md:flex items-center space-x-8">
-        <a href="features.html" class="text-sm text-slate-400 hover:text-slate-100 transition">Features</a> <a href="workflow.html" class="text-sm text-slate-400 hover:text-slate-100 transition">Workflow</a> <a href="shortcuts.html" class="text-sm text-slate-400 hover:text-slate-100 transition">Shortcuts</a> <a href="osc.html" class="text-sm text-slate-400 hover:text-slate-100 transition">OSC</a> <a href="/#faq" class="text-sm text-slate-400 hover:text-slate-100 transition">FAQ</a>
-      </div><a href="https://github.com/maolan/maolan" target="_blank" class="text-sm font-medium text-slate-400 hover:text-slate-100 transition">GitHub</a>
-    </div>
-  </nav>
-  <main>
+{{ define "main" }}
+
     <section class="relative bg-slate-950 py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div class="absolute inset-0 bg-gradient-to-b from-slate-900/50 to-slate-950"></div>
       <div class="relative max-w-7xl mx-auto text-center">
@@ -33,7 +10,7 @@
             <span class="px-4 py-2 bg-cyan-400/10 border border-cyan-400/20 rounded-full text-cyan-300 text-sm font-medium">Docs updated 2026-04-07</span>
           </div>
         </div>
-        <div class="mb-12"><img src="img/workspace.gif" alt="Maolan workspace interface"></div>
+        <div class="mb-12"><img src="/img/workspace.gif" alt="Maolan workspace interface"></div>
         <div class="flex flex-wrap justify-center gap-3 mb-12">
           <span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-full text-cyan-400 text-sm font-medium backdrop-blur-sm">Audio + MIDI Production</span><span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-full text-cyan-400 text-sm font-medium backdrop-blur-sm">Plugin Hosting</span><span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-full text-cyan-400 text-sm font-medium backdrop-blur-sm">Automation System</span><span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-full text-cyan-400 text-sm font-medium backdrop-blur-sm">Export & Rendering</span><span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-full text-cyan-400 text-sm font-medium backdrop-blur-sm">Open Source</span>
         </div>
@@ -97,7 +74,7 @@
     <section class="bg-slate-950 py-24 px-4 sm:px-6 lg:px-8">
       <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div class="order-2 lg:order-1"><img data-ai="generate" data-slot="core-workflow-screenshot" data-prompt="DAW timeline interface screenshot showing multiple audio and MIDI tracks, timeline ruler, track controls, and session management with dark theme and cyan accents" data-ar="4:3" src="img/workspace.png" alt="Core DAW Workflow Interface" width="800" height="600" class="w-full rounded-xl shadow-2xl border border-slate-800" loading="lazy"></div>
+          <div class="order-2 lg:order-1"><img data-ai="generate" data-slot="core-workflow-screenshot" data-prompt="DAW timeline interface screenshot showing multiple audio and MIDI tracks, timeline ruler, track controls, and session management with dark theme and cyan accents" data-ar="4:3" src="/img/workspace.png" alt="Core DAW Workflow Interface" width="800" height="600" class="w-full rounded-xl shadow-2xl border border-slate-800" loading="lazy"></div>
           <div class="order-1 lg:order-2">
             <h2 class="text-4xl font-bold text-white mb-6">Core DAW <span class="text-cyan-400">Workflow</span></h2>
             <p class="text-xl text-slate-300 mb-8">Maolan provides a flexible multi-track environment for recording, arranging, and managing sessions.</p>
@@ -201,7 +178,7 @@
     <section class="py-16 bg-slate-900">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div class="order-2 lg:order-1"><img data-ai="generate" data-slot="midi-editing-screenshot" data-prompt="Modern dark-themed piano roll MIDI editor interface showing musical notes on a grid with velocity bars below, featuring cyan accent colors and professional DAW aesthetics" data-ar="16:9" src="img/midi.png" alt="Maolan MIDI Piano Roll Editor" width="1200" height="675" class="w-full rounded-2xl object-cover shadow-2xl border border-slate-700" loading="lazy"></div>
+          <div class="order-2 lg:order-1"><img data-ai="generate" data-slot="midi-editing-screenshot" data-prompt="Modern dark-themed piano roll MIDI editor interface showing musical notes on a grid with velocity bars below, featuring cyan accent colors and professional DAW aesthetics" data-ar="16:9" src="/img/midi.png" alt="Maolan MIDI Piano Roll Editor" width="1200" height="675" class="w-full rounded-2xl object-cover shadow-2xl border border-slate-700" loading="lazy"></div>
           <div class="order-1 lg:order-2">
             <h2 class="text-3xl font-bold text-white mb-6">Advanced MIDI Editing</h2>
             <p class="text-lg text-slate-300 mb-8">The piano roll and MIDI editing tools support expressive composition and detailed performance editing with professional-grade precision.</p>
@@ -375,7 +352,7 @@
               </ul>
             </div>
           </div>
-          <div class="bg-slate-900/30 border border-slate-800 rounded-xl p-6"><img data-ai="generate" data-slot="mixing-visual" data-prompt="Modern dark DAW mixer interface with channel strips, sends, plugin inserts, and routing lines with cyan accents" data-ar="4:3" src="img/routing.png" alt="Routing and mixing interface" width="1200" height="900" class="w-full rounded-lg object-cover" loading="lazy"></div>
+          <div class="bg-slate-900/30 border border-slate-800 rounded-xl p-6"><img data-ai="generate" data-slot="mixing-visual" data-prompt="Modern dark DAW mixer interface with channel strips, sends, plugin inserts, and routing lines with cyan accents" data-ar="4:3" src="/img/routing.png" alt="Routing and mixing interface" width="1200" height="900" class="w-full rounded-lg object-cover" loading="lazy"></div>
         </div>
       </div>
     </section>
@@ -424,7 +401,7 @@
     <section class="py-16 bg-slate-950">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div class="order-2 lg:order-1"><img data-ai="generate" data-slot="export-screenshot" data-prompt="Modern dark-themed audio export dialog interface showing mixdown options, file format selection (WAV, MP3, OGG, FLAC), normalization settings, and stem export controls in a digital audio workstation" data-ar="4:3" src="img/export.png" alt="Maolan export dialog interface" width="800" height="600" class="w-full rounded-2xl object-cover shadow-2xl border border-slate-800" loading="lazy"></div>
+          <div class="order-2 lg:order-1"><img data-ai="generate" data-slot="export-screenshot" data-prompt="Modern dark-themed audio export dialog interface showing mixdown options, file format selection (WAV, MP3, OGG, FLAC), normalization settings, and stem export controls in a digital audio workstation" data-ar="4:3" src="/img/export.png" alt="Maolan export dialog interface" width="800" height="600" class="w-full rounded-2xl object-cover shadow-2xl border border-slate-800" loading="lazy"></div>
           <div class="order-1 lg:order-2">
             <h2 class="text-3xl font-bold text-white mb-6">Export and Rendering</h2>
             <p class="text-slate-300 text-lg mb-8">Professional export options for final mixes and stems in multiple delivery formats.</p>
@@ -668,7 +645,7 @@
           <p class="text-lg text-slate-300 max-w-3xl mx-auto">Fine-grained pitch correction for audio clips with cached analysis and editable correction windows.</p>
         </div>
         <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
-          <div class="rounded-lg border border-slate-700 bg-slate-800/50 mb-4 overflow-hidden"><img src="img/pitch-correction.png" alt="Pitch correction interface" class="w-full h-auto block"></div>
+          <div class="rounded-lg border border-slate-700 bg-slate-800/50 mb-4 overflow-hidden"><img src="/img/pitch-correction.png" alt="Pitch correction interface" class="w-full h-auto block"></div>
           <ul class="text-slate-300 space-y-2 list-disc list-inside">
             <li>Cached source analysis per session in the <code>pitch/</code> directory for quick revisits.</li>
             <li>Saved clip correction points can reopen without re-analyzing when source segment details still match.</li>
@@ -696,40 +673,5 @@
         </div>
       </div>
     </section>
-  </main>
-  <footer class="bg-slate-900 border-t border-slate-800 mt-16">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div class="col-span-1 md:col-span-2">
-          <div class="flex items-center space-x-2 mb-4">
-            <div class="w-8 h-8 bg-accent-cyan rounded-lg flex items-center justify-center"></div><span class="text-xl font-bold text-white">Maolan</span>
-          </div>
-          <p class="text-slate-400 mb-4 max-w-md">A modern open-source digital audio workstation built with Rust for flexible music production and transparent development.</p>
-        <div>
-          <h3 class="text-white font-semibold mb-4">Pages</h3>
-          <ul class="space-y-2">
-            <li>
-              <a href="features.html" class="text-slate-400 hover:text-white transition-colors">Features</a>
-            </li>
-            <li>
-              <a href="workflow.html" class="text-slate-400 hover:text-white transition-colors">Workflow</a>
-            </li>
-            <li>
-              <a href="shortcuts.html" class="text-slate-400 hover:text-white transition-colors">Shortcuts</a>
-            </li>
-            <li>
-              <a href="osc.html" class="text-slate-400 hover:text-white transition-colors">OSC</a>
-            </li>
-            <li>
-              <a href="/#faq" class="text-slate-400 hover:text-white transition-colors">FAQ</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="border-t border-slate-800 mt-8 pt-8 flex flex-col md:flex-row justify-center items-center">
-        <p class="text-slate-400 text-sm">© 2026 Maolan. Open source under BSD-2-Clause License.</p>
-      </div>
-    </div>
-  </footer>
-</body>
-</html>
+  
+{{ end }}
