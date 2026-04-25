@@ -49,6 +49,12 @@ paginate = 8
     url = "/osc/"
     weight = 5
 
+  [[menu.main]]
+    identifier = "repos"
+    name = "Repos"
+    url = "/repos/"
+    weight = 6
+
 [params]
   author = "Maolan"
   avatar = "/img/logo.svg"
