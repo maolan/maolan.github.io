@@ -10,7 +10,7 @@ layout = "index"
 
 ![Maolan logo mark](/img/logo.svg)
 
-[View on GitHub](https://github.com/maolan/maolan) [Browse Features](/features/) [Read Workflow Notes](/workflow/)
+[View on GitHub](https://github.com/maolan) [Browse Features](/features/) [Read Workflow Notes](/workflow/)
 
 ## See Maolan in Action
 
@@ -48,7 +48,7 @@ Inspect the code. Build custom features. Contribute improvements. Own your tools
 - ✓ Forever free, no licensing fees
 
 ```bash
-git clone https://github.com/maolan/maolan
+git clone https://github.com/maolan
 cd maolan
 cargo run --release
 ```
@@ -115,14 +115,14 @@ You can inspect the code, understand how features work, and contribute improveme
 
 | Item | Value |
 | --- | --- |
-| Repository | `github.com/maolan/maolan` |
+| GitHub | `github.com/maolan` |
 | License | `BSD-2-Clause` |
 | Language | `Rust` |
 | Status | `Active Development` |
 
 ## Get Started with Maolan
 
-- [Visit GitHub](https://github.com/maolan/maolan)
+- [Visit GitHub](https://github.com/maolan)
 - [Review the feature set](/features/)
 - [Read workflow reference](/workflow/)
 - [Check keyboard shortcuts](/shortcuts/)

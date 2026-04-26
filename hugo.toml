@@ -64,7 +64,7 @@ paginate = 8
   [[params.social]]
     icon = "github"
     name = "GitHub"
-    url = "https://github.com/maolan/maolan"
+    url = "https://github.com/maolan"
 
   [params.style]
     darkestColor = "#020617"

@@ -18,7 +18,7 @@ _Docs updated 2026-04-07._
 - Export & Rendering
 - Open Source
 
-[View source on GitHub](https://github.com/maolan/maolan)
+[View source on GitHub](https://github.com/maolan)
 
 ## From Recording to Export
 
