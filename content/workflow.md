@@ -4,7 +4,7 @@ description = "Operational reference for Maolan covering plugin routing, sidecha
 layout = "workflow"
 +++
 
-_Workflow reference. Operations updated 2026-04-07. Routing updated 2026-03-21._
+_Workflow reference. Operations updated 2026-04-30. Routing updated 2026-03-21._
 
 # Maolan Workflow
 
@@ -207,6 +207,33 @@ A track template stores `track.json` and a
 - Includes track settings, plugin graph, plugin state, and connections involving that track.
 - Excludes audio clips and MIDI clips.
 
+### Group templates
+
+`~/.config/maolan/group_templates/<name>/`
+
+Each group template stores `group.json` plus a `plugins/` directory. Group templates keep:
+
+- all tracks that share the same VCA master (group)
+- each track's settings and plugin graph
+- connections between tracks in the group
+
+When a group template is loaded from the Add Track dialog:
+
+- the base name you enter becomes the new group name (VCA master)
+- each track in the group is created with the base name as a prefix
+  - single-track groups use the base name directly
+  - multi-track groups use `"<base> <original>"`
+- plugin graphs are restored per track
+- intra-group connections are remapped to the new track names
+- all tracks in the group are automatically assigned to the new VCA master
+
+Group templates intentionally do not keep:
+
+- audio clips
+- MIDI clips
+- frozen render state or frozen backups
+- connections to tracks outside the group
+
 ### Cross-format restore behavior
 
 Mixed Unix graphs containing LV2 and CLAP plugins are restored in
@@ -386,6 +413,27 @@ Persisted settings
 
 Normalization and master-limiter settings are stored in the
 session file along with export dialog settings.
+
+## Project Structure
+
+The codebase is split across multiple repositories:
+
+- `daw/` — Main application and GUI
+- `engine/` — Audio engine
+- `widgets/` — Reusable iced widgets
+- `generate/` — AI audio generation via `maolan-generate`
+- `mixosc/` — OSC mixing control integration
+
+## Build and Test
+
+- Code coverage is tracked and reported.
+- Unit test coverage has been expanded across the codebase.
+- Cleanup and dead-code removal passes are performed regularly.
+
+## Recent Fixes
+
+- Fixed note names display in the piano roll.
+- Fixed GitHub Actions workflow configuration.
 
 ## Platform Notes
 

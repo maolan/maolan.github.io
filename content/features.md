@@ -8,7 +8,7 @@ layout = "features"
 
 A modern open-source digital audio workstation designed for flexible music production, deep MIDI editing, powerful routing, and transparent development.
 
-_Docs updated 2026-04-07._
+_Docs updated 2026-04-30._
 
 ![Maolan workspace interface](/img/workspace.gif)
 
@@ -56,7 +56,7 @@ Maolan provides a flexible multi-track environment for recording, arranging, and
 
 - Track selection, rename, reordering, and resizing
 
-- Session templates and track templates save/load
+- Session templates, track templates, and group templates save/load
 
 ### Session Management
 
@@ -66,7 +66,7 @@ Maolan provides a flexible multi-track environment for recording, arranging, and
 
 - Dirty-state tracking and close-guard prompts
 
-- Transport and timeline workflow coverage including play/pause/stop/record, loop/punch ranges, tempo and time-signature edits, metronome control, and panic reset
+- Transport and timeline workflow coverage including play/pause/stop/record, loop/punch ranges, tempo and time-signature edits, metronome enable/disable with visual icon, and panic reset
 
 - Session metadata editing (author, album, year, track number, genre)
 
@@ -123,6 +123,8 @@ The piano roll and MIDI editing tools support expressive composition and detaile
 - Scale snap for modal composition
 
 - Legato and articulation controls
+
+- MIDI note snapping
 
 - Configurable scale root, chord types, and major/minor mode
 
@@ -183,10 +185,11 @@ Flexible routing supports complex signal chains and professional mixing workflow
 ### Track Controls
 
 - Record arm and monitor management
-- Mute, solo, and level control
+- Mute, solo, level control, and phase invert
 - Track renaming and reordering
 - Device and route selection
 - Per-track plugin access
+- Plugin window lifecycle and focus management
 
 ### Mixer Workflow
 
@@ -237,9 +240,9 @@ Professional export options for final mixes and stems in multiple delivery forma
 
 WAV
 
-MP3
+MP3 (via ffmpeg)
 
-OGG
+OGG (Vorbis, via ffmpeg)
 
 FLAC
 
@@ -352,6 +355,10 @@ Jump back into recent work quickly.
 
 Linux and FreeBSD builds support CLAP, VST3, and LV2 plugins.
 
+### Windows Plugin Support
+
+Windows builds support WSAPI backend, CLAP, and VST3.
+
 ### macOS Plugin Support
 
 macOS builds support CLAP and VST3 paths, while LV2 remains Unix-only in the current codebase.
@@ -369,6 +376,17 @@ Linux
 FreeBSD
 
 X11
+
+## Control Surface and OSC
+
+- mixosc integration for OSC-based mixing control
+- Behringer X32 dedicated view
+
+## Widgets and UI Components
+
+- `arch_slider` with adjustable arc shape
+- Slider `on_release` option for both horizontal and vertical variants
+- Stretchable ticks and meters that fill available space
 
 ## Known Boundaries
 
