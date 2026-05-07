@@ -1,0 +1,369 @@
+{{ define "main" }}
+
+      <section class="gradient-dark relative overflow-hidden px-6 pb-16 pt-32">
+        <div
+          class="absolute right-0 top-0 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl"
+        ></div>
+        <div
+          class="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl"
+        ></div>
+        <div class="relative z-10 mx-auto max-w-5xl">
+          <div class="mb-8 flex flex-wrap gap-3">
+            <span
+              class="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-medium text-cyan-300"
+              >CLAP</span
+            >
+            <span
+              class="rounded-full border border-slate-700 bg-slate-900/50 px-4 py-2 text-sm text-slate-300"
+              >In-House Plugins</span
+            >
+          </div>
+          <h1 class="section-title mb-6 text-white">
+            Maolan <span class="text-cyan-400">Plugins</span>
+          </h1>
+          <p class="max-w-3xl text-xl leading-relaxed text-slate-300">
+            The complete Maolan in-house plugin collection. Built in Rust as
+            CLAP plugins with Iced-based GUIs in the TokyoNight theme.
+          </p>
+          <div class="mt-10 grid gap-4 sm:grid-cols-4">
+            <div class="glass-card rounded-2xl p-5">
+              <div class="text-3xl font-bold text-cyan-400">18</div>
+              <div class="mt-2 text-sm text-slate-300">Exported variants</div>
+            </div>
+            <div class="glass-card rounded-2xl p-5">
+              <div class="text-3xl font-bold text-cyan-400">13</div>
+              <div class="mt-2 text-sm text-slate-300">Distinct products</div>
+            </div>
+            <div class="glass-card rounded-2xl p-5">
+              <div class="text-3xl font-bold text-cyan-400">Iced</div>
+              <div class="mt-2 text-sm text-slate-300">TokyoNight GUI</div>
+            </div>
+            <div class="glass-card rounded-2xl p-5">
+              <div class="text-3xl font-bold text-cyan-400">BSD-2</div>
+              <div class="mt-2 text-sm text-slate-300">License</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="border-t border-slate-800 bg-slate-950 px-6 py-10">
+        <div class="mx-auto flex max-w-6xl flex-wrap gap-3">
+          <a
+            href="#dynamics"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Dynamics</a
+          >
+          <a
+            href="#eq"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >EQ</a
+          >
+          <a
+            href="#time-space"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Time &amp; Space</a
+          >
+          <a
+            href="#stereo"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Stereo</a
+          >
+          <a
+            href="#tone"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Tone &amp; Character</a
+          >
+          <a
+            href="#instruments"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Instruments &amp; Modeling</a
+          >
+        </div>
+      </section>
+
+      <section id="dynamics" class="bg-slate-950 px-6 py-12">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-8">
+            <h2 class="mb-3 text-3xl font-bold text-white">Dynamics</h2>
+            <p class="max-w-3xl text-slate-400">
+              Compressors, limiters, and de-essers for controlling dynamics and
+              taming peaks.
+            </p>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-2">
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-2 text-xl font-semibold text-cyan-400">
+                Compressor
+              </h3>
+              <p class="mb-4 text-sm text-slate-400">
+                <code class="code-pill">rs.maolan.compressor.mono</code>
+                <code class="code-pill">rs.maolan.compressor.stereo</code>
+              </p>
+              <p class="text-slate-300">
+                4-band multiband compressor with LR4 crossovers. Peak/RMS
+                sidechain, downward/upward/boosting modes, lookahead, sidechain
+                boost, and classic/modern topology. Based on LSP.
+              </p>
+            </div>
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-2 text-xl font-semibold text-cyan-400">
+                Limiter
+              </h3>
+              <p class="mb-4 text-sm text-slate-400">
+                <code class="code-pill">rs.maolan.maximizer</code>
+              </p>
+              <p class="text-slate-300">
+                Adaptive clipper/limiter with Vintage and Modern variants.
+                Multiple limiting modes from subtle attenuation to aggressive
+                clipping. Stereo I/O.
+              </p>
+            </div>
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-2 text-xl font-semibold text-cyan-400">
+                DeEsser
+              </h3>
+              <p class="mb-4 text-sm text-slate-400">
+                <code class="code-pill">rs.maolan.deesser</code>
+              </p>
+              <p class="text-slate-300">
+                Sibilance reduction processor. Detects ess sounds via slew-rate
+                patterns across a configurable window. IIR smoothing, dynamic
+                ratio reduction, and monitor mode. Stereo I/O.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="eq" class="bg-slate-900 px-6 py-12">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-8">
+            <h2 class="mb-3 text-3xl font-bold text-white">EQ</h2>
+            <p class="max-w-3xl text-slate-300">
+              Precise tone shaping with 32 bands in both graphic and parametric
+              flavors.
+            </p>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-2">
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-2 text-xl font-semibold text-cyan-400">
+                Parametric EQ
+              </h3>
+              <p class="mb-4 text-sm text-slate-400">
+                <code class="code-pill">rs.maolan.equalizer.parametric.mono</code>
+                <code class="code-pill">rs.maolan.equalizer.parametric.stereo</code>
+              </p>
+              <p class="text-slate-300">
+                32-band parametric equalizer using peaking biquad filters. Each
+                band has independent Frequency, Gain, and Q controls. Input and
+                output gain with bypass.
+              </p>
+            </div>
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-2 text-xl font-semibold text-cyan-400">
+                Graphic EQ
+              </h3>
+              <p class="mb-4 text-sm text-slate-400">
+                <code class="code-pill">rs.maolan.equalizer.graphic.mono</code>
+                <code class="code-pill">rs.maolan.equalizer.graphic.stereo</code>
+              </p>
+              <p class="text-slate-300">
+                32-band graphic equalizer. Band 1 is a low-shelf, band 32 is a
+                high-shelf, and bands 2&ndash;31 are peaking filters at fixed
+                frequencies (Q = 1.2). Input and output gain with bypass.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="time-space" class="bg-slate-950 px-6 py-12">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-8">
+            <h2 class="mb-3 text-3xl font-bold text-white">Time &amp; Space</h2>
+            <p class="max-w-3xl text-slate-400">
+              Delays and reverbs for depth, dimension, and atmosphere.
+            </p>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-2">
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-2 text-xl font-semibold text-cyan-400">
+                Delay
+              </h3>
+              <p class="mb-4 text-sm text-slate-400">
+                <code class="code-pill">rs.maolan.delay.mono</code>
+                <code class="code-pill">rs.maolan.delay.stereo</code>
+              </p>
+              <p class="text-slate-300">
+                Delay with millisecond or tempo-synced note divisions. Circular
+                buffers with linear interpolation and smooth delay-time chasing.
+                Reads host BPM from CLAP transport.
+              </p>
+            </div>
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-2 text-xl font-semibold text-cyan-400">
+                Reverb
+              </h3>
+              <p class="mb-4 text-sm text-slate-400">
+                <code class="code-pill">rs.maolan.reverb.mono</code>
+                <code class="code-pill">rs.maolan.reverb.stereo</code>
+              </p>
+              <p class="text-slate-300">
+                Stereo reverb built from three allpass-like delay blocks with
+                cross-feedback, vibrato predelay, and input/output lowpass
+                filters. Based on Airwindows Reverb.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="stereo" class="bg-slate-900 px-6 py-12">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-8">
+            <h2 class="mb-3 text-3xl font-bold text-white">Stereo</h2>
+            <p class="max-w-3xl text-slate-300">
+              Stereo width processors and imagers for spatial control.
+            </p>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-2">
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-2 text-xl font-semibold text-cyan-400">
+                Stereo
+              </h3>
+              <p class="mb-4 text-sm text-slate-400">
+                <code class="code-pill">rs.maolan.imager</code>
+              </p>
+              <p class="text-slate-300">
+                Stereo width processor. Mid/side processing with density
+                controls and delay-based focus. Stereo I/O.
+                <span class="text-cyan-400">Best suited for mastering.</span>
+              </p>
+            </div>
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-2 text-xl font-semibold text-cyan-400">
+                Widener
+              </h3>
+              <p class="mb-4 text-sm text-slate-400">
+                <code class="code-pill">rs.maolan.widener</code>
+              </p>
+              <p class="text-slate-300">
+                Multiband stereo width processor with independent Low, Mid, and
+                High band controls. Uses LR4 crossovers and mid/side processing
+                per band. Monitor mode for checking stereo, mono, and side
+                signals. Stereo I/O.
+                <span class="text-cyan-400">Best suited for single instruments.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tone" class="bg-slate-950 px-6 py-12">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-8">
+            <h2 class="mb-3 text-3xl font-bold text-white">Tone &amp; Character</h2>
+            <p class="max-w-3xl text-slate-400">
+              Saturation, color, and monitoring reference tools.
+            </p>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-2">
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-2 text-xl font-semibold text-cyan-400">
+                Saturator
+              </h3>
+              <p class="mb-4 text-sm text-slate-400">
+                <code class="code-pill">rs.maolan.saturator</code>
+              </p>
+              <p class="text-slate-300">
+                Waveshape saturation with sine-based distortion and
+                intensity-dependent blend. Stereo I/O.
+              </p>
+            </div>
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-2 text-xl font-semibold text-cyan-400">
+                Monitoring
+              </h3>
+              <p class="mb-4 text-sm text-slate-400">
+                <code class="code-pill">rs.maolan.monitoring</code>
+              </p>
+              <p class="text-slate-300">
+                Monitoring toolbox with 17 reference modes for checking mixes on
+                different playback systems. Stereo I/O.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="instruments" class="bg-slate-900 px-6 py-12">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-8">
+            <h2 class="mb-3 text-3xl font-bold text-white">
+              Instruments &amp; Modeling
+            </h2>
+            <p class="max-w-3xl text-slate-300">
+              Drum sampling and neural amp modeling.
+            </p>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-2">
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-2 text-xl font-semibold text-cyan-400">Drust</h3>
+              <p class="mb-4 text-sm text-slate-400">
+                <code class="code-pill">rs.maolan.drust</code>
+              </p>
+              <p class="text-slate-300">
+                Drum sampler CLAP plugin inspired by DrumGizmo. Async kit
+                loading, MIDI triggering, velocity mapping, round-robin,
+                humanization, per-output balancing, and built-in limiter. 16
+                mono outputs (Kick L/R, Snare L/R, HiHat L/R, Toms L/R, Ride
+                L/R, Crash L/R, China/Splash L/R, Ambience L/R).
+              </p>
+            </div>
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-2 text-xl font-semibold text-cyan-400">
+                Rural Modeler
+              </h3>
+              <p class="mb-4 text-sm text-slate-400">
+                <code class="code-pill">rs.maolan.ruralmodeler</code>
+              </p>
+              <p class="text-slate-300">
+                Neural Amp Modeler (NAM) plugin. Loads neural network amp models
+                and impulse responses. Includes a noise gate, tone stack
+                (Bass/Mid/Treble), input/output calibration, and DC blocking.
+                Mono I/O.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="border-t border-slate-800 bg-slate-950 px-6 py-16">
+        <div class="mx-auto max-w-4xl">
+          <div class="glass-card rounded-3xl p-8">
+            <h2 class="mb-4 text-3xl font-bold text-white">Plugin Format</h2>
+            <p class="mb-4 text-slate-300">
+              All Maolan plugins are distributed as
+              <span class="text-cyan-400">CLAP</span> (CLever Audio Plugin)
+              binaries with embedded Iced GUIs. They support Linux, FreeBSD,
+              macOS, and Windows.
+            </p>
+            <p class="text-slate-300">
+              The plugin collection is developed in the
+              <a
+                href="https://github.com/maolan/plugins"
+                class="text-cyan-400 hover:underline"
+                >plugins</a
+              >
+              repository. UI windowing is handled by
+              <a
+                href="https://github.com/maolan/baseview"
+                class="text-cyan-400 hover:underline"
+                >baseview</a
+              >, a low-level window system interface for audio plugin UIs.
+            </p>
+          </div>
+        </div>
+      </section>
+
+{{ end }}

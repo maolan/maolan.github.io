@@ -55,6 +55,12 @@ paginate = 8
     url = "/repos/"
     weight = 6
 
+  [[menu.main]]
+    identifier = "plugins"
+    name = "Plugins"
+    url = "/plugins/"
+    weight = 7
+
 [params]
   author = "Maolan"
   avatar = "/img/logo.svg"
