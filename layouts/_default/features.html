@@ -7,7 +7,7 @@
           <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">Maolan <span class="text-cyan-400">Features</span></h1>
           <p class="text-xl sm:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed">A modern open-source digital audio workstation designed for flexible music production, deep MIDI editing, powerful routing, and transparent development.</p>
           <div class="mt-6 flex flex-wrap justify-center gap-3">
-            <span class="px-4 py-2 bg-cyan-400/10 border border-cyan-400/20 rounded-full text-cyan-300 text-sm font-medium">Docs updated 2026-04-07</span>
+            <span class="px-4 py-2 bg-cyan-400/10 border border-cyan-400/20 rounded-full text-cyan-300 text-sm font-medium">Docs updated 2026-05-21</span>
           </div>
         </div>
         <div class="mb-12">
@@ -603,12 +603,16 @@
                 <p class="text-slate-300">Linux and FreeBSD builds support CLAP, VST3, and LV2 plugins.</p>
               </div>
               <div class="p-4 bg-slate-900/50 rounded-lg border border-slate-800">
+                <h3 class="text-lg font-semibold text-cyan-400 mb-2">Windows Plugin Support</h3>
+                <p class="text-slate-300">Windows builds support CLAP and VST3. The audio backend is WASAPI. LV2 remains Unix-only.</p>
+              </div>
+              <div class="p-4 bg-slate-900/50 rounded-lg border border-slate-800">
                 <h3 class="text-lg font-semibold text-cyan-400 mb-2">macOS Plugin Support</h3>
                 <p class="text-slate-300">macOS builds support CLAP and VST3 paths, while LV2 remains Unix-only in the current codebase.</p>
               </div>
               <div class="p-4 bg-slate-900/50 rounded-lg border border-slate-800">
                 <h3 class="text-lg font-semibold text-cyan-400 mb-2">Window Backend</h3>
-                <p class="text-slate-300">Linux and FreeBSD builds currently use the X11 backend.</p>
+                <p class="text-slate-300">Linux and FreeBSD builds currently use the X11 backend. Windows builds use the Win32 API.</p>
               </div>
               <div class="p-4 bg-slate-900/50 rounded-lg border border-slate-800">
                 <h3 class="text-lg font-semibold text-cyan-400 mb-2">MIDI 2.0 Roadmap</h3>
@@ -616,7 +620,7 @@
               </div>
             </div>
             <div class="flex flex-wrap gap-3">
-              <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">Linux</span> <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">FreeBSD</span> <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">X11</span>
+              <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">Linux</span> <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">FreeBSD</span> <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">macOS</span> <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">Windows</span> <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">X11</span> <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">WASAPI</span>
             </div>
           </div>
         </div>
@@ -661,6 +665,91 @@
             <li>Real-time playback and freeze rendering use the corrected output path for exports and monitoring.</li>
             <li>MP3/OGG/FLAC/WAV export targets remain standard outputs.</li>
           </ul>
+        </div>
+      </div>
+    </section>
+    <section class="py-16 bg-slate-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-white mb-4">Per-Process Plugin Hosting</h2>
+          <p class="text-lg text-slate-300 max-w-3xl mx-auto">Every plugin instance runs in its own isolated OS process. A plugin crash stops only that track — the rest of the session keeps playing.</p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-white mb-3">Crash Isolation</h3>
+            <p class="text-slate-300 text-sm">A segfaulting plugin is killed by the OS without touching the DAW process. The engine detects the dead child within one audio block (&lt;6&nbsp;ms at 256 samples / 48&nbsp;kHz), mutes the channel, and continues playback.</p>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-white mb-3">Shared-Memory IPC</h3>
+            <p class="text-slate-300 text-sm">Audio buffers travel through memory-mapped shared memory — no copy through sockets or pipes. Lock-free SPSC ring buffers carry parameter events, MIDI, and transport state. Round-trip latency measured at ~50–200&nbsp;&micro;s per block.</p>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-white mb-3">DAW-Owned Scheduling</h3>
+            <p class="text-slate-300 text-sm">The DAW decides how many worker threads each plugin process may use per audio block. CLAP plugins use <code>clap_host_thread_pool</code>; the DAW avoids core collisions by keeping a global view of CPU load across all managers.</p>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-white mb-3">Sample-Accurate Automation</h3>
+            <p class="text-slate-300 text-sm">Parameter changes carry an exact sample offset within each block. Automation curves are subdivided into per-sample <code>ParameterEvent</code>s and written to the ring buffer — no smoothing layer in the host.</p>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-white mb-3">Format Coverage</h3>
+            <p class="text-slate-300 text-sm">Out-of-process hosting covers CLAP, VST3, and LV2. CLAP uses native thread-pool sharing. VST3 and LV2 run as single-threaded workers with the same IPC protocol and crash-bypass path.</p>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-white mb-3">Watchdog &amp; Recovery</h3>
+            <p class="text-slate-300 text-sm">A per-block watchdog timer kills any plugin manager that fails to respond within the timeout. The track is muted and a reload prompt is shown. The remaining session is unaffected and continues playing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-16 bg-slate-950">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 items-start">
+          <div>
+            <h2 class="text-3xl font-bold text-white mb-6">SIMD Acceleration</h2>
+            <p class="text-slate-300 text-lg mb-6">The Maolan audio engine uses SIMD intrinsics throughout the DSP hot path. CPU features are detected at runtime and the best available code path is selected automatically.</p>
+            <div class="space-y-4">
+              <div class="bg-slate-900 border border-slate-800 rounded-xl p-5">
+                <h3 class="text-white font-semibold mb-2">Instruction Sets</h3>
+                <ul class="text-slate-300 text-sm space-y-1">
+                  <li><span class="text-cyan-400 font-mono">AVX</span> — 8-lane f32 (preferred path on x86_64)</li>
+                  <li><span class="text-cyan-400 font-mono">SSE / SSE2</span> — 4-lane f32 fallback on x86_64</li>
+                  <li><span class="text-cyan-400 font-mono">Scalar</span> — universal fallback on all architectures</li>
+                </ul>
+              </div>
+              <div class="bg-slate-900 border border-slate-800 rounded-xl p-5">
+                <h3 class="text-white font-semibold mb-2">Accelerated Operations</h3>
+                <ul class="text-slate-300 text-sm space-y-1">
+                  <li>Buffer add, multiply, and FMA (fused multiply-add)</li>
+                  <li>Peak detection and clamp</li>
+                  <li>NaN / Inf sanitization</li>
+                  <li>Sine / cosine fade envelopes</li>
+                  <li>Sample format conversion (i8, i16, i24, i32 ↔ f32)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-white font-semibold mb-4">Runtime Dispatch</h3>
+            <p class="text-slate-300 text-sm mb-4">
+              CPU feature detection runs once at engine start. Each DSP call goes to the best available implementation without a per-call branch penalty.
+            </p>
+            <div class="space-y-3">
+              <div class="flex items-center justify-between bg-slate-950 rounded-lg px-4 py-3">
+                <span class="text-slate-300 text-sm font-mono">AVX detected</span>
+                <span class="text-cyan-400 text-sm">f32×8 &mdash; 8 samples/cycle</span>
+              </div>
+              <div class="flex items-center justify-between bg-slate-950 rounded-lg px-4 py-3">
+                <span class="text-slate-300 text-sm font-mono">SSE only</span>
+                <span class="text-cyan-400 text-sm">f32×4 &mdash; 4 samples/cycle</span>
+              </div>
+              <div class="flex items-center justify-between bg-slate-950 rounded-lg px-4 py-3">
+                <span class="text-slate-300 text-sm font-mono">No SIMD</span>
+                <span class="text-cyan-400 text-sm">scalar loop fallback</span>
+              </div>
+            </div>
+            <p class="text-slate-400 text-xs mt-4">FMA (fused multiply-add) is used for <code>add_scaled_inplace</code> when available, reducing rounding error and instruction count simultaneously.</p>
+          </div>
         </div>
       </div>
     </section>

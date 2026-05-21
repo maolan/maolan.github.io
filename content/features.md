@@ -8,7 +8,7 @@ layout = "features"
 
 A modern open-source digital audio workstation designed for flexible music production, deep MIDI editing, powerful routing, and transparent development.
 
-_Docs updated 2026-04-30._
+_Docs updated 2026-05-21._
 
 ![Maolan workspace interface](/img/workspace.gif)
 

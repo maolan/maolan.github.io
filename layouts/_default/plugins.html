@@ -17,6 +17,10 @@
               class="rounded-full border border-slate-700 bg-slate-900/50 px-4 py-2 text-sm text-slate-300"
               >In-House Plugins</span
             >
+            <span
+              class="rounded-full border border-slate-700 bg-slate-900/50 px-4 py-2 text-sm text-slate-300"
+              >Linux &middot; FreeBSD &middot; macOS &middot; Windows</span
+            >
           </div>
           <h1 class="section-title mb-6 text-white">
             Maolan <span class="text-cyan-400">Plugins</span>
@@ -78,6 +82,11 @@
             class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
             >Instruments &amp; Modeling</a
           >
+          <a
+            href="#per-process"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Per-Process Hosting</a
+          >
         </div>
       </section>
 
@@ -96,8 +105,7 @@
                 Compressor
               </h3>
               <p class="mb-4 text-sm text-slate-400">
-                <code class="code-pill">rs.maolan.compressor.mono</code>
-                <code class="code-pill">rs.maolan.compressor.stereo</code>
+                <code class="code-pill">rs.maolan.compressor</code>
               </p>
               <p class="text-slate-300">
                 4-band multiband compressor with LR4 crossovers. Peak/RMS
@@ -110,7 +118,7 @@
                 Limiter
               </h3>
               <p class="mb-4 text-sm text-slate-400">
-                <code class="code-pill">rs.maolan.maximizer</code>
+                <code class="code-pill">rs.maolan.limiter</code>
               </p>
               <p class="text-slate-300">
                 Adaptive clipper/limiter with Vintage and Modern variants.
@@ -150,27 +158,13 @@
                 Parametric EQ
               </h3>
               <p class="mb-4 text-sm text-slate-400">
-                <code class="code-pill">rs.maolan.equalizer.parametric.mono</code>
-                <code class="code-pill">rs.maolan.equalizer.parametric.stereo</code>
+                <code class="code-pill">rs.maolan.equalizer</code>
               </p>
               <p class="text-slate-300">
                 32-band parametric equalizer using peaking biquad filters. Each
-                band has independent Frequency, Gain, and Q controls. Input and
-                output gain with bypass.
-              </p>
-            </div>
-            <div class="glass-card rounded-3xl p-6">
-              <h3 class="mb-2 text-xl font-semibold text-cyan-400">
-                Graphic EQ
-              </h3>
-              <p class="mb-4 text-sm text-slate-400">
-                <code class="code-pill">rs.maolan.equalizer.graphic.mono</code>
-                <code class="code-pill">rs.maolan.equalizer.graphic.stereo</code>
-              </p>
-              <p class="text-slate-300">
-                32-band graphic equalizer. Band 1 is a low-shelf, band 32 is a
-                high-shelf, and bands 2&ndash;31 are peaking filters at fixed
-                frequencies (Q = 1.2). Input and output gain with bypass.
+                band has independent Frequency, Gain, Q, Type, Slope, and
+                Dynamics controls. Input and output gain with global bypass.
+                Mono or stereo I/O depending on host channel count.
               </p>
             </div>
           </div>
@@ -191,8 +185,7 @@
                 Delay
               </h3>
               <p class="mb-4 text-sm text-slate-400">
-                <code class="code-pill">rs.maolan.delay.mono</code>
-                <code class="code-pill">rs.maolan.delay.stereo</code>
+                <code class="code-pill">rs.maolan.delay</code>
               </p>
               <p class="text-slate-300">
                 Delay with millisecond or tempo-synced note divisions. Circular
@@ -205,8 +198,7 @@
                 Reverb
               </h3>
               <p class="mb-4 text-sm text-slate-400">
-                <code class="code-pill">rs.maolan.reverb.mono</code>
-                <code class="code-pill">rs.maolan.reverb.stereo</code>
+                <code class="code-pill">rs.maolan.reverb</code>
               </p>
               <p class="text-slate-300">
                 Stereo reverb built from three allpass-like delay blocks with
@@ -232,7 +224,7 @@
                 Stereo
               </h3>
               <p class="mb-4 text-sm text-slate-400">
-                <code class="code-pill">rs.maolan.imager</code>
+                <code class="code-pill">rs.maolan.stereo</code>
               </p>
               <p class="text-slate-300">
                 Stereo width processor. Mid/side processing with density
@@ -322,6 +314,20 @@
             </div>
             <div class="glass-card rounded-3xl p-6">
               <h3 class="mb-2 text-xl font-semibold text-cyan-400">
+                Maolan Kick
+              </h3>
+              <p class="mb-4 text-sm text-slate-400">
+                <code class="code-pill">rs.maolan.kick</code>
+              </p>
+              <p class="text-slate-300">
+                Percussive synthesizer with layered oscillators and noise. MIDI
+                note-triggered with 16 mono outputs, velocity sensitivity, and
+                a multi-layer DSP engine. Suitable for designing kick and
+                percussion sounds from scratch without sample content.
+              </p>
+            </div>
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-2 text-xl font-semibold text-cyan-400">
                 Rural Modeler
               </h3>
               <p class="mb-4 text-sm text-slate-400">
@@ -332,6 +338,74 @@
                 and impulse responses. Includes a noise gate, tone stack
                 (Bass/Mid/Treble), input/output calibration, and DC blocking.
                 Mono I/O.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="per-process" class="border-t border-slate-800 bg-slate-900 px-6 py-16">
+        <div class="mx-auto max-w-5xl">
+          <div class="mb-10 text-center">
+            <h2 class="mb-4 text-3xl font-bold text-white">Per-Process Plugin Hosting</h2>
+            <p class="mx-auto max-w-3xl text-lg text-slate-300">
+              Each plugin instance runs in its own isolated OS process.
+              A plugin crash cannot bring down the DAW or stop playback on other tracks.
+            </p>
+          </div>
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="glass-card rounded-2xl p-6">
+              <h3 class="mb-2 text-lg font-semibold text-cyan-400">Crash Isolation</h3>
+              <p class="text-sm text-slate-300">
+                If a plugin segfaults, the OS kills only its host process.
+                The DAW detects the death, mutes the track, and continues
+                playback for all other tracks without interruption.
+              </p>
+            </div>
+            <div class="glass-card rounded-2xl p-6">
+              <h3 class="mb-2 text-lg font-semibold text-cyan-400">Shared-Memory IPC</h3>
+              <p class="text-sm text-slate-300">
+                Audio buffers are exchanged through memory-mapped shared memory
+                (&lt;200&nbsp;&micro;s round-trip per block). Lock-free ring buffers
+                carry parameters, MIDI, and transport state without blocking
+                the real-time audio thread.
+              </p>
+            </div>
+            <div class="glass-card rounded-2xl p-6">
+              <h3 class="mb-2 text-lg font-semibold text-cyan-400">DAW-Owned Scheduling</h3>
+              <p class="text-sm text-slate-300">
+                The DAW controls how many worker threads each plugin process
+                may use per audio block. Plugins request work via
+                <code class="text-xs">clap_host_thread_pool</code>; the DAW
+                decides based on global CPU load, eliminating core collisions.
+              </p>
+            </div>
+            <div class="glass-card rounded-2xl p-6">
+              <h3 class="mb-2 text-lg font-semibold text-cyan-400">Sample-Accurate Automation</h3>
+              <p class="text-sm text-slate-300">
+                Parameter changes carry an exact sample offset within each
+                block. Automation curves are subdivided into per-sample events
+                and delivered through the IPC ring buffer with no smoothing
+                layer added by the host.
+              </p>
+            </div>
+            <div class="glass-card rounded-2xl p-6">
+              <h3 class="mb-2 text-lg font-semibold text-cyan-400">Format Coverage</h3>
+              <p class="text-sm text-slate-300">
+                Out-of-process hosting covers CLAP, VST3, and LV2. CLAP gets
+                native thread-pool sharing; VST3 and LV2 run as
+                single-threaded workers with the same IPC protocol and crash
+                recovery path.
+              </p>
+            </div>
+            <div class="glass-card rounded-2xl p-6">
+              <h3 class="mb-2 text-lg font-semibold text-cyan-400">Windows Support</h3>
+              <p class="text-sm text-slate-300">
+                The IPC layer uses <code class="text-xs">CreateFileMapping</code>
+                on Windows and <code class="text-xs">shm_open</code> on Unix.
+                Plugin processes are spawned with <code class="text-xs">CreateProcess</code>
+                and GUI embedding uses <code class="text-xs">SetParent</code>.
+                CLAP and VST3 are supported on Windows; LV2 remains Unix-only.
               </p>
             </div>
           </div>
