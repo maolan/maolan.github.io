@@ -5,14 +5,14 @@
       <div class="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl"></div>
       <div class="relative z-10 mx-auto max-w-5xl">
         <div class="mb-8 flex flex-wrap gap-3">
-          <span class="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-medium text-cyan-300">Reference Sheet</span> <span class="rounded-full border border-slate-700 bg-slate-900/50 px-4 py-2 text-sm text-slate-300">Updated 2026-03-21</span>
+          <span class="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-medium text-cyan-300">Reference Sheet</span> <span class="rounded-full border border-slate-700 bg-slate-900/50 px-4 py-2 text-sm text-slate-300">Updated 2026-05-21</span>
         </div>
         <h1 class="section-title mb-6 text-white">Maolan <span class="text-cyan-400">Shortcuts</span></h1>
         <p class="max-w-3xl text-xl leading-relaxed text-slate-300">Keyboard commands and pointer gestures for session management, transport, clip editing, markers, zoom controls, timing lanes, piano roll work, and plugin routing.</p>
         <div class="mt-10 grid gap-4 sm:grid-cols-3">
           <div class="glass-card rounded-2xl p-5">
             <div class="text-3xl font-bold text-cyan-400">
-              22
+              25
             </div>
             <div class="mt-2 text-sm text-slate-300">
               Keyboard shortcuts
@@ -96,6 +96,12 @@
               </div>
               <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[190px_minmax(0,1fr)]">
                 <div>
+                  <span class="kbd">Ctrl+A</span>
+                </div>
+                <p class="text-slate-300">Select all (in pitch-correction view: selects all segments)</p>
+              </div>
+              <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[190px_minmax(0,1fr)]">
+                <div>
                   <span class="kbd">Ctrl+R</span>
                 </div>
                 <p class="text-slate-300">Toggle session record arm</p>
@@ -130,11 +136,23 @@
                 </div>
                 <p class="text-slate-300">Remove selected item(s)</p>
               </div>
-              <div class="grid gap-4 py-4 sm:grid-cols-[190px_minmax(0,1fr)]">
+              <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[190px_minmax(0,1fr)]">
                 <div>
                   <span class="kbd">Escape</span>
                 </div>
                 <p class="text-slate-300">Cancel or clear the current context-dependent interaction</p>
+              </div>
+              <div class="shortcut-row grid gap-4 py-4 sm:grid-cols-[190px_minmax(0,1fr)]">
+                <div>
+                  <span class="kbd">N</span>
+                </div>
+                <p class="text-slate-300">Toggle the Shortcuts pane</p>
+              </div>
+              <div class="grid gap-4 py-4 sm:grid-cols-[190px_minmax(0,1fr)]">
+                <div>
+                  <span class="kbd">C</span>
+                </div>
+                <p class="text-slate-300">Toggle the cut indicator (a vertical guide line showing where a cut would land; only visible in workspace view)</p>
               </div>
             </div>
           </div>
@@ -333,7 +351,7 @@
                 <li>Take-lane controls</li>
                 <li>Mute/unmute</li>
                 <li>Fade toggle</li>
-                <li>Audio warp actions for audio clips</li>
+                <li>Audio stretch actions for audio clips</li>
                 <li>Pitch correction</li>
               </ul>
             </div>
@@ -405,6 +423,21 @@
             </div>
           </div>
           <div class="glass-card rounded-3xl p-6 col-span-2">
+            <h3 class="mb-4 text-xl font-semibold text-cyan-400">Automation Lanes</h3>
+            <div class="shortcut-row grid gap-4 py-4">
+              <div>
+                <span class="kbd">Left click empty area</span>
+              </div>
+              <p class="text-slate-300">Insert automation point at the cursor position</p>
+            </div>
+            <div class="grid gap-4 py-4">
+              <div>
+                <span class="kbd">Right click point</span>
+              </div>
+              <p class="text-slate-300">Delete automation point</p>
+            </div>
+          </div>
+          <div class="glass-card rounded-3xl p-6 col-span-2">
             <h3 class="mb-4 text-xl font-semibold text-cyan-400">Ruler (Top Timeline)</h3>
             <div class="shortcut-row grid gap-4 py-4">
               <div>
@@ -417,6 +450,18 @@
                 <span class="kbd">Left drag ruler</span>
               </div>
               <p class="text-slate-300">Set loop range (snap-aware, supports "Clips" snap mode)</p>
+            </div>
+            <div class="shortcut-row grid gap-4 py-4">
+              <div>
+                <span class="kbd">Right drag inside loop range</span>
+              </div>
+              <p class="text-slate-300">Move the entire loop range</p>
+            </div>
+            <div class="shortcut-row grid gap-4 py-4">
+              <div>
+                <span class="kbd">Middle drag loop edge</span>
+              </div>
+              <p class="text-slate-300">Adjust loop start or end point</p>
             </div>
             <div class="shortcut-row grid gap-4 py-4">
               <div>

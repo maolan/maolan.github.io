@@ -6,13 +6,13 @@ layout = "shortcuts"
 
 Reference Sheet
 
-Updated 2026-03-21
+Updated 2026-05-21
 
 # Maolan Shortcuts
 
 Keyboard commands and pointer gestures for session management, transport, clip editing, markers, zoom controls, timing lanes, piano roll work, and plugin routing.
 
-22
+25
 
 Keyboard shortcuts
 
@@ -72,6 +72,10 @@ Ctrl+T
 
 Add track
 
+Ctrl+A
+
+Select all (in pitch-correction view: selects all segments)
+
 Ctrl+R
 
 Toggle session record arm
@@ -101,6 +105,14 @@ Remove selected item(s)
 Escape
 
 Cancel or clear the current context-dependent interaction
+
+N
+
+Toggle the Shortcuts pane
+
+C
+
+Toggle the cut indicator (a vertical guide line showing where a cut would land; only visible in workspace view)
 
 ### Transport
 
@@ -225,7 +237,7 @@ Open clip context menu
 - Take-lane controls
 - Mute/unmute
 - Fade toggle
-- Audio warp actions for audio clips
+- Audio stretch actions for audio clips
 - Pitch correction
 
 ### Pitch Correction
@@ -282,6 +294,16 @@ Right drag on MIDI lane
 
 Create empty MIDI clip
 
+### Automation Lanes
+
+Left click empty area
+
+Insert automation point at the cursor position
+
+Right click point
+
+Delete automation point
+
 ### Ruler (Top Timeline)
 
 Left click ruler
@@ -291,6 +313,14 @@ Move transport playhead
 Left drag ruler
 
 Set loop range (snap-aware, supports "Clips" snap mode)
+
+Right drag inside loop range
+
+Move the entire loop range
+
+Middle drag loop edge
+
+Adjust loop start or end point
 
 Right click ruler
 
