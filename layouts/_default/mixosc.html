@@ -1,0 +1,393 @@
+{{ define "main" }}
+
+      <section class="gradient-dark relative overflow-hidden px-6 pb-16 pt-32">
+        <div
+          class="absolute right-0 top-0 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl"
+        ></div>
+        <div
+          class="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl"
+        ></div>
+        <div class="relative z-10 mx-auto max-w-5xl">
+          <div class="mb-8 flex flex-wrap gap-3">
+            <span
+              class="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-medium text-cyan-300"
+              >X32 Control Surface</span
+            >
+            <span
+              class="rounded-full border border-slate-700 bg-slate-900/50 px-4 py-2 text-sm text-slate-300"
+              >OSC Mixer</span
+            >
+          </div>
+          <h1 class="section-title mb-6 text-white">
+            Maolan <span class="text-cyan-400">MixOSC</span>
+          </h1>
+          <p class="max-w-3xl text-xl leading-relaxed text-slate-300">
+            Rust OSC client and control surface for Behringer X32-family mixers.
+            A desktop GUI built with Iced, plus a reusable library for
+            discovery, state loading, and meter parsing.
+          </p>
+          <div class="mt-10 grid gap-4 sm:grid-cols-3">
+            <div class="glass-card rounded-2xl p-5">
+              <div class="text-3xl font-bold text-cyan-400">2</div>
+              <div class="mt-2 text-sm text-slate-300">Components: GUI + library</div>
+            </div>
+            <div class="glass-card rounded-2xl p-5">
+              <div class="text-3xl font-bold text-cyan-400">10023</div>
+              <div class="mt-2 text-sm text-slate-300">Default X32 UDP port</div>
+            </div>
+            <div class="glass-card rounded-2xl p-5">
+              <div class="text-3xl font-bold text-cyan-400">7</div>
+              <div class="mt-2 text-sm text-slate-300">Strip types supported</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="border-t border-slate-800 bg-slate-950 px-6 py-10">
+        <div class="mx-auto flex max-w-6xl flex-wrap gap-3">
+          <a
+            href="#integration"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Integration</a
+          >
+          <a
+            href="#overview"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Overview</a
+          >
+          <a
+            href="#gui"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >GUI</a
+          >
+          <a
+            href="#strips"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Strips</a
+          >
+          <a
+            href="#running"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Running</a
+          >
+          <a
+            href="#library"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Library</a
+          >
+          <a
+            href="#development"
+            class="rounded-full border border-slate-700 bg-slate-900/70 px-4 py-2 text-sm text-slate-300 transition hover:border-cyan-400/40 hover:text-cyan-300"
+            >Development</a
+          >
+        </div>
+      </section>
+
+      <section id="integration" class="bg-slate-950 px-6 py-12">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-8">
+            <h2 class="mb-3 text-3xl font-bold text-white">Maolan Integration</h2>
+            <p class="max-w-3xl text-slate-400">
+              MixOSC is built into Maolan as a dedicated X32 hardware mixer view.
+              When enabled, the full MixOSC control surface runs directly inside
+              the DAW, sharing the same Iced rendering context and widget theme.
+            </p>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-2">
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                How It Works
+              </h3>
+              <ul class="space-y-3 text-slate-300">
+                <li>Click the <strong>sliders icon</strong> in the Maolan toolbar to open the X32 view.</li>
+                <li>Maolan instantiates <code>mixosc::app::StatusApp</code> inside the GUI state.</li>
+                <li>OSC subscription starts only while the X32 view is visible, saving resources.</li>
+                <li>All mixer messages are wrapped as <code>Message::HwMixer</code> and dispatched through the standard update loop.</li>
+                <li>The MixOSC surface renders natively using the same Iced backend as the rest of Maolan.</li>
+              </ul>
+            </div>
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                Technical Details
+              </h3>
+              <ul class="space-y-3 text-slate-300">
+                <li>Integrated as <code>View::X32</code> in the Maolan view state.</li>
+                <li>Uses <code>mixosc::app::subscription</code> for live OSC updates when active.</li>
+                <li>Mixer state is owned by the DAW and updated through <code>mixosc::app::update</code>.</li>
+                <li>The surface view is produced by <code>mixosc::app::view</code> and mapped into Maolan's message system.</li>
+                <li>Connection to the X32 is handled automatically via UDP broadcast discovery or a configured address.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="mt-8">
+            <div class="glass-card rounded-3xl p-6 text-center">
+              <p class="text-slate-400 mb-4">Screenshot of MixOSC inside Maolan</p>
+              <!-- TODO: Add MixOSC screenshot here -->
+              <div class="rounded-2xl border border-dashed border-slate-700 bg-slate-900/50 p-16">
+                <p class="text-slate-500">[ MixOSC picture placeholder ]</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="overview" class="bg-slate-900 px-6 py-12">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-8">
+            <h2 class="mb-3 text-3xl font-bold text-white">Overview</h2>
+            <p class="max-w-3xl text-slate-300">
+              MixOSC is a standalone Rust application and library for controlling
+              Behringer X32 mixers over OSC. It discovers mixers on the local
+              network and presents a mixer-style control surface.
+            </p>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-2">
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                Desktop GUI
+              </h3>
+              <ul class="space-y-3 text-slate-300">
+                <li>Built with <code>iced</code> and <code>maolan-widgets</code>.</li>
+                <li>Auto-discovers X32 mixers on the local network.</li>
+                <li>Subscribes to live OSC updates with <code>/xremote</code> and meter subscriptions.</li>
+                <li>Real-time UI updates when the mixer state changes locally.</li>
+              </ul>
+            </div>
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                Rust Library
+              </h3>
+              <ul class="space-y-3 text-slate-300">
+                <li>X32 UDP/OSC discovery and connection probing.</li>
+                <li>State loading and updates for all strip types.</li>
+                <li>Meter packet parsing for input and main buses.</li>
+                <li>Console update parsing with <code>ConsoleUpdate</code> events.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="gui" class="bg-slate-950 px-6 py-12">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-8">
+            <h2 class="mb-3 text-3xl font-bold text-white">Current GUI Behavior</h2>
+            <p class="max-w-3xl text-slate-300">
+              When a mixer is reachable, the application loads and displays the
+              full mixer surface in real time.
+            </p>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-2">
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                Supported Strips
+              </h3>
+              <ul class="space-y-3 text-slate-300">
+                <li><code>CH 01-32</code> — Input channels</li>
+                <li><code>AUX 01-08</code> — Auxiliary inputs</li>
+                <li><code>BUS 01-12</code> — Mix buses</li>
+                <li><code>FX 01-08</code> — FX returns</li>
+                <li><code>MTX 01-06</code> — Matrices</li>
+                <li><code>DCA 1-8</code> — DCA groups</li>
+                <li><code>Main LR</code> — Main stereo bus</li>
+              </ul>
+            </div>
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                Real-Time Parameters
+              </h3>
+              <ul class="space-y-3 text-slate-300">
+                <li>Name and scribble-strip color</li>
+                <li>Input gain or trim</li>
+                <li>Sends to buses and matrices</li>
+                <li>Pan</li>
+                <li>Fader level</li>
+                <li>Input and main/matrix meters</li>
+                <li>Mute and Solo</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="strips" class="bg-slate-900 px-6 py-12">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-8">
+            <h2 class="mb-3 text-3xl font-bold text-white">What Is Implemented per Strip Type</h2>
+            <p class="max-w-3xl text-slate-400">
+              Each strip type exposes a specific subset of controls based on what
+              the X32 hardware supports.
+            </p>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-2">
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                Fully Supported
+              </h3>
+              <div class="space-y-4 text-slate-300">
+                <p><strong>Channels and aux inputs:</strong> gain/trim, sends to buses 1-16, pan, fader, mute, solo, color, name, meters</p>
+                <p><strong>FX returns:</strong> sends to buses 1-16, pan, fader, mute, solo, color, name</p>
+                <p><strong>Buses:</strong> sends to matrices 1-6, pan, fader, mute, solo, color, name</p>
+              </div>
+            </div>
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                Partially Supported
+              </h3>
+              <div class="space-y-4 text-slate-300">
+                <p><strong>Matrices:</strong> fader, mute, color, name, matrix meter</p>
+                <p><strong>DCAs:</strong> fader, mute, color, name</p>
+                <p><strong>Main LR:</strong> fader, mute, color, stereo meter</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 glass-card rounded-3xl p-6">
+            <h3 class="mb-4 text-xl font-semibold text-cyan-400">Implementation Notes</h3>
+            <ul class="space-y-3 text-slate-300">
+              <li>Gain uses headamp control where available and trim otherwise.</li>
+              <li>Channel <code>17-32</code> use trim gain; earlier channels and supported aux inputs can use headamp gain.</li>
+              <li>Gain is not exposed for buses, FX returns, matrices, or DCAs.</li>
+              <li>Pan is not exposed for matrices or DCAs.</li>
+              <li>DCA and matrix solo are not sent to the mixer.</li>
+              <li>Master solo is a local UI toggle and is not sent to the mixer.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="running" class="bg-slate-950 px-6 py-12">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-8">
+            <h2 class="mb-3 text-3xl font-bold text-white">Running</h2>
+            <p class="max-w-3xl text-slate-300">
+              Start the application with automatic discovery, or connect to a
+              specific mixer by address.
+            </p>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-2">
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                Automatic Discovery
+              </h3>
+              <pre
+                class="overflow-x-auto rounded-2xl border border-cyan-400/10 bg-slate-950/80 p-5 text-sm leading-7 text-slate-200"
+              ><code>cargo run</code></pre>
+            </div>
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                Connect to a Specific Mixer
+              </h3>
+              <pre
+                class="overflow-x-auto rounded-2xl border border-cyan-400/10 bg-slate-950/80 p-5 text-sm leading-7 text-slate-200"
+              ><code>cargo run -- 192.168.1.62</code></pre>
+              <p class="mt-4 text-slate-300">With a custom port:</p>
+              <pre
+                class="mt-2 overflow-x-auto rounded-2xl border border-cyan-400/10 bg-slate-950/80 p-5 text-sm leading-7 text-slate-200"
+              ><code>cargo run -- 192.168.1.62:10023</code></pre>
+            </div>
+          </div>
+          <div class="mt-6 glass-card rounded-3xl p-6">
+            <h3 class="mb-4 text-xl font-semibold text-cyan-400">Environment Variable</h3>
+            <pre
+              class="overflow-x-auto rounded-2xl border border-cyan-400/10 bg-slate-950/80 p-5 text-sm leading-7 text-slate-200"
+            ><code>MIXOSC_MIXER_ADDR=192.168.1.62 cargo run</code></pre>
+            <p class="mt-4 text-slate-300">The default X32 port is <code>10023</code>.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="library" class="bg-slate-900 px-6 py-12">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-8">
+            <h2 class="mb-3 text-3xl font-bold text-white">Library Surface</h2>
+            <p class="max-w-3xl text-slate-400">
+              The crate exports OSC/X32 helpers from <code>src/x32.rs</code> for
+              building custom integrations.
+            </p>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-2">
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                Discovery & Connectivity
+              </h3>
+              <div class="flex flex-wrap gap-3">
+                <span class="code-pill">DiscoveryProbe</span>
+                <span class="code-pill">ConnectionProbe</span>
+                <span class="code-pill">DiscoveredMixer</span>
+                <span class="code-pill">ProbeOutcome</span>
+              </div>
+            </div>
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                Strip State Control
+              </h3>
+              <div class="flex flex-wrap gap-3">
+                <span class="code-pill">FaderBankProbe</span>
+                <span class="code-pill">PanBankProbe</span>
+                <span class="code-pill">GainBankProbe</span>
+                <span class="code-pill">SendBankProbe</span>
+                <span class="code-pill">MuteBankProbe</span>
+                <span class="code-pill">SoloBankProbe</span>
+                <span class="code-pill">NameBankProbe</span>
+                <span class="code-pill">ColorBankProbe</span>
+              </div>
+            </div>
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                Meter Handling
+              </h3>
+              <div class="flex flex-wrap gap-3">
+                <span class="code-pill">batchsubscribe_meter_request</span>
+                <span class="code-pill">renew_request</span>
+                <span class="code-pill">parse_input_meter_packet</span>
+                <span class="code-pill">parse_main_meter_packet</span>
+              </div>
+            </div>
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-4 text-xl font-semibold text-cyan-400">
+                Console Updates & Constants
+              </h3>
+              <div class="flex flex-wrap gap-3">
+                <span class="code-pill">parse_console_update</span>
+                <span class="code-pill">ConsoleUpdate</span>
+                <span class="code-pill">parse_target</span>
+                <span class="code-pill">X32_DEFAULT_PORT</span>
+                <span class="code-pill">X32_BROADCAST_ADDR</span>
+                <span class="code-pill">XREMOTE_REQUEST</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="development" class="border-t border-slate-800 bg-slate-950 px-6 py-16">
+        <div class="mx-auto max-w-4xl">
+          <div class="glass-card rounded-3xl p-8">
+            <h2 class="mb-4 text-3xl font-bold text-white">Development</h2>
+            <p class="mb-6 text-slate-300">
+              This repository has a single binary entry point in
+              <code>src/main.rs</code> and a reusable library in
+              <code>src/lib.rs</code>.
+            </p>
+            <pre
+              class="overflow-x-auto rounded-2xl border border-cyan-400/10 bg-slate-950/80 p-5 text-sm leading-7 text-slate-200"
+            ><code>cargo check</code></pre>
+            <div class="mt-8 flex flex-wrap gap-4">
+              <a
+                href="https://github.com/maolan/mixosc"
+                target="_blank"
+                class="btn-primary px-6 py-3 rounded-lg inline-block"
+                >View on GitHub</a
+              >
+              <a
+                href="https://crates.io/crates/mixosc"
+                target="_blank"
+                class="btn-secondary px-6 py-3 rounded-lg inline-block"
+                >View on crates.io</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+{{ end }}
