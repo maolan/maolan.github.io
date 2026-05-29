@@ -704,6 +704,40 @@
     </section>
     <section class="py-16 bg-slate-950">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-white mb-4">Hybrid Buffers</h2>
+          <p class="text-lg text-slate-300 max-w-3xl mx-auto">Anticipative double-buffered rendering that pre-fills audio ahead of the playhead, keeping playback smooth even when heavy processing would otherwise stall the real-time thread.</p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-white mb-3">Double-Buffered Architecture</h3>
+            <p class="text-slate-300 text-sm">Each track maintains an <em>active</em> buffer for playback consumption and a <em>refill</em> buffer that background rendering continuously writes into. When the active buffer drains below a configurable low-watermark threshold, the two buffers are atomically swapped so playback never waits on DSP.</p>
+          </div>
+          <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-white mb-3">Anticipative Pre-Rendering</h3>
+            <p class="text-slate-300 text-sm">Non-realtime tracks pre-render their plugin graphs ahead of the transport playhead into the refill buffer. The real-time audio thread simply copies pre-computed samples instead of running FX chains, drastically reducing CPU spikes and dropouts.</p>
+          </div>
+          <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-white mb-3">Seamless Seek &amp; Loop Handling</h3>
+            <p class="text-slate-300 text-sm">Large seeks, loop wraps, and transport discontinuities instantly invalidate the cached buffers and reset the prefetch position. Playback falls back to live rendering for the first block, then resumes anticipative filling — all without audible glitches.</p>
+          </div>
+          <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-white mb-3">Realtime Domain Bypass</h3>
+            <p class="text-slate-300 text-sm">Tracks running in the realtime domain bypass hybrid buffering entirely and use direct process-render blocks. This ensures live input monitoring and real-time MIDI instrument tracks maintain the lowest possible latency path.</p>
+          </div>
+          <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-white mb-3">Adaptive Watermark Refill</h3>
+            <p class="text-slate-300 text-sm">A low-watermark frame counter triggers refill requests automatically. The engine renders in chunks equal to the preferred process block size, appending output into the refill buffer until the target pre-fill level is restored.</p>
+          </div>
+          <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-white mb-3">Underflow Safety</h3>
+            <p class="text-slate-300 text-sm">If consumption ever outruns production — for example during extreme CPU contention — the track outputs silence for that cycle, increments an underflow counter, and resumes normal hybrid scheduling on the next block. No crashes, no feedback loops.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-16 bg-slate-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid lg:grid-cols-2 gap-12 items-start">
           <div>
             <h2 class="text-3xl font-bold text-white mb-6">SIMD Acceleration</h2>

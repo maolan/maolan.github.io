@@ -1,0 +1,95 @@
+{{ define "main" }}
+
+      <section class="gradient-dark relative overflow-hidden px-6 pb-16 pt-32">
+        <div
+          class="absolute right-0 top-0 h-96 w-96 rounded-full bg-blue-500/10 blur-3xl"
+        ></div>
+        <div
+          class="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl"
+        ></div>
+        <div class="relative z-10 mx-auto max-w-5xl">
+          <div class="mb-8 flex flex-wrap gap-3">
+            <span
+              class="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-medium text-cyan-300"
+              >Release 0.1.1</span
+            >
+            <span
+              class="rounded-full border border-slate-700 bg-slate-900/50 px-4 py-2 text-sm text-slate-300"
+              >FreeBSD &middot; Linux &middot; Windows</span
+            >
+          </div>
+          <h1 class="section-title mb-6 text-white">
+            Download <span class="text-cyan-400">Maolan</span>
+          </h1>
+          <p class="max-w-3xl text-xl leading-relaxed text-slate-300">
+            Get the latest pre-release build for your platform. Maolan is
+            currently available for FreeBSD, Linux, and Windows.
+          </p>
+          <div class="mt-10 grid gap-4 sm:grid-cols-3">
+            <div class="glass-card rounded-2xl p-6">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="w-12 h-12 bg-cyan-400/10 rounded-lg flex items-center justify-center">
+                  <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-white">FreeBSD</h3>
+                  <p class="text-sm text-slate-400">Install from packages</p>
+                </div>
+              </div>
+              <code class="block rounded-lg bg-slate-950 border border-slate-800 px-4 py-3 text-sm font-mono text-cyan-300">pkg install maolan</code>
+            </div>
+            <div class="glass-card rounded-2xl p-6">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="w-12 h-12 bg-cyan-400/10 rounded-lg flex items-center justify-center">
+                  <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 75h6v-6H9v6zm-6 6h6v-6H3v6zm12-6h6v-6h-6v6zm-6 6h6v-6H9v6zm-6 6h6v-6H3v6zm12-6h6v-6h-6v6zm-6 6h6v-6H9v6zM3 21h6v-6H3v6zm6-6h6v-6H9v6z"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-white">Linux</h3>
+                  <p class="text-sm text-slate-400">x86_64 Fedora, Debian &amp; Ubuntu</p>
+                </div>
+              </div>
+              <a
+                href="https://github.com/maolan/maolan/releases/tag/0.1.1"
+                class="inline-flex items-center rounded-lg bg-cyan-400 px-5 py-2.5 font-semibold text-slate-950 transition hover:bg-cyan-300"
+                >Download</a
+              >
+            </div>
+            <div class="glass-card rounded-2xl p-6">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="w-12 h-12 bg-cyan-400/10 rounded-lg flex items-center justify-center">
+                  <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-white">Windows</h3>
+                  <p class="text-sm text-slate-400">x86_64 installer (EXE) for Windows 10 &amp; 11</p>
+                </div>
+              </div>
+              <a
+                href="https://github.com/maolan/maolan/releases/tag/0.1.1"
+                class="inline-flex items-center rounded-lg bg-cyan-400 px-5 py-2.5 font-semibold text-slate-950 transition hover:bg-cyan-300"
+                >Download</a
+              >
+            </div>
+          </div>
+          <div class="mt-8 glass-card rounded-2xl p-6">
+            <h3 class="mb-2 text-lg font-semibold text-white">Build from Source</h3>
+            <p class="text-slate-300 text-sm mb-4">
+              Maolan is open source. If you prefer to build manually or run on
+              macOS, follow the instructions in the repository.
+            </p>
+            <a
+              href="https://github.com/maolan/maolan"
+              class="text-cyan-400 hover:underline text-sm font-medium"
+              >View source on GitHub &rarr;</a
+            >
+          </div>
+        </div>
+      </section>
+
+{{ end }}
