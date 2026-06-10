@@ -259,6 +259,7 @@ a {
 .max-w-6xl { max-width: 72rem; }
 .max-w-7xl { max-width: 80rem; }
 
+.logo { max-height: 500px; }
 .mx-auto { margin-left: auto; margin-right: auto; }
 .mb-1 { margin-bottom: 0.25rem; }
 .mb-2 { margin-bottom: 0.5rem; }
@@ -304,7 +305,7 @@ a {
 .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
 .py-24 { padding-top: 6rem; padding-bottom: 6rem; }
 .pt-8 { padding-top: 2rem; }
-.pt-32 { padding-top: 8rem; }
+.pt-32 { padding-top: 3rem; }
 .pb-6 { padding-bottom: 1.5rem; }
 .pb-16 { padding-bottom: 4rem; }
 .pb-20 { padding-bottom: 5rem; }
