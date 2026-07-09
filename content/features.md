@@ -8,7 +8,7 @@ layout = "features"
 
 A modern open-source digital audio workstation designed for flexible music production, deep MIDI editing, powerful routing, and transparent development.
 
-_Docs updated 2026-05-21._
+_Docs updated 2026-07-09._
 
 ![Maolan workspace interface](/img/workspace.gif)
 
@@ -56,7 +56,7 @@ Maolan provides a flexible multi-track environment for recording, arranging, and
 
 - Track selection, rename, reordering, and resizing
 
-- Session templates, track templates, and group templates save/load
+- Session templates and track templates save/load
 
 ### Session Management
 
@@ -79,6 +79,16 @@ Maolan provides a flexible multi-track environment for recording, arranging, and
 - Snap-to-clip start/end for clips, loop, punch, and markers
 
 - Ruler playhead seek and loop/punch range management
+
+### Folder Tracks
+
+- Folder tracks for hierarchical organization of large sessions
+
+- Collapsible/expandable folder view in the track list and mixer
+
+- Child tracks route through the folder and can connect to folder plugins
+
+- Folder templates save the full child subtree recursively
 
 ## Clip Editing
 
@@ -150,6 +160,8 @@ The piano roll and MIDI editing tools support expressive composition and detaile
 
 - Configurable groove, humanize, and velocity-shape values
 
+- Step recording mode in the piano roll for entering MIDI notes one step at a time
+
 ## Automation System
 
 Maolan supports track and plugin automation with multiple writing modes and detailed editing for dynamic mix control.
@@ -166,6 +178,10 @@ Automate plugin parameters with smooth interpolation and multiple curve shapes f
 
 Draw automation curves directly on the timeline with freehand ramp tools and smoothing.
 
+### MIDI-Style Automation Editing
+
+Automation lanes use MIDI-style gestures: right-drag to draw a straight ramp between two points, or click without dragging to insert a single point.
+
 ### Automation Point Editing
 
 Adjust individual automation points with detailed value editing and curve tension controls.
@@ -177,6 +193,26 @@ Read, Touch, Latch, and Write modes support different recording and playback wor
 ### Automation Writeback
 
 Capture real-time parameter changes during playback and write them back to automation lanes.
+
+## Modulators
+
+LFO-style modulators bring motion to tracks, plugins, and MIDI controllers.
+
+### Modulator Shapes
+
+Sine, Triangle, Saw, Square, and Sample & Hold waveforms.
+
+### Rate and Timing
+
+Run modulators in Hz or lock them to musical divisions such as beat, bar, and note values.
+
+### Targets
+
+Assign modulators to track parameters, plugin parameters, and MIDI controllers with per-assignment min/max scaling.
+
+### Editing
+
+Create and edit modulators in the Modulators pane, toggled with `M` or from the View menu. While a modulator is selected, mixer faders/pans and automation-lane headers show a target overlay for quick assignment.
 
 ## Routing and Mixing
 
@@ -220,21 +256,51 @@ Commit frozen audio permanently to reduce project complexity and file size.
 
 ![Maolan export dialog interface](/img/export.png)
 
+## Live Session View
+
+A clip-launch grid for performance-oriented workflows.
+
+### Launch and Scene Workflow
+
+- Switch between Workspace and Session view with `Tab`
+
+- Launch or stop slots with a click or `Return`
+
+- Launch scenes to trigger every clip in a column
+
+- Stop all clips with `Shift+Space`
+
+### Arrangement Integration
+
+Slots reference arrangement clips by ID, so arrangement edits are reflected in the grid. Record session clips into the arrangement, record directly into slots, and copy slots back to the timeline.
+
+### Scene Options
+
+Rename scenes, set colors, assign per-scene tempos, and configure launch quantization from the scene header context menu.
+
 ## Export and Rendering
 
 Professional export options for final mixes and stems in multiple delivery formats.
 
 ### Export Features
 
-- 
-- 
-- 
-- 
-- 
-- 
-- 
-- 
--
+- Mixdown export of selected hardware outputs
+
+- Stem export with pre-fader or post-fader modes
+
+- Real-time fallback render mode
+
+- Master limiter and dBTP ceiling
+
+- Peak and loudness normalization
+
+- Multi-format export in a single run
+
+- MP3 CBR/VBR bitrate control
+
+- OGG Vorbis quality control
+
+- Metadata tagging for MP3 and OGG Vorbis
 
 ### Supported Formats
 
@@ -278,11 +344,16 @@ Maolan includes a separate generation crate and CLI for HeartMuLa text-to-audio 
 
 ### Current capabilities
 
-- 
-- `happy-new-year` and `RL`
-- 
+- Text-to-audio generation with prompt or lyrics input
+
+- `happy-new-year` and `RL` model options
+
+- CPU and Vulkan Burn backends
+
 - `--decode-only` mode using `--frames-json` for saved token-frame output
+
 - `--decode-threads` override for decode-only CPU worker count
+
 - `--model-dir` override for local Burn exports instead of cache-based lookup
 
 ### Expected model assets
@@ -304,6 +375,22 @@ Expected file: `heartcodec.bpk`.
 ### Integration path
 
 The CLI is not just a side tool. The desktop application uses the same generate crate and runtime components when launching AI audio generation from the GUI.
+
+## Media Management
+
+Keep sessions portable and tidy with built-in media tools.
+
+### Consolidate
+
+Collect external audio, MIDI, and plugin file references into the session's `data/` directory.
+
+### Delete Unused Files
+
+Remove media files that are no longer referenced by the current session.
+
+### File Reference Support
+
+CLAP and LV2 plugins can declare external file references; Maolan copies them into `data/` and updates the references to session-relative paths when consolidating.
 
 ## Session Safety and Recovery
 
@@ -365,17 +452,11 @@ macOS builds support CLAP and VST3 paths, while LV2 remains Unix-only in the cur
 
 ### Window Backend
 
-Linux and FreeBSD builds currently use the X11 backend.
+Linux and FreeBSD builds run on Wayland when available and fall back to X11 (Xorg) when Wayland is unavailable. Plugin UI embedding still uses X11, so an X11 server must be reachable even under Wayland (for example via XWayland).
 
 ### MIDI 2.0 Roadmap
 
 FreeBSD roadmap notes still mark MIDI 2.0 support as N/A.
-
-Linux
-
-FreeBSD
-
-X11
 
 ## Control Surface and OSC
 

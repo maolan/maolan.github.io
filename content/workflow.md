@@ -4,7 +4,7 @@ description = "Operational reference for Maolan covering plugin routing, sidecha
 layout = "workflow"
 +++
 
-_Workflow reference. Operations updated 2026-04-30. Routing updated 2026-03-21._
+_Workflow reference. Operations updated 2026-07-09. Routing updated 2026-03-21._
 
 # Maolan Workflow
 
@@ -72,6 +72,10 @@ Audio clips on supported Unix builds can open their own
 plugin graph. If a clip has no saved graph yet, Maolan
 seeds a default passthrough clip graph first.
 
+#### Folder track graphs
+
+Folder tracks have their own plugin graph. Child tracks route into the folder graph, and child outputs can connect to folder plugins or directly to the folder output.
+
 #### Audio nodes
 
 Main ports and extra auxiliary or sidechain ports are shown
@@ -109,12 +113,12 @@ processed.
 ## Session Storage
 
 Sessions are directory-based, with the main project state in
-`session.json` and supporting assets stored alongside
+`<branch>.json` (default `main.json`) and supporting assets stored alongside
 it.
 
 ### Session Layout
 
-`session.json`
+`<branch>.json`
 
 Tracks, clips, connections, plugin graph topology, plugin
 state, transport state, metadata, export settings, MIDI
@@ -122,6 +126,10 @@ learn bindings, clip-group membership in
 `grouped_clips`, per-audio-clip plugin graph
 state in `plugin_graph_json`,
 pitch-correction segment settings, and UI sizing values.
+
+`session.json`
+
+Live Session View scene list and slot references.
 
 `audio/`,
 
@@ -144,6 +152,10 @@ pitch-correction segment settings, and UI sizing values.
 Imported media, waveform peak cache, cached pitch analysis
 data, and plugin session assets live inside the session
 directory.
+
+`data/`
+
+Consolidated external audio, MIDI, and plugin file references.
 
 `.maolan_autosave/snapshots/`
 
@@ -207,32 +219,13 @@ A track template stores `track.json` and a
 - Includes track settings, plugin graph, plugin state, and connections involving that track.
 - Excludes audio clips and MIDI clips.
 
-### Group templates
+### Folder templates
 
-`~/.config/maolan/group_templates/<name>/`
+Folder track templates are stored in the same track-templates directory. A folder template's `track.json` contains a `children` array with the saved subtree.
 
-Each group template stores `group.json` plus a `plugins/` directory. Group templates keep:
-
-- all tracks that share the same VCA master (group)
-- each track's settings and plugin graph
-- connections between tracks in the group
-
-When a group template is loaded from the Add Track dialog:
-
-- the base name you enter becomes the new group name (VCA master)
-- each track in the group is created with the base name as a prefix
-  - single-track groups use the base name directly
-  - multi-track groups use `"<base> <original>"`
-- plugin graphs are restored per track
-- intra-group connections are remapped to the new track names
-- all tracks in the group are automatically assigned to the new VCA master
-
-Group templates intentionally do not keep:
-
-- audio clips
-- MIDI clips
-- frozen render state or frozen backups
-- connections to tracks outside the group
+- Includes the folder track's settings, plugin graph, and plugin state.
+- Includes the full child track subtree recursively.
+- Excludes audio clips, MIDI clips, and connections to tracks outside the saved subtree.
 
 ### Cross-format restore behavior
 
@@ -335,6 +328,30 @@ Bundle contents
 `midi_mappings.txt`, and
 `ui_summary.json`.
 
+### Modulators
+
+The Modulators pane (View → Modulators or `M`) lists session LFO-style modulators.
+
+Create a modulator
+
+Press `+` in the Modulators pane and choose a shape, rate mode, and phase.
+
+Assign a target
+
+Select the modulator, then click a target button in the track, plugin, or MIDI mapping UI. Set the min and max range in the dialog.
+
+Rate modes
+
+Choose Hz for free-running rates or musical divisions to lock the LFO to the transport.
+
+### Step recording
+
+Open a MIDI clip in the piano roll and toggle step recording from the MIDI editor toolbar. When active, played MIDI notes are inserted at the step cursor with length equal to the current MIDI snap interval, and the cursor advances automatically.
+
+### Fold mixer strips
+
+Folder tracks render in the mixer as collapsible strips. Click the ▼ / ▶ header toggle to expand or collapse nested child tracks. Folder strips omit the record-arm button because folders cannot be armed.
+
 ### maolan-generate operations
 
 GUI launch path
@@ -373,6 +390,16 @@ The current CLI supports
 `--decode-only` with
 `--frames-json`, and decode-only worker control
 through `--decode-threads`.
+
+### Media consolidation and file references
+
+Consolidate
+
+Use **File → Consolidate** to copy external audio, MIDI, and CLAP/LV2 plugin file references into the session's `data/` directory. Maolan updates plugin file references to absolute paths immediately and rewrites saved plugin state to relative `data/` paths on save.
+
+Delete unused files
+
+Use **File → Delete unused files** to scan `audio/`, `midi/`, `peaks/`, and `pitch/` and remove files not referenced by the current session or any non-hidden branch JSON.
 
 ### Pitch-correction cache and render flow
 
@@ -434,6 +461,12 @@ The codebase is split across multiple repositories:
 
 - Fixed note names display in the piano roll.
 - Fixed GitHub Actions workflow configuration.
+- Fixed VU meter fall-off behavior.
+- Fixed folder track template save/load issues.
+- Fixed plugin save state issues.
+- Fixed play/stop/play transport bug on FreeBSD.
+- Improved plugin scan failure and warning handling.
+- Removed hybrid/double-buffering renderer paths.
 
 ## Platform Notes
 
@@ -442,8 +475,8 @@ how the workflow starts before any session is even opened.
 
 ### Linux / FreeBSD
 
-Startup forces the X11 backend by unsetting
-`WAYLAND_DISPLAY` and `WAYLAND_SOCKET`.
+Startup runs on Wayland when available and falls back to X11 (Xorg) when Wayland is unavailable.
+Plugin UI embedding still requires an X11 display (XWayland is sufficient under Wayland).
 Plugin discovery runs for LV2, VST3, and CLAP.
 
 ### Debugging

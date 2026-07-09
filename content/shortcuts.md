@@ -6,7 +6,7 @@ layout = "shortcuts"
 
 Reference Sheet
 
-Updated 2026-05-21
+Updated 2026-07-09
 
 # Maolan Shortcuts
 
@@ -110,6 +110,10 @@ N
 
 Toggle the Shortcuts pane
 
+M
+
+Toggle the Modulators pane
+
 C
 
 Toggle the cut indicator (a vertical guide line showing where a cut would land; only visible in workspace view)
@@ -176,7 +180,7 @@ Resize track height
 
 ### Track Context Menu
 
-- Automation lanes, rename, sends and returns, MIDI learn, freeze or flatten, template save, and grouping or VCA actions depending on track state
+- Automation lanes, rename, sends and returns, MIDI learn, freeze or flatten, and template save depending on track state
 
 ## Timeline, Selection, and Editing
 

@@ -1,7 +1,7 @@
 {{ define "main" }}
 
       <!-- Hero Section -->
-      <section class="pt-32 pb-20 px-6 gradient-dark relative overflow-hidden">
+      <section class="pt-12 pb-20 px-6 gradient-dark relative overflow-hidden">
       <!-- Background elements -->
       <div
         class="absolute top-0 right-0 w-96 h-96 rounded-full bg-blue-500/10 blur-3xl"
@@ -662,9 +662,10 @@
             </summary>
             <div class="px-6 pb-6 text-gray-400">
               <br />
-              Maolan is built with Rust and supports Linux, FreeBSD, and macOS.
-              Linux and FreeBSD builds currently force the X11 backend at
-              startup, while macOS uses the native host path.
+              Maolan is built with Rust and supports Linux, FreeBSD, macOS, and
+              Windows. Linux and FreeBSD builds run on Wayland when available
+              and fall back to X11 (Xorg) when Wayland is unavailable, while
+              macOS uses the native host path and Windows uses WASAPI.
             </div>
           </details>
           <details
