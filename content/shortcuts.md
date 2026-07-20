@@ -12,7 +12,7 @@ Updated 2026-07-09
 
 Keyboard commands and pointer gestures for session management, transport, clip editing, markers, zoom controls, timing lanes, piano roll work, and plugin routing.
 
-25
+31
 
 Keyboard shortcuts
 
@@ -106,7 +106,7 @@ Escape
 
 Cancel or clear the current context-dependent interaction
 
-N
+S
 
 Toggle the Shortcuts pane
 
@@ -115,6 +115,10 @@ M
 Toggle the Modulators pane
 
 C
+
+Toggle the Clips pane
+
+X
 
 Toggle the cut indicator (a vertical guide line showing where a cut would land; only visible in workspace view)
 
@@ -126,7 +130,7 @@ Toggle play/stop
 
 Shift+Space
 
-Pause
+Pause (arrangement); stop all session clips when Session view is focused
 
 Home
 
@@ -135,6 +139,28 @@ Rewind to start
 End
 
 Rewind to end
+
+### Session View
+
+Tab
+
+Toggle between Workspace and Session view
+
+↑ / ↓ / ← / →
+
+Navigate selected clip slot
+
+Return
+
+Launch or stop the selected slot
+
+Shift+Space
+
+Stop all session clips
+
+`Rec to Arr` button
+
+Start recording playing session clips into the arrangement
 
 ### Piano Tools
 
@@ -300,9 +326,9 @@ Create empty MIDI clip
 
 ### Automation Lanes
 
-Left click empty area
+Right drag empty area
 
-Insert automation point at the cursor position
+Draw a straight automation ramp between the press and release points (same interaction as the MIDI controller lane). A click without movement inserts a single point.
 
 Right click point
 
@@ -487,6 +513,12 @@ Remove selected graph connection
 Select plugin + delete
 
 Remove selected plugin instance
+
+## Clips Pane
+
+The in-app Clips pane can be shown or hidden with `C` or via **View → Clips**. It lists every audio and MIDI clip in the session, grouped by track. Clips belonging to the currently selected track(s) are highlighted in the pane; this highlighting is only in the Clips pane and does not change the main editor or timeline.
+
+Deleting a clip from a track does not discard it: the clip moves to the "Unused" section at the bottom of the Clips pane and stays part of the session. A clip counts as unused only when it is used in neither the edit view (no track holds it) nor the live view (no session slot references it) — a clip removed from the timeline but still assigned to a session slot keeps playing in the live view and does not appear in the Unused section until the slot is cleared. Clips in the pane can be dragged onto a track in the editor (placed at the drop position, using the current snap mode): dragging a track's clip copies it with a fresh id, while dragging an unused clip moves it out of the Unused section. Pane clips can also be dragged directly onto a session slot in the live view to assign them to that slot. Re-adding an unused clip to a track via undo also removes it from the Unused section. **File → Delete unused files** permanently removes an unused clip — from the pane and from the session — and deletes its media, but only when no session slot of the current branch references the clip and no other branch/session file still references its media.
 
 ## Notes
 

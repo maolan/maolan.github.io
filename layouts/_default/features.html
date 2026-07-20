@@ -7,7 +7,7 @@
           <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">Maolan <span class="text-cyan-400">Features</span></h1>
           <p class="text-xl sm:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed">A modern open-source digital audio workstation designed for flexible music production, deep MIDI editing, powerful routing, and transparent development.</p>
           <div class="mt-6 flex flex-wrap justify-center gap-3">
-            <span class="px-4 py-2 bg-cyan-400/10 border border-cyan-400/20 rounded-full text-cyan-300 text-sm font-medium">Docs updated 2026-05-21</span>
+            <span class="px-4 py-2 bg-cyan-400/10 border border-cyan-400/20 rounded-full text-cyan-300 text-sm font-medium">Docs updated 2026-07-09</span>
           </div>
         </div>
         <div class="mb-12">
@@ -114,6 +114,19 @@
                   <p>• Snap-aware marker placement and marker dragging</p>
                   <p>• Snap-to-clip start/end for clips, loop, punch, and markers</p>
                   <p>• Ruler playhead seek and loop/punch range management</p>
+                </div>
+              </details>
+              <details class="group bg-slate-800/30 border border-slate-700 rounded-lg p-6 hover:bg-slate-800/50 transition-colors">
+                <summary class="cursor-pointer text-lg font-semibold text-white group-hover:text-cyan-400 transition-colors">
+                  Folder Tracks
+                </summary>
+                <div class="mt-4 text-slate-300 space-y-2">
+                  <p>• Folder tracks for hierarchical organization of large sessions</p>
+                  <p>• Collapsible/expandable folder view in the track list</p>
+                  <p>• Child tracks route through the folder and connect to folder plugins</p>
+                  <p>• Folder plugin graph processes the summed child output</p>
+                  <p>• Child strips in the mixer and live view highlight their top and bottom edges when the parent folder is selected</p>
+                  <p>• Folder templates save the full child subtree recursively</p>
                 </div>
               </details>
             </div>
@@ -223,6 +236,7 @@
                   <p>• Multi-channel MIDI support</p>
                   <p>• Real-time MIDI input recording</p>
                   <p>• Configurable groove, humanize, and velocity-shape values</p>
+                  <p>• Step recording from the piano-roll <code>Step</code> toolbar button: notes are inserted at the step cursor with the length of the current MIDI snap interval and the cursor advances automatically</p>
                 </div>
               </details>
             </div>
@@ -268,6 +282,16 @@
                 <p class="text-slate-400">Draw automation curves directly on the timeline with freehand ramp tools and smoothing.</p>
               </div>
             </div>
+            <div class="flex items-start space-x-4">
+              <div class="flex-shrink-0 w-12 h-12 bg-cyan-400/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-white mb-2">MIDI-Style Automation Editing</h3>
+                <p class="text-slate-400">Automation lanes use MIDI-style gestures: right-drag to draw a straight ramp between two points, or click without dragging to insert a single point.</p>
+              </div>
+            </div>
           </div>
           <div class="space-y-8">
             <div class="flex items-start space-x-4">
@@ -304,6 +328,32 @@
         </div>
       </div>
     </section>
+    <section class="py-16 bg-slate-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-white mb-4">Modulators</h2>
+          <p class="text-lg text-slate-300 max-w-3xl mx-auto">LFO-style modulators bring motion to tracks, plugins, and MIDI controllers.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-white mb-3">Modulator Shapes</h3>
+            <p class="text-slate-300 text-sm">Sine, Triangle, Saw, Square, and Sample &amp; Hold waveforms.</p>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-white mb-3">Rate and Timing</h3>
+            <p class="text-slate-300 text-sm">Run modulators in Hz or lock them to musical divisions such as beat, bar, and note values, with per-modulator phase offset and an enable toggle.</p>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-white mb-3">Targets</h3>
+            <p class="text-slate-300 text-sm">Assign modulators to track parameters, plugin parameters, and MIDI controllers, with per-assignment min/max range scaling.</p>
+          </div>
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-white mb-3">Editing</h3>
+            <p class="text-slate-300 text-sm">Create and edit modulators in the Modulators pane, toggled with <code>M</code> or from the View menu.</p>
+          </div>
+        </div>
+      </div>
+    </section>
     <section class="py-16 bg-slate-950">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
@@ -319,7 +369,7 @@
                   <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>Track arm, mute, solo, input monitor, and disk monitor
                 </li>
                 <li class="flex items-center">
-                  <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>Volume, balance, aux send level/pan, pre/post send routing, and VCA/group routing
+                  <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>Volume, balance, aux send level/pan, and pre/post send routing
                 </li>
                 <li class="flex items-center">
                   <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>MIDI learn targets for volume, mute, solo, track toggles, and global transport actions (play/stop/record)
@@ -354,6 +404,10 @@
                   <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>Offline plugin bounce path for freeze/export workflows
                 </li>
               </ul>
+            </div>
+            <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+              <h3 class="text-xl font-semibold text-white mb-4">Plugin Blocklist</h3>
+              <p class="text-slate-300">Known-problematic plugins can be hidden from the plugin browser and skipped during scans via <code>~/.config/maolan/plugin-blocklist.json</code>. Entries can be added automatically when a plugin scan fails.</p>
             </div>
           </div>
           <div class="bg-slate-900/30 border border-slate-800 rounded-xl p-6"><img data-ai="generate" data-slot="mixing-visual" data-prompt="Modern dark DAW mixer interface with channel strips, sends, plugin inserts, and routing lines with cyan accents" data-ar="4:3" src="/img/routing.png" alt="Routing and mixing interface" width="1200" height="900" class="w-full rounded-lg object-cover" loading="lazy"></div>
@@ -398,6 +452,73 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="py-16 bg-slate-950">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-white mb-4">Live Session View</h2>
+          <p class="text-lg text-slate-300 max-w-3xl mx-auto">An Ableton Live-style clip-launch grid for performance-oriented workflows.</p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-white mb-4">Launch and Scene Workflow</h3>
+            <ul class="space-y-3 text-slate-300 text-sm">
+              <li class="flex items-start">
+                <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Clip-launch grid: rows are tracks, columns are scenes
+              </li>
+              <li class="flex items-start">
+                <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Switch between Workspace and Session view with <code>Tab</code>
+              </li>
+              <li class="flex items-start">
+                <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Launch or stop slots with a click or <code>Return</code>
+              </li>
+              <li class="flex items-start">
+                <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Launch whole scenes from the Master column
+              </li>
+              <li class="flex items-start">
+                <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Stop all clips with <code>Shift+Space</code>
+              </li>
+              <li class="flex items-start">
+                <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Per-track strip with mute, solo, arm, volume, and pan controls
+              </li>
+            </ul>
+          </div>
+          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-white mb-4">Arrangement Integration</h3>
+            <ul class="space-y-3 text-slate-300 text-sm">
+              <li class="flex items-start">
+                <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Slots reference arrangement clips by stable clip ID, so arrangement edits are reflected in the grid
+              </li>
+              <li class="flex items-start">
+                <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Move, duplicate, and copy slot references between the grid and the arrangement
+              </li>
+              <li class="flex items-start">
+                <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Record directly into slots
+              </li>
+              <li class="flex items-start">
+                <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>&ldquo;Rec to Arr&rdquo; records the session performance into the arrangement
+              </li>
+              <li class="flex items-start">
+                <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Import the arrangement into the grid
+              </li>
+            </ul>
+          </div>
+          <div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-white mb-4">Scene Options</h3>
+            <ul class="space-y-3 text-slate-300 text-sm">
+              <li class="flex items-start">
+                <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Rename scenes and set colors from the scene header context menu
+              </li>
+              <li class="flex items-start">
+                <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Per-scene tempo
+              </li>
+              <li class="flex items-start">
+                <div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Configurable launch quantization
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -536,6 +657,28 @@
         </div>
       </div>
     </section>
+    <section class="py-16 bg-slate-950">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-white mb-4">Media Management</h2>
+          <p class="text-slate-300 text-lg">Keep sessions portable and tidy with built-in media tools.</p>
+        </div>
+        <div class="space-y-6">
+          <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-white mb-2">Consolidate</h3>
+            <p class="text-slate-300 text-sm"><strong>File &rarr; Consolidate</strong> collects external audio and MIDI files, plus CLAP/LV2 plugin file references, into the session's <code>data/</code> directory, updating plugin references to session-relative paths.</p>
+          </div>
+          <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-white mb-2">Delete Unused Files</h3>
+            <p class="text-slate-300 text-sm"><strong>File &rarr; Delete unused files</strong> removes media that is no longer referenced by the current session from the <code>audio/</code>, <code>midi/</code>, <code>peaks/</code>, and <code>pitch/</code> directories.</p>
+          </div>
+          <div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+            <h3 class="text-lg font-semibold text-white mb-2">Unused Clips Pool</h3>
+            <p class="text-slate-300 text-sm">Clips deleted from tracks stay in the Clips pane's Unused section until Delete unused files removes them permanently.</p>
+          </div>
+        </div>
+      </div>
+    </section>
     <section class="py-16 bg-slate-900">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
@@ -612,7 +755,7 @@
               </div>
               <div class="p-4 bg-slate-900/50 rounded-lg border border-slate-800">
                 <h3 class="text-lg font-semibold text-cyan-400 mb-2">Window Backend</h3>
-                <p class="text-slate-300">Linux and FreeBSD builds currently use the X11 backend. Windows builds use the Win32 API.</p>
+                <p class="text-slate-300">Linux and FreeBSD builds run on Wayland when available and fall back to X11 (Xorg) when Wayland is unavailable. Plugin UI embedding on Unix still uses X11, so an X11 server must be reachable even under Wayland (for example via XWayland). Windows builds use the Win32 API.</p>
               </div>
               <div class="p-4 bg-slate-900/50 rounded-lg border border-slate-800">
                 <h3 class="text-lg font-semibold text-cyan-400 mb-2">MIDI 2.0 Roadmap</h3>
@@ -620,7 +763,7 @@
               </div>
             </div>
             <div class="flex flex-wrap gap-3">
-              <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">Linux</span> <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">FreeBSD</span> <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">macOS</span> <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">Windows</span> <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">X11</span> <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">WASAPI</span>
+              <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">Linux</span> <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">FreeBSD</span> <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">macOS</span> <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">Windows</span> <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">Wayland</span> <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">X11</span> <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">WASAPI</span>
             </div>
           </div>
         </div>

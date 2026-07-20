@@ -88,6 +88,8 @@ Maolan provides a flexible multi-track environment for recording, arranging, and
 
 - Child tracks route through the folder and can connect to folder plugins
 
+- Child strips in the mixer and live view highlight their top and bottom edges when the immediate parent folder is selected
+
 - Folder templates save the full child subtree recursively
 
 ## Clip Editing
@@ -236,6 +238,10 @@ Flexible routing supports complex signal chains and professional mixing workflow
 - Freeze-aware session performance management
 - Fast navigation between arrangement and mixer tasks
 
+### Plugin Blocklist
+
+Known-problematic plugins can be hidden from scans and the plugin browser via `~/.config/maolan/plugin-blocklist.json`, with entries added automatically when a plugin scan fails.
+
 ![Routing and mixing interface](/img/routing.png)
 
 ## Track Freeze and Performance
@@ -269,6 +275,8 @@ A clip-launch grid for performance-oriented workflows.
 - Launch scenes to trigger every clip in a column
 
 - Stop all clips with `Shift+Space`
+
+- Per-track strip with mute, solo, arm, volume, and pan controls
 
 ### Arrangement Integration
 

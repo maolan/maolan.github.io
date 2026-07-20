@@ -15,11 +15,11 @@
             >
             <span
               class="rounded-full border border-slate-700 bg-slate-900/50 px-4 py-2 text-sm text-slate-300"
-              >Operations updated 2026-04-07</span
+              >Operations updated 2026-07-09</span
             >
             <span
               class="rounded-full border border-slate-700 bg-slate-900/50 px-4 py-2 text-sm text-slate-300"
-              >Routing updated 2026-03-21</span
+              >Routing updated 2026-07-09</span
             >
           </div>
 
@@ -157,6 +157,14 @@
                   </p>
                 </div>
                 <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <h4 class="mb-2 font-semibold text-white">Folder track graphs</h4>
+                  <p class="text-sm leading-6 text-slate-400">
+                    Folder tracks have their own plugin graph. Child tracks
+                    route into the folder graph, and child outputs can connect
+                    directly to folder plugins or to the folder output.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
                   <h4 class="mb-2 font-semibold text-white">Audio nodes</h4>
                   <p class="text-sm leading-6 text-slate-400">
                     Main ports and extra auxiliary or sidechain ports are shown
@@ -228,7 +236,8 @@
             <h2 class="mb-4 text-3xl font-bold text-white">Session Storage</h2>
             <p class="text-lg leading-relaxed text-slate-400">
               Sessions are directory-based, with the main project state in
-              <code>session.json</code> and supporting assets stored alongside
+              <code>&lt;branch&gt;.json</code> (default
+              <code>main.json</code>) and supporting assets stored alongside
               it.
             </p>
           </div>
@@ -240,7 +249,7 @@
               </h3>
               <div class="space-y-4 text-sm text-slate-300">
                 <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-4">
-                  <code>session.json</code>
+                  <code>&lt;branch&gt;.json</code>
                   <p class="mt-2 text-slate-400">
                     Tracks, clips, connections, plugin graph topology, plugin
                     state, transport state, metadata, export settings, MIDI
@@ -251,12 +260,25 @@
                   </p>
                 </div>
                 <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-4">
+                  <code>session.json</code>
+                  <p class="mt-2 text-slate-400">
+                    Live Session View scene list and slot references.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-4">
                   <code>audio/</code>, <code>midi/</code>, <code>peaks/</code>,
                   <code>pitch/</code>, <code>plugins/</code>
                   <p class="mt-2 text-slate-400">
                     Imported media, waveform peak cache, cached pitch analysis
                     data, and plugin session assets live inside the session
                     directory.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-4">
+                  <code>data/</code>
+                  <p class="mt-2 text-slate-400">
+                    Consolidated external audio, MIDI, and plugin file
+                    references.
                   </p>
                 </div>
                 <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-4">
@@ -364,6 +386,25 @@
               <ul class="mt-5 space-y-3 text-sm text-slate-300">
                 <li>Includes track settings, plugin graph, plugin state, and connections involving that track.</li>
                 <li>Excludes audio clips and MIDI clips.</li>
+              </ul>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-8 md:col-span-2">
+              <h3 class="mb-4 text-2xl font-semibold text-cyan-400">
+                Folder templates
+              </h3>
+              <code class="text-sm text-slate-200"
+                >~/.config/maolan/track_templates/&lt;name&gt;/</code
+              >
+              <p class="mt-4 text-sm leading-6 text-slate-400">
+                Folder track templates are stored in the same track-templates
+                directory. A folder template's <code>track.json</code> contains
+                a <code>children</code> array with the saved subtree.
+              </p>
+              <ul class="mt-5 space-y-3 text-sm text-slate-300">
+                <li>Includes the folder track's settings, plugin graph, plugin state, child-to-folder-plugin connections, disabled child-to-folder-output feeds, and internal connections.</li>
+                <li>Includes the full child track subtree recursively.</li>
+                <li>Excludes audio clips, MIDI clips, and connections to tracks outside the saved subtree.</li>
               </ul>
             </div>
           </div>
@@ -487,14 +528,20 @@
                     are internal replay behavior, not user-facing history items.
                   </p>
                   <ul class="mt-3 space-y-2 text-slate-300">
-                    <li>Playback/record toggles are intentionally non-undoable.</li>
                     <li>
-                      Loop and punch-range actions are also excluded from history
-                      to avoid noisy playback-driven snapshots.
+                      Loop, punch-range, and record-enable toggles are
+                      history-recorded.
                     </li>
                     <li>
-                      Track automation level, balance, and mute updates are runtime
-                      path edits and are also excluded.
+                      Tempo and time-signature edits, modulator changes, track
+                      hierarchy changes, clip plugin graph changes, automation
+                      lane edits, and pitch-correction edits are
+                      history-recorded.
+                    </li>
+                    <li>
+                      Track automation level, balance, and mute updates are
+                      runtime playback/write-mode side effects and are excluded
+                      from history.
                     </li>
                     <li>
                       Transport/query/report actions are intentionally kept out of
@@ -505,12 +552,12 @@
                       excluded to avoid history noise.
                     </li>
                     <li>
-                      MIDI learn arm actions are excluded; actual mapping changes
+                      MIDI learn arm actions are excluded; actual binding changes
                       remain history-recorded.
                     </li>
                     <li>
-                      Plugin discovery and host-state introspection actions are not
-                      recorded in history.
+                      Plugin discovery and query actions are not recorded in
+                      history.
                     </li>
                   </ul>
                 </div>
@@ -567,6 +614,82 @@
 
             <div class="glass-card rounded-3xl p-6 sm:p-8">
               <h3 class="mb-5 text-2xl font-semibold text-cyan-400">
+                Modulators
+              </h3>
+              <div class="space-y-4 text-sm text-slate-300">
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <p class="font-semibold text-white">Modulators pane</p>
+                  <p class="mt-2 text-slate-400">
+                    Open the Modulators pane with View → Modulators or
+                    <code>M</code>. Press <code>+</code> to create a modulator
+                    with a name, enable toggle, shape, rate mode, rate value,
+                    and phase. Rates are set in Hz or as musical divisions.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <p class="font-semibold text-white">Assign a target</p>
+                  <p class="mt-2 text-slate-400">
+                    The selected modulator shows target overlays on mixer
+                    faders and pans and on automation-lane headers. The Assign
+                    dialog asks for the min and max range. Targets include
+                    track Volume/Balance, visible automation lanes (plugin
+                    parameters, MIDI CC), and the master output. Assignments
+                    are saved in the session.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-8">
+              <h3 class="mb-5 text-2xl font-semibold text-cyan-400">
+                Step recording
+              </h3>
+              <div class="space-y-4 text-sm text-slate-300">
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <p class="font-semibold text-white">Step toggle</p>
+                  <p class="mt-2 text-slate-400">
+                    Toggle <code>Step</code> in the piano-roll toolbar. Played
+                    MIDI notes are inserted at the step cursor with a length
+                    equal to the current MIDI snap interval, and the cursor
+                    advances automatically.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <p class="font-semibold text-white">Snap fallback</p>
+                  <p class="mt-2 text-slate-400">
+                    NoSnap and Clips snap modes fall back to a sixteenth-note
+                    step length.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-8">
+              <h3 class="mb-5 text-2xl font-semibold text-cyan-400">
+                Fold mixer strips
+              </h3>
+              <div class="space-y-4 text-sm text-slate-300">
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <p class="font-semibold text-white">Collapsible folder strips</p>
+                  <p class="mt-2 text-slate-400">
+                    Folder tracks render in the mixer as collapsible strips.
+                    Click the ▼ / ▶ header toggle to expand or collapse nested
+                    child tracks; a collapsed strip shows only the folder.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <p class="font-semibold text-white">Folder strip behavior</p>
+                  <p class="mt-2 text-slate-400">
+                    Folder strips omit the record-arm button because folders
+                    cannot be armed. Double-click a folder strip to open the
+                    folder connections graph.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-8">
+              <h3 class="mb-5 text-2xl font-semibold text-cyan-400">
                 maolan-generate operations
               </h3>
               <div class="space-y-4 text-sm text-slate-300">
@@ -615,6 +738,32 @@
                     <code>--decode-only</code> with
                     <code>--frames-json</code>, and decode-only worker control
                     through <code>--decode-threads</code>.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass-card rounded-3xl p-6 sm:p-8">
+              <h3 class="mb-5 text-2xl font-semibold text-cyan-400">
+                Media consolidation
+              </h3>
+              <div class="space-y-4 text-sm text-slate-300">
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <p class="font-semibold text-white">Consolidate</p>
+                  <p class="mt-2 text-slate-400">
+                    File → Consolidate copies external audio, MIDI, and
+                    CLAP/LV2 plugin file references into the session's
+                    <code>data/</code> directory and updates the references.
+                  </p>
+                </div>
+                <div class="rounded-2xl border border-slate-800 bg-slate-950/50 p-5">
+                  <p class="font-semibold text-white">Delete unused files</p>
+                  <p class="mt-2 text-slate-400">
+                    File → Delete unused files scans <code>audio/</code>,
+                    <code>midi/</code>, <code>peaks/</code>, and
+                    <code>pitch/</code> and removes files not referenced by the
+                    session or any non-hidden branch JSON. Unused clips in the
+                    Clips pane are removed first when unreferenced.
                   </p>
                 </div>
               </div>
@@ -705,9 +854,34 @@
                 Linux / FreeBSD
               </h3>
               <p class="text-sm leading-6 text-slate-400">
-                Startup forces the X11 backend by unsetting
-                <code>WAYLAND_DISPLAY</code> and <code>WAYLAND_SOCKET</code>.
+                Startup runs on Wayland when available and falls back to X11
+                (Xorg) when Wayland is unavailable. Plugin UI embedding still
+                requires an X11 display (XWayland is sufficient under Wayland).
                 Plugin discovery runs for LV2, VST3, and CLAP.
+              </p>
+            </div>
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-3 text-xl font-semibold text-cyan-400">
+                Audio device filtering
+              </h3>
+              <p class="text-sm leading-6 text-slate-400">
+                The hardware preference dialog filters devices by direction:
+                output lists show only devices with output support, and input
+                lists show only devices with input support.
+              </p>
+            </div>
+            <div class="glass-card rounded-3xl p-6">
+              <h3 class="mb-3 text-xl font-semibold text-cyan-400">
+                Plugin blocklist
+              </h3>
+              <p class="text-sm leading-6 text-slate-400">
+                <code>~/.config/maolan/plugin-blocklist.json</code> hides
+                blocklisted plugins from the plugin browser and skips them
+                during system scans. Entries are added manually or
+                automatically when a single-plugin scan fails. CLAP and VST3
+                entries match the full plugin file path; LV2 entries match the
+                <code>bundle_uri</code> or plugin <code>uri</code>. Restart
+                Maolan after editing the file.
               </p>
             </div>
             <div class="glass-card rounded-3xl p-6">
@@ -715,8 +889,9 @@
                 Debugging
               </h3>
               <p class="text-sm leading-6 text-slate-400">
-                Passing <code>--debug</code> enables tracing output to stdout for
-                low-level startup and runtime inspection.
+                Passing <code>--log-level &lt;level&gt;</code> enables tracing
+                output to stderr. Valid levels: none, info, warning, error,
+                debug.
               </p>
             </div>
             <div class="glass-card rounded-3xl p-6">

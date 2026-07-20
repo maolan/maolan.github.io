@@ -289,11 +289,12 @@ Graph connection edits and plugin load or unload actions are
 covered by undo and redo. Low-level state-restore mechanics
 are internal replay behavior, not user-facing history items.
 
-- Playback/record toggles are intentionally non-undoable.
-- Loop and punch-range actions are also excluded from history
-to avoid noisy playback-driven snapshots.
+- Loop, punch-range, and record-enable toggles are history-recorded.
+- Tempo and time-signature edits, modulator changes, track
+hierarchy changes, clip plugin graph changes, automation lane
+edits, and pitch-correction edits are history-recorded.
 - Track automation level, balance, and mute updates are runtime
-path edits and are also excluded.
+path edits and are excluded from history.
 - Transport/query/report actions are intentionally kept out of
 history.
 - High-frequency automation playback adjustments are also
@@ -441,33 +442,6 @@ Persisted settings
 Normalization and master-limiter settings are stored in the
 session file along with export dialog settings.
 
-## Project Structure
-
-The codebase is split across multiple repositories:
-
-- `daw/` — Main application and GUI
-- `engine/` — Audio engine
-- `widgets/` — Reusable iced widgets
-- `generate/` — AI audio generation via `maolan-generate`
-- `mixosc/` — OSC mixing control integration
-
-## Build and Test
-
-- Code coverage is tracked and reported.
-- Unit test coverage has been expanded across the codebase.
-- Cleanup and dead-code removal passes are performed regularly.
-
-## Recent Fixes
-
-- Fixed note names display in the piano roll.
-- Fixed GitHub Actions workflow configuration.
-- Fixed VU meter fall-off behavior.
-- Fixed folder track template save/load issues.
-- Fixed plugin save state issues.
-- Fixed play/stop/play transport bug on FreeBSD.
-- Improved plugin scan failure and warning handling.
-- Removed hybrid/double-buffering renderer paths.
-
 ## Platform Notes
 
 Runtime behavior differs by OS and plugin host path, which affects
@@ -479,10 +453,28 @@ Startup runs on Wayland when available and falls back to X11 (Xorg) when Wayland
 Plugin UI embedding still requires an X11 display (XWayland is sufficient under Wayland).
 Plugin discovery runs for LV2, VST3, and CLAP.
 
+### Audio device filtering
+
+The hardware preference dialog filters devices by direction:
+output lists show only devices with output support, and input
+lists show only devices with input support.
+
+### Plugin blocklist
+
+Maolan keeps a plugin blocklist at
+`~/.config/maolan/plugin-blocklist.json`. Blocklisted plugins
+are hidden from the plugin browser and skipped during system
+scans, so a known-bad plugin cannot crash the scanner. Entries
+can be added manually, or automatically when a single-plugin
+scan fails, the scanner reports warnings or errors, or the
+scanner host crashes. CLAP and VST3 entries match the full
+plugin file path; LV2 entries match the `bundle_uri` or plugin
+`uri`. Restart Maolan after editing the file.
+
 ### Debugging
 
-Passing `--debug` enables tracing output to stdout for
-low-level startup and runtime inspection.
+Passing `--log-level <level>` enables tracing output to stderr.
+Valid levels: none, info, warning, error, debug.
 
 ### macOS host discovery
 
