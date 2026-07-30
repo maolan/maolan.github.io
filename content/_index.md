@@ -10,7 +10,7 @@ layout = "index"
 
 ![Maolan logo mark](/img/logo.svg)
 
-[View on GitHub](https://github.com/maolan) [Browse Features](/features/) [Read Workflow Notes](/workflow/)
+[View on GitHub](https://github.com/maolan) [Browse Features](/features/)
 
 ## See Maolan in Action
 
@@ -124,9 +124,7 @@ You can inspect the code, understand how features work, and contribute improveme
 
 - [Visit GitHub](https://github.com/maolan)
 - [Review the feature set](/features/)
-- [Read workflow reference](/workflow/)
-- [Check keyboard shortcuts](/shortcuts/)
-- [Explore OSC support](/osc/)
+- [Read the docs](https://doc.maolan.rs)
 
 ## Frequently Asked Questions
 
@@ -136,11 +134,11 @@ Yes. Maolan is completely free and open source with no licensing fees, subscript
 
 ### Which platforms are supported?
 
-Maolan supports Linux, FreeBSD, macOS, and Windows. Linux and FreeBSD currently use the X11 backend. macOS uses the native host path. Windows uses WASAPI for audio and the Win32 API for windowing.
+Maolan supports Linux, FreeBSD, and Windows. Linux and FreeBSD currently use the X11 backend. Windows uses WASAPI for audio and the Win32 API for windowing.
 
 ### Which plugin formats are supported?
 
-Maolan supports CLAP, VST3, and LV2 on Linux and FreeBSD. macOS and Windows builds support CLAP and VST3. LV2 remains Unix-only. All supported formats use per-process plugin hosting for crash isolation.
+Maolan supports CLAP, VST3, and LV2 on Linux and FreeBSD. Windows builds support CLAP and VST3. LV2 remains Unix-only. All supported formats use per-process plugin hosting for crash isolation.
 
 ### How does autosave and recovery work?
 

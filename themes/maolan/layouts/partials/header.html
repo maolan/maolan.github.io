@@ -7,7 +7,7 @@
     {{- with .Site.Menus.main }}
     <div class="site-menu">
       {{- range . }}
-      <a href="{{ .URL }}" {{ if eq $.RelPermalink .URL }}aria-current="page"{{ end }}>{{ .Name }}</a>
+      <a href="{{ .URL }}" {{ if hasPrefix .URL "http" }}target="_blank" rel="noreferrer noopener"{{ else if eq $.RelPermalink .URL }}aria-current="page"{{ end }}>{{ .Name }}</a>
       {{- end }}
       <a href="/#faq">FAQ</a>
     </div>

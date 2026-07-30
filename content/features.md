@@ -454,9 +454,9 @@ Linux and FreeBSD builds support CLAP, VST3, and LV2 plugins.
 
 Windows builds support WSAPI backend, CLAP, and VST3.
 
-### macOS Plugin Support
+### Plugin Support
 
-macOS builds support CLAP and VST3 paths, while LV2 remains Unix-only in the current codebase.
+LV2 remains Unix-only in the current codebase.
 
 ### Window Backend
 

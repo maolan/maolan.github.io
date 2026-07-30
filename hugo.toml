@@ -32,46 +32,16 @@ paginate = 8
     weight = 2
 
   [[menu.main]]
-    identifier = "workflow"
-    name = "Workflow"
-    url = "/workflow/"
+    identifier = "docs"
+    name = "Docs"
+    url = "https://doc.maolan.rs"
     weight = 3
-
-  [[menu.main]]
-    identifier = "shortcuts"
-    name = "Shortcuts"
-    url = "/shortcuts/"
-    weight = 4
-
-  [[menu.main]]
-    identifier = "osc"
-    name = "OSC"
-    url = "/osc/"
-    weight = 5
-
-  [[menu.main]]
-    identifier = "repos"
-    name = "Repos"
-    url = "/repos/"
-    weight = 6
-
-  [[menu.main]]
-    identifier = "plugins"
-    name = "Plugins"
-    url = "/plugins/"
-    weight = 7
-
-  [[menu.main]]
-    identifier = "mixosc"
-    name = "MixOSC"
-    url = "/mixosc/"
-    weight = 8
 
   [[menu.main]]
     identifier = "download"
     name = "Download"
     url = "/download/"
-    weight = 9
+    weight = 4
 
 [params]
   author = "Maolan"

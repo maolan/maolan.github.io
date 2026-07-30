@@ -543,7 +543,7 @@
         <h2 class="text-center section-title mb-12 text-white">
           Get Started with Maolan
         </h2>
-        <div class="grid md:grid-cols-3 gap-6">
+        <div class="grid md:grid-cols-2 gap-6">
           <a
             href="https://github.com/maolan/maolan"
             target="_blank"
@@ -565,32 +565,6 @@
             <h3 class="text-lg font-semibold mb-2 text-white">Visit GitHub</h3>
             <p class="text-slate-400 text-sm">
               View source code, releases, and contribute
-            </p>
-          </a>
-          <a
-            href="/workflow/"
-            class="feature-card rounded-lg p-8 flex flex-col items-center text-center group cursor-pointer"
-          >
-            <div
-              class="w-16 h-16 rounded-lg bg-cyan-500/20 flex items-center justify-center mb-4 group-hover:bg-cyan-500/30 transition"
-            >
-              <svg
-                class="w-8 h-8 text-cyan-400"
-                fill="none"
-                stroke="currentcolor"
-                viewbox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 6.253v13m0-13C6.248 6.253 2 10.998 2 16.5c0 5.502 4.248 10.247 10 10.247s10-4.745 10-10.247c0-5.502-4.248-10.247-10-10.247z"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="text-lg font-semibold mb-2 text-white">Workflow Guide</h3>
-            <p class="text-slate-400 text-sm">
-              Read guides on how to use Maolan for your projects
             </p>
           </a>
           <a
@@ -662,10 +636,9 @@
             </summary>
             <div class="px-6 pb-6 text-gray-400">
               <br />
-              Maolan is built with Rust and supports Linux, FreeBSD, macOS, and
-              Windows. Linux and FreeBSD builds run on Wayland when available
+              Maolan is built with Rust and supports Linux, FreeBSD, and Windows. Linux and FreeBSD builds run on Wayland when available
               and fall back to X11 (Xorg) when Wayland is unavailable, while
-              macOS uses the native host path and Windows uses WASAPI.
+              Windows uses WASAPI.
             </div>
           </details>
           <details
@@ -680,7 +653,7 @@
             <div class="px-6 pb-6 text-gray-400">
               <br />
               Maolan currently supports CLAP, VST3, and LV2 plugin formats on
-              Linux and FreeBSD. macOS builds support CLAP and VST3, while LV2
+              Linux and FreeBSD. LV2
               remains Unix-only in the current codebase.
             </div>
           </details>
