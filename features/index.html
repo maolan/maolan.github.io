@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Features | Maolan</title>
+<link rel="canonical" href="https://maolan.github.io/features/">
+<link rel="shortcut icon" href="/favicon.ico">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Maolan">
+<meta name="description" content="A modern Rust-based DAW for recording, MIDI editing, automation, and music production. Open source, transparent, and community-driven.">
+<link rel="stylesheet" href="/css/main.css">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Features">
+<meta name="twitter:description" content="A modern Rust-based DAW for recording, MIDI editing, automation, and music production. Open source, transparent, and community-driven.">
+<meta property="og:url" content="https://maolan.github.io/features/">
+<meta property="og:site_name" content="Maolan">
+<meta property="og:title" content="Features">
+<meta property="og:description" content="A modern Rust-based DAW for recording, MIDI editing, automation, and music production. Open source, transparent, and community-driven.">
+<meta property="og:locale" content="en">
+<meta property="og:type" content="article">
+</head>
+<body>
+<nav class="site-nav"><div class="site-nav-inner">
+<a class="site-brand" href="/"><img fetchpriority="high" src="/img/logo.svg" alt="Maolan logo: Open Source Digital Audio Workstation" width="32" height="32"><span>Maolan</span></a><div class="site-menu">
+<a href="/features/" aria-current="page">Features</a>
+<a href="/download/">Download</a>
+<a href="https://doc.maolan.rs" target="_blank" rel="noreferrer noopener">Docs</a>
+</div>
+<a class="site-nav-link" href="https://github.com/maolan" target="_blank" rel="noreferrer noopener">GitHub</a>
+</div></nav><main class="app-container"><section class="relative bg-slate-950 pt-4 pb-24 px-4 sm:px-6 lg:px-8 overflow-hidden"><div class="absolute inset-0 bg-gradient-to-b from-slate-900/50 to-slate-950"></div>
+<div class="relative max-w-7xl mx-auto text-center">
+<div class="mb-8">
+<h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight">Maolan <span class="text-cyan-400">Features</span>
+</h1>
+<p class="text-xl sm:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed">A modern open-source digital audio workstation designed for flexible music production, deep MIDI editing, powerful routing, and transparent development.</p>
+<div class="mt-6 flex flex-wrap justify-center gap-3"><span class="px-4 py-2 bg-cyan-400/10 border border-cyan-400/20 rounded-full text-cyan-300 text-sm font-medium">Docs updated 2026-07-09</span></div>
+</div>
+<div class="mb-12"><div class="rounded-lg overflow-hidden border border-slate-800 shadow-2xl"><img src="/img/workspace.gif" alt="Maolan workspace interface showing multi-track timeline and piano roll" width="1373" height="848" loading="lazy" class="w-full h-auto"></div></div>
+<div class="flex flex-wrap justify-center gap-3 mb-12">
+<span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-full text-cyan-400 text-sm font-medium backdrop-blur-sm">Audio + MIDI Production</span><span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-full text-cyan-400 text-sm font-medium backdrop-blur-sm">Plugin Hosting</span><span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-full text-cyan-400 text-sm font-medium backdrop-blur-sm">Automation System</span><span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-full text-cyan-400 text-sm font-medium backdrop-blur-sm">Export &amp; Rendering</span><span class="px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-full text-cyan-400 text-sm font-medium backdrop-blur-sm">Open Source</span>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<a href="https://github.com/maolan" class="inline-flex items-center px-8 py-4 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold rounded-lg transition-colors duration-200 shadow-lg hover:shadow-cyan-500/25"><svg class="w-5 h-5 mr-2" fill="currentcolor" viewbox="0 0 24 24"><path d="M12 0C5.374.0.0 5.373.0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931.0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176.0.0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221.0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path></svg>View on GitHub</a><a href="#" class="inline-flex items-center px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-lg border border-slate-600 transition-colors duration-200"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5.0 000 6.364L12 20.364l7.682-7.682a4.5 4.5.0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5.0 00-6.364.0z"></path></svg>Support Development</a>
+</div>
+</div></section><section class="bg-slate-900 py-24 px-4 sm:px-6 lg:px-8"><div class="max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-4xl sm:text-5xl font-bold text-white mb-6">From Recording to <span class="text-cyan-400">Export</span>
+</h2>
+<p class="text-xl text-slate-300 max-w-3xl mx-auto">Maolan supports the entire production workflow from recording and editing to mixing and final export.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+<div class="text-center">
+<div class="w-16 h-16 bg-cyan-500/10 border border-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-4"><svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg></div>
+<h3 class="text-xl font-semibold text-white mb-2">Recording</h3>
+<p class="text-slate-400">Capture audio and MIDI across multiple tracks.</p>
+</div>
+<div class="text-center">
+<div class="w-16 h-16 bg-cyan-500/10 border border-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-4"><svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6A2 2 0 004 7v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></div>
+<h3 class="text-xl font-semibold text-white mb-2">Editing</h3>
+<p class="text-slate-400">Arrange clips and refine performances on the timeline.</p>
+</div>
+<div class="text-center">
+<div class="w-16 h-16 bg-cyan-500/10 border border-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-4"><svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg></div>
+<h3 class="text-xl font-semibold text-white mb-2">Automation</h3>
+<p class="text-slate-400">Control parameters across time using automation lanes.</p>
+</div>
+<div class="text-center">
+<div class="w-16 h-16 bg-cyan-500/10 border border-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-4"><svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path></svg></div>
+<h3 class="text-xl font-semibold text-white mb-2">Mixing</h3>
+<p class="text-slate-400">Use routing, plugins, and aux sends to shape your mix.</p>
+</div>
+<div class="text-center">
+<div class="w-16 h-16 bg-cyan-500/10 border border-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-4"><svg class="w-8 h-8 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6H16a5 5 0 011 9.9M9 19l3 3m0 0 3-3m-3 3V10"></path></svg></div>
+<h3 class="text-xl font-semibold text-white mb-2">Export</h3>
+<p class="text-slate-400">Render your mix or stems in multiple formats.</p>
+</div>
+</div>
+</div></section><section class="bg-slate-950 py-24 px-4 sm:px-6 lg:px-8"><div class="max-w-7xl mx-auto"><div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="order-2 lg:order-1"><img data-ai="generate" data-slot="core-workflow-screenshot" data-prompt="DAW timeline interface screenshot showing multiple audio and MIDI tracks, timeline ruler, track controls, and session management with dark theme and cyan accents" data-ar="4:3" src="/img/workspace.png" alt="Core DAW Workflow Interface" width="800" height="600" class="w-full rounded-xl shadow-2xl border border-slate-800" loading="lazy"></div>
+<div class="order-1 lg:order-2">
+<h2 class="text-4xl font-bold text-white mb-6">Core DAW <span class="text-cyan-400">Workflow</span>
+</h2>
+<p class="text-xl text-slate-300 mb-8">Maolan provides a flexible multi-track environment for recording, arranging, and managing sessions.</p>
+<div class="space-y-4">
+<details class="group bg-slate-800/30 border border-slate-700 rounded-lg p-6 hover:bg-slate-800/50 transition-colors"><summary class="cursor-pointer text-lg font-semibold text-white group-hover:text-cyan-400 transition-colors">Multi-track Sessions</summary><div class="mt-4 text-slate-300 space-y-2">
+<p>• Multi-track audio + MIDI sessions</p>
+<p>• Track selection, rename, reordering, and resizing</p>
+<p>• Session templates and track templates save/load</p>
+</div></details><details class="group bg-slate-800/30 border border-slate-700 rounded-lg p-6 hover:bg-slate-800/50 transition-colors"><summary class="cursor-pointer text-lg font-semibold text-white group-hover:text-cyan-400 transition-colors">Session Management</summary><div class="mt-4 text-slate-300 space-y-2">
+<p>• Session save/open/save-as</p>
+<p>• Recent session tracking</p>
+<p>• Dirty-state tracking and close-guard prompts</p>
+<p>• Transport and timeline workflow coverage including play/pause/stop/record, loop/punch ranges, tempo and time-signature edits, metronome control, and panic reset</p>
+<p>• Session metadata editing (author, album, year, track number, genre)</p>
+</div></details><details class="group bg-slate-800/30 border border-slate-700 rounded-lg p-6 hover:bg-slate-800/50 transition-colors"><summary class="cursor-pointer text-lg font-semibold text-white group-hover:text-cyan-400 transition-colors">Timeline Markers and Arrangement Aids</summary><div class="mt-4 text-slate-300 space-y-2">
+<p>• Per-track editor markers with create/rename/move/delete workflow</p>
+<p>• Snap-aware marker placement and marker dragging</p>
+<p>• Snap-to-clip start/end for clips, loop, punch, and markers</p>
+<p>• Ruler playhead seek and loop/punch range management</p>
+</div></details><details class="group bg-slate-800/30 border border-slate-700 rounded-lg p-6 hover:bg-slate-800/50 transition-colors"><summary class="cursor-pointer text-lg font-semibold text-white group-hover:text-cyan-400 transition-colors">Folder Tracks</summary><div class="mt-4 text-slate-300 space-y-2">
+<p>• Folder tracks for hierarchical organization of large sessions</p>
+<p>• Collapsible/expandable folder view in the track list</p>
+<p>• Child tracks route through the folder and connect to folder plugins</p>
+<p>• Folder plugin graph processes the summed child output</p>
+<p>• Child strips in the mixer and live view highlight their top and bottom edges when the parent folder is selected</p>
+<p>• Folder templates save the full child subtree recursively</p>
+</div></details>
+</div>
+</div>
+</div></div></section><section class="py-16 bg-slate-950"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-white mb-4">Clip Editing</h2>
+<p class="text-lg text-slate-300 max-w-3xl mx-auto">Intuitive clip manipulation tools for precise audio and MIDI arrangement on the timeline.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-cyan-400/30 transition-colors">
+<div class="w-12 h-12 bg-cyan-400/10 rounded-lg flex items-center justify-center mb-4"><svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4 4 4m6 0v12m0 0 4-4m-4 4-4-4"></path></svg></div>
+<h3 class="text-xl font-semibold text-white mb-2">Drag &amp; Drop Placement</h3>
+<p class="text-slate-400">Move audio and MIDI clips freely across tracks and timeline positions with precise snap-to-grid alignment and support for snapping to other clip start/end positions.</p>
+</div>
+<div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-cyan-400/30 transition-colors">
+<div class="w-12 h-12 bg-cyan-400/10 rounded-lg flex items-center justify-center mb-4"><svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0-4-4m4 4-4 4m0 6H4m0 0 4 4m-4-4 4-4"></path></svg></div>
+<h3 class="text-xl font-semibold text-white mb-2">Clip Resizing &amp; Fades</h3>
+<p class="text-slate-400">Resize clip boundaries and add crossfades for smooth transitions between audio segments.</p>
+</div>
+<div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-cyan-400/30 transition-colors">
+<div class="w-12 h-12 bg-cyan-400/10 rounded-lg flex items-center justify-center mb-4"><svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656.0M9 10h1m4 0h1m-6 4h.01M19 10A9 9 0 111 10a9 9 0 0118 0z"></path></svg></div>
+<h3 class="text-xl font-semibold text-white mb-2">Clip Splitting</h3>
+<p class="text-slate-400">Split clips at any position to create separate segments for independent editing and arrangement. Grouped clips must be ungrouped before they can be split.</p>
+</div>
+<div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-cyan-400/30 transition-colors">
+<div class="w-12 h-12 bg-cyan-400/10 rounded-lg flex items-center justify-center mb-4"><svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.636 18.364a9 9 0 010-12.728m12.728.0a9 9 0 010 12.728m-9.9-2.829a5 5 0 010-7.07m7.072.0a5 5 0 010 7.07M13 12a1 1 0 11-2 0 1 1 0 012 0z"></path></svg></div>
+<h3 class="text-xl font-semibold text-white mb-2">Warp Markers</h3>
+<p class="text-slate-400">Add time-stretch markers to audio clips for tempo matching and creative time manipulation, with reset and half-speed/double-speed helpers.</p>
+</div>
+<div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-cyan-400/30 transition-colors">
+<div class="w-12 h-12 bg-cyan-400/10 rounded-lg flex items-center justify-center mb-4"><svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5.0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg></div>
+<h3 class="text-xl font-semibold text-white mb-2">Clip Management</h3>
+<p class="text-slate-400">Mute, rename, group, ungroup, and organize clips with comprehensive metadata and visual feedback, including take-lane workflows for overlap-based stacking, dedicated comping actions, active-take cycling, take move up/down, unmute-in-range operations, take pin/unpin, and take lock/unlock controls.</p>
+</div>
+<div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-cyan-400/30 transition-colors">
+<div class="w-12 h-12 bg-cyan-400/10 rounded-lg flex items-center justify-center mb-4"><svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg></div>
+<h3 class="text-xl font-semibold text-white mb-2">Audio &amp; MIDI Support</h3>
+<p class="text-slate-400">Work seamlessly with both audio recordings and MIDI sequences using unified editing tools, including per-clip plugin graphs for audio clips on supported Unix builds.</p>
+</div>
+</div>
+</div></section><section class="py-16 bg-slate-900"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="order-2 lg:order-1"><img data-ai="generate" data-slot="midi-editing-screenshot" data-prompt="Modern dark-themed piano roll MIDI editor interface showing musical notes on a grid with velocity bars below, featuring cyan accent colors and professional DAW aesthetics" data-ar="16:9" src="/img/midi.png" alt="Maolan MIDI Piano Roll Editor" width="1200" height="675" class="w-full rounded-2xl object-cover shadow-2xl border border-slate-700" loading="lazy"></div>
+<div class="order-1 lg:order-2">
+<h2 class="text-3xl font-bold text-white mb-6">Advanced MIDI Editing</h2>
+<p class="text-lg text-slate-300 mb-8">The piano roll and MIDI editing tools support expressive composition and detailed performance editing with professional-grade precision.</p>
+<div class="space-y-6">
+<details class="group"><summary class="flex items-center justify-between cursor-pointer text-white hover:text-cyan-400 transition-colors"><span class="font-semibold">Note Editing &amp; Composition</span> <svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="mt-3 text-slate-400 space-y-2">
+<p>• Note editing with precise timing and pitch control</p>
+<p>• Chord generation and harmonic tools</p>
+<p>• Scale snap for modal composition</p>
+<p>• Legato and articulation controls</p>
+<p>• Configurable scale root, chord types, and major/minor mode</p>
+</div></details><details class="group"><summary class="flex items-center justify-between cursor-pointer text-white hover:text-cyan-400 transition-colors"><span class="font-semibold">Performance &amp; Expression</span> <svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="mt-3 text-slate-400 space-y-2">
+<p>• Velocity and controller editing</p>
+<p>• Velocity shaping and dynamics</p>
+<p>• Humanize for natural feel</p>
+<p>• Groove swing and timing adjustment</p>
+</div></details><details class="group"><summary class="flex items-center justify-between cursor-pointer text-white hover:text-cyan-400 transition-colors"><span class="font-semibold">Advanced MIDI Features</span> <svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></summary><div class="mt-3 text-slate-400 space-y-2">
+<p>• SysEx point create, edit, move, and delete</p>
+<p>• Quantize with multiple grid options</p>
+<p>• Multi-channel MIDI support</p>
+<p>• Real-time MIDI input recording</p>
+<p>• Configurable groove, humanize, and velocity-shape values</p>
+<p>• Step recording from the piano-roll <code>Step</code> toolbar button: notes are inserted at the step cursor with the length of the current MIDI snap interval and the cursor advances automatically</p>
+</div></details>
+</div>
+</div>
+</div></div></section><section class="py-16 bg-slate-950"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-white mb-4">Automation System</h2>
+<p class="text-lg text-slate-300 max-w-3xl mx-auto">Maolan supports track and plugin automation with multiple writing modes and detailed editing for dynamic mix control.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+<div class="space-y-8">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 bg-cyan-400/10 rounded-lg flex items-center justify-center"><svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg></div>
+<div>
+<h3 class="text-xl font-semibold text-white mb-2">Track Automation Lanes</h3>
+<p class="text-slate-400">Dedicated automation lanes for volume, balance, and send levels, with insert/delete/edit point controls and visual curve editing.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 bg-cyan-400/10 rounded-lg flex items-center justify-center"><svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path></svg></div>
+<div>
+<h3 class="text-xl font-semibold text-white mb-2">Plugin Parameter Automation</h3>
+<p class="text-slate-400">Automate plugin parameters with smooth interpolation and multiple curve shapes for expressive control across CLAP, VST3, and LV2 hosts, including automation lane creation from loaded plugin parameters.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 bg-cyan-400/10 rounded-lg flex items-center justify-center"><svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5.0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg></div>
+<div>
+<h3 class="text-xl font-semibold text-white mb-2">Automation Ramp Drawing</h3>
+<p class="text-slate-400">Draw automation curves directly on the timeline with freehand ramp tools and smoothing.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 bg-cyan-400/10 rounded-lg flex items-center justify-center"><svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path></svg></div>
+<div>
+<h3 class="text-xl font-semibold text-white mb-2">MIDI-Style Automation Editing</h3>
+<p class="text-slate-400">Automation lanes use MIDI-style gestures: right-drag to draw a straight ramp between two points, or click without dragging to insert a single point.</p>
+</div>
+</div>
+</div>
+<div class="space-y-8">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 bg-cyan-400/10 rounded-lg flex items-center justify-center"><svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a1 1 0 01-1-1V9a1 1 0 011-1h1a2 2 0 100-4H4A1 1 0 013 3V4a1 1 0 011-1h3a1 1 0 011 1v1z"></path></svg></div>
+<div>
+<h3 class="text-xl font-semibold text-white mb-2">Automation Point Editing</h3>
+<p class="text-slate-400">Adjust individual automation points with detailed value editing and curve tension controls.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 bg-cyan-400/10 rounded-lg flex items-center justify-center"><svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656.0M9 10h1m4 0h1m-6 4h.01M19 10A9 9 0 111 10a9 9 0 0118 0z"></path></svg></div>
+<div>
+<h3 class="text-xl font-semibold text-white mb-2">Automation Modes</h3>
+<p class="text-slate-400">Read, Touch, Latch, and Write modes support different recording and playback workflows.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 bg-cyan-400/10 rounded-lg flex items-center justify-center"><svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001.0 004.582 9m0 0H9m11 11v-5h-.581m0 0A8.003 8.003.0 014.062 13m15.357 2H15"></path></svg></div>
+<div>
+<h3 class="text-xl font-semibold text-white mb-2">Automation Writeback</h3>
+<p class="text-slate-400">Capture real-time parameter changes during playback and write them back to automation lanes.</p>
+</div>
+</div>
+</div>
+</div>
+</div></section><section class="py-16 bg-slate-900"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-white mb-4">Modulators</h2>
+<p class="text-lg text-slate-300 max-w-3xl mx-auto">LFO-style modulators bring motion to tracks, plugins, and MIDI controllers.</p>
+</div>
+<div class="grid md:grid-cols-2 gap-6">
+<div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-3">Modulator Shapes</h3>
+<p class="text-slate-300 text-sm">Sine, Triangle, Saw, Square, and Sample &amp; Hold waveforms.</p>
+</div>
+<div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-3">Rate and Timing</h3>
+<p class="text-slate-300 text-sm">Run modulators in Hz or lock them to musical divisions such as beat, bar, and note values, with per-modulator phase offset and an enable toggle.</p>
+</div>
+<div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-3">Targets</h3>
+<p class="text-slate-300 text-sm">Assign modulators to track parameters, plugin parameters, and MIDI controllers, with per-assignment min/max range scaling.</p>
+</div>
+<div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-3">Editing</h3>
+<p class="text-slate-300 text-sm">Create and edit modulators in the Modulators pane, toggled with <code>M</code> or from the View menu.</p>
+</div>
+</div>
+</div></section><section class="py-16 bg-slate-950"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-white mb-4">Routing and Mixing</h2>
+<p class="text-lg text-slate-300 max-w-3xl mx-auto">Flexible routing supports complex signal chains and professional mixing workflows.</p>
+</div>
+<div class="grid lg:grid-cols-2 gap-12 items-start">
+<div class="space-y-8">
+<div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+<h3 class="text-xl font-semibold text-white mb-4">Track Controls</h3>
+<ul class="space-y-3 text-slate-300">
+<li class="flex items-center">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>Track arm, mute, solo, input monitor, and disk monitor</li>
+<li class="flex items-center">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>Volume, balance, aux send level/pan, and pre/post send routing</li>
+<li class="flex items-center">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>MIDI learn targets for volume, mute, solo, track toggles, and global transport actions (play/stop/record)</li>
+<li class="flex items-center">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>Audio/MIDI passthrough defaults and aux send management</li>
+<li class="flex items-center">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>Aux return creation from selected tracks</li>
+</ul>
+</div>
+<div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+<h3 class="text-xl font-semibold text-white mb-4">Mixer Workflow</h3>
+<ul class="space-y-3 text-slate-300">
+<li class="flex items-center">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>Insert effects and signal chains</li>
+<li class="flex items-center">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>Pre-fader and post-fader routing</li>
+<li class="flex items-center">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>Session-wide mixing organization</li>
+<li class="flex items-center">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>CLAP/VST3/LV2 per-track graph and plugin automation paths</li>
+<li class="flex items-center">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>Plugin scan/load/unload and graph restore for CLAP/VST3/LV2</li>
+<li class="flex items-center">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>Offline plugin bounce path for freeze/export workflows</li>
+</ul>
+</div>
+<div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+<h3 class="text-xl font-semibold text-white mb-4">Plugin Blocklist</h3>
+<p class="text-slate-300">Known-problematic plugins can be hidden from the plugin browser and skipped during scans via <code>~/.config/maolan/plugin-blocklist.json</code>. Entries can be added automatically when a plugin scan fails.</p>
+</div>
+</div>
+<div class="bg-slate-900/30 border border-slate-800 rounded-xl p-6"><img data-ai="generate" data-slot="mixing-visual" data-prompt="Modern dark DAW mixer interface with channel strips, sends, plugin inserts, and routing lines with cyan accents" data-ar="4:3" src="/img/routing.png" alt="Routing and mixing interface" width="1200" height="900" class="w-full rounded-lg object-cover" loading="lazy"></div>
+</div>
+</div></section><section class="py-16 bg-slate-900"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-center"><div>
+<h2 class="text-3xl font-bold text-white mb-6">Track Freeze and Performance</h2>
+<p class="text-slate-300 text-lg mb-8">Reduce CPU load with render-based workflows that keep sessions responsive as projects grow.</p>
+<div class="space-y-6">
+<div class="flex items-start">
+<div class="flex-shrink-0 w-8 h-8 bg-cyan-400/20 rounded-lg flex items-center justify-center mr-4"><svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6H16a5 5 0 011 9.9M9 19l3 3m0 0 3-3m-3 3V10"></path></svg></div>
+<div>
+<h3 class="text-xl font-semibold text-white mb-2">Freeze tracks</h3>
+<p class="text-slate-400">Render processing-heavy tracks to audio while keeping the arrangement intact, with progress and cancel controls.</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="flex-shrink-0 w-8 h-8 bg-cyan-400/20 rounded-lg flex items-center justify-center mr-4"><svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div>
+<div>
+<h3 class="text-xl font-semibold text-white mb-2">Keep original sources</h3>
+<p class="text-slate-400">Maintain reversible frozen backups so you can return to live editing when needed; mutable operations are guarded by freeze-state constraints.</p>
+</div>
+</div>
+<div class="flex items-start">
+<div class="flex-shrink-0 w-8 h-8 bg-cyan-400/20 rounded-lg flex items-center justify-center mr-4"><svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4h16v16H4z"></path></svg></div>
+<div>
+<h3 class="text-xl font-semibold text-white mb-2">Flatten frozen tracks</h3>
+<p class="text-slate-400">Commit frozen audio permanently to reduce project complexity and file size.</p>
+</div>
+</div>
+</div>
+</div></div></div></section><section class="py-16 bg-slate-950"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-white mb-4">Live Session View</h2>
+<p class="text-lg text-slate-300 max-w-3xl mx-auto">An Ableton Live-style clip-launch grid for performance-oriented workflows.</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-4">Launch and Scene Workflow</h3>
+<ul class="space-y-3 text-slate-300 text-sm">
+<li class="flex items-start">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Clip-launch grid: rows are tracks, columns are scenes</li>
+<li class="flex items-start">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Switch between Workspace and Session view with <code>Tab</code>
+</li>
+<li class="flex items-start">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Launch or stop slots with a click or <code>Return</code>
+</li>
+<li class="flex items-start">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Launch whole scenes from the Master column</li>
+<li class="flex items-start">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Stop all clips with <code>Shift+Space</code>
+</li>
+<li class="flex items-start">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Per-track strip with mute, solo, arm, volume, and pan controls</li>
+</ul>
+</div>
+<div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-4">Arrangement Integration</h3>
+<ul class="space-y-3 text-slate-300 text-sm">
+<li class="flex items-start">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Slots reference arrangement clips by stable clip ID, so arrangement edits are reflected in the grid</li>
+<li class="flex items-start">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Move, duplicate, and copy slot references between the grid and the arrangement</li>
+<li class="flex items-start">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Record directly into slots</li>
+<li class="flex items-start">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>“Rec to Arr” records the session performance into the arrangement</li>
+<li class="flex items-start">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Import the arrangement into the grid</li>
+</ul>
+</div>
+<div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-4">Scene Options</h3>
+<ul class="space-y-3 text-slate-300 text-sm">
+<li class="flex items-start">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Rename scenes and set colors from the scene header context menu</li>
+<li class="flex items-start">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Per-scene tempo</li>
+<li class="flex items-start">
+<div class="w-2 h-2 bg-cyan-400 rounded-full mr-3 mt-1.5"></div>Configurable launch quantization</li>
+</ul>
+</div>
+</div>
+</div></section><section class="py-16 bg-slate-950"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid lg:grid-cols-2 gap-12 items-center">
+<div class="order-2 lg:order-1"><img data-ai="generate" data-slot="export-screenshot" data-prompt="Modern dark-themed audio export dialog interface showing mixdown options, file format selection (WAV, MP3, OGG, FLAC), normalization settings, and stem export controls in a digital audio workstation" data-ar="4:3" src="/img/export.png" alt="Maolan export dialog interface" width="800" height="600" class="w-full rounded-2xl object-cover shadow-2xl border border-slate-800" loading="lazy"></div>
+<div class="order-1 lg:order-2">
+<h2 class="text-3xl font-bold text-white mb-6">Export and Rendering</h2>
+<p class="text-slate-300 text-lg mb-8">Professional export options for final mixes and stems in multiple delivery formats.</p>
+<div class="space-y-6">
+<div>
+<h3 class="text-xl font-semibold text-white mb-3">Export Features</h3>
+<ul class="space-y-2 text-slate-300">
+<li class="flex items-center gap-3">
+<div class="w-2 h-2 bg-cyan-400 rounded-full"></div>Mixdown and stem export</li>
+<li class="flex items-center gap-3">
+<div class="w-2 h-2 bg-cyan-400 rounded-full"></div>Pre-fader and post-fader stems</li>
+<li class="flex items-center gap-3">
+<div class="w-2 h-2 bg-cyan-400 rounded-full"></div>Peak and loudness normalization modes</li>
+<li class="flex items-center gap-3">
+<div class="w-2 h-2 bg-cyan-400 rounded-full"></div>Master-limiter + dBTP ceiling</li>
+<li class="flex items-center gap-3">
+<div class="w-2 h-2 bg-cyan-400 rounded-full"></div>Multiple output formats in a single run</li>
+<li class="flex items-center gap-3">
+<div class="w-2 h-2 bg-cyan-400 rounded-full"></div>Real-time fallback render mode</li>
+<li class="flex items-center gap-3">
+<div class="w-2 h-2 bg-cyan-400 rounded-full"></div>MP3/OGG codec settings and metadata tagging</li>
+<li class="flex items-center gap-3">
+<div class="w-2 h-2 bg-cyan-400 rounded-full"></div>MP3 export constrained to mono/stereo</li>
+<li class="flex items-center gap-3">
+<div class="w-2 h-2 bg-cyan-400 rounded-full"></div>Settings persist with the session project</li>
+</ul>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-white mb-3">Supported Formats</h3>
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-slate-900 border border-slate-800 rounded-lg p-3 text-center"><span class="text-cyan-400 font-mono font-semibold">WAV</span></div>
+<div class="bg-slate-900 border border-slate-800 rounded-lg p-3 text-center"><span class="text-cyan-400 font-mono font-semibold">MP3</span></div>
+<div class="bg-slate-900 border border-slate-800 rounded-lg p-3 text-center"><span class="text-cyan-400 font-mono font-semibold">OGG</span></div>
+<div class="bg-slate-900 border border-slate-800 rounded-lg p-3 text-center"><span class="text-cyan-400 font-mono font-semibold">FLAC</span></div>
+</div>
+</div>
+</div>
+</div>
+</div></div></section><section class="py-16 bg-slate-900"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid lg:grid-cols-2 gap-12 items-start">
+<div class="order-2 lg:order-1"><div class="bg-slate-950/70 border border-slate-800 rounded-2xl p-6 shadow-2xl">
+<div class="flex flex-wrap gap-3 mb-5">
+<span class="px-3 py-1 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-300 text-sm font-medium">AI Audio Generation</span>
+<span class="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-300 text-sm">maolan-generate</span>
+</div>
+<pre class="overflow-x-auto rounded-2xl border border-cyan-400/10 bg-slate-950 p-5 text-sm leading-7 text-slate-200"><code>cargo run -p maolan-generate --release -- \
+  --model happy-new-year \
+  --backend vulkan \
+  --tags "ambient, cinematic, downtempo" \
+  --length 12000 \
+  --cfg-scale 1.5 \
+  --topk 50 \
+  --temperature 1.0 \
+  --ode-steps 10 \
+  --output output.wav \
+  --lyrics "stars drift over the late train home"</code></pre>
+<div class="grid sm:grid-cols-2 gap-4 mt-6">
+<div class="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+<h3 class="text-white font-semibold mb-2">Backends</h3>
+<p class="text-slate-400 text-sm">CPU and Vulkan execution paths are available in the current Burn-based generate flow.</p>
+</div>
+<div class="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+<h3 class="text-white font-semibold mb-2">Modes</h3>
+<p class="text-slate-400 text-sm">Prompt or lyrics generation, plus decode-only reconstruction from a saved frames JSON.</p>
+</div>
+</div>
+</div></div>
+<div class="order-1 lg:order-2">
+<h2 class="text-3xl font-bold text-white mb-6">maolan-generate</h2>
+<p class="text-slate-300 text-lg mb-8">Maolan includes a separate generation crate and CLI for HeartMuLa text-to-audio work, with the same runtime pieces used by the desktop app for in-process decode.</p>
+<div class="space-y-6">
+<div>
+<h3 class="text-xl font-semibold text-white mb-3">Current capabilities</h3>
+<ul class="space-y-2 text-slate-300">
+<li class="flex items-center gap-3">
+<div class="w-2 h-2 bg-cyan-400 rounded-full"></div>Prompt-driven or lyrics-driven audio generation with optional style tags</li>
+<li class="flex items-center gap-3">
+<div class="w-2 h-2 bg-cyan-400 rounded-full"></div>Model choices: <code>happy-new-year</code> and <code>RL</code>
+</li>
+<li class="flex items-center gap-3">
+<div class="w-2 h-2 bg-cyan-400 rounded-full"></div>Controls for CFG scale, top-k, temperature, ODE steps, decoder seed, and output length in milliseconds</li>
+<li class="flex items-center gap-3">
+<div class="w-2 h-2 bg-cyan-400 rounded-full"></div>
+<code>--decode-only</code> mode using <code>--frames-json</code> for saved token-frame output</li>
+<li class="flex items-center gap-3">
+<div class="w-2 h-2 bg-cyan-400 rounded-full"></div>
+<code>--decode-threads</code> override for decode-only CPU worker count</li>
+<li class="flex items-center gap-3">
+<div class="w-2 h-2 bg-cyan-400 rounded-full"></div>
+<code>--model-dir</code> override for local Burn exports instead of cache-based lookup</li>
+</ul>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-white mb-3">Expected model assets</h3>
+<div class="grid sm:grid-cols-2 gap-4">
+<div class="bg-slate-950 border border-slate-800 rounded-xl p-5">
+<p class="text-cyan-400 font-semibold mb-2">HeartMuLa repos</p>
+<p class="text-slate-300 text-sm mb-2"><code>maolandaw/HeartMuLa-happy-new-year-burn</code></p>
+<p class="text-slate-300 text-sm mb-2"><code>maolandaw/HeartMuLa-RL-oss-3B-20260123</code></p>
+<p class="text-slate-400 text-sm">Expected files: <code>heartmula.bpk</code>, <code>tokenizer.json</code>, <code>gen_config.json</code>.</p>
+</div>
+<div class="bg-slate-950 border border-slate-800 rounded-xl p-5">
+<p class="text-cyan-400 font-semibold mb-2">HeartCodec repo</p>
+<p class="text-slate-300 text-sm mb-2"><code>maolandaw/HeartCodec-oss-20260123-burn</code></p>
+<p class="text-slate-400 text-sm">Expected file: <code>heartcodec.bpk</code>.</p>
+</div>
+</div>
+</div>
+<div class="bg-slate-950 border border-slate-800 rounded-xl p-5">
+<h3 class="text-xl font-semibold text-white mb-3">Integration path</h3>
+<p class="text-slate-300 text-sm">The CLI is not just a side tool. The desktop application uses the same generate crate and runtime components when launching AI audio generation from the GUI.</p>
+</div>
+</div>
+</div>
+</div></div></section><section class="py-16 bg-slate-950"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-white mb-4">Media Management</h2>
+<p class="text-slate-300 text-lg">Keep sessions portable and tidy with built-in media tools.</p>
+</div>
+<div class="space-y-6">
+<div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-2">Consolidate</h3>
+<p class="text-slate-300 text-sm"><strong>File → Consolidate</strong> collects external audio and MIDI files, plus CLAP/LV2 plugin file references, into the session's <code>data/</code> directory, updating plugin references to session-relative paths.</p>
+</div>
+<div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-2">Delete Unused Files</h3>
+<p class="text-slate-300 text-sm"><strong>File → Delete unused files</strong> removes media that is no longer referenced by the current session from the <code>audio/</code>, <code>midi/</code>, <code>peaks/</code>, and <code>pitch/</code> directories.</p>
+</div>
+<div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-2">Unused Clips Pool</h3>
+<p class="text-slate-300 text-sm">Clips deleted from tracks stay in the Clips pane's Unused section until Delete unused files removes them permanently.</p>
+</div>
+</div>
+</div></section><section class="py-16 bg-slate-900"><div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-white mb-4">Session Safety and Recovery</h2>
+<p class="text-slate-300 text-lg">Comprehensive protection for your work with automatic backups and recovery tools.</p>
+</div>
+<div class="space-y-6">
+<div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-2">Autosave Snapshots</h3>
+<p class="text-slate-300 text-sm">Automatic session snapshots protect your work without interruption.</p>
+</div>
+<div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-2">Unsaved Changes Protection</h3>
+<p class="text-slate-300 text-sm">Smart change detection tracks dirty state and guards close actions until the session is saved.</p>
+</div>
+<div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-2">Startup Recovery Prompts</h3>
+<p class="text-slate-300 text-sm">Recovery options appear after unexpected closures, including hints from the last opened session context.</p>
+</div>
+<div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-2">Fallback Snapshot Recovery</h3>
+<p class="text-slate-300 text-sm">Multiple recovery points let you restore earlier states.</p>
+</div>
+</div>
+</div></section><section class="py-16 bg-slate-950"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-white mb-4">Diagnostics and Developer Tools</h2>
+<p class="text-slate-300 text-lg">Troubleshooting and configuration features for developers and power users.</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-3">Session Diagnostics Report</h3>
+<p class="text-slate-300 text-sm">Analyze session health, performance, and potential issues.</p>
+</div>
+<div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-3">Diagnostics Bundle Export</h3>
+<p class="text-slate-300 text-sm">Export support-ready diagnostic packages.</p>
+</div>
+<div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-3">MIDI Mapping Reports</h3>
+<p class="text-slate-300 text-sm">Inspect controller mappings, import/export mappings, clear-all, and persist mapping changes in session state with collision/conflict protection.</p>
+</div>
+<div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-3">Configuration via config.toml</h3>
+<p class="text-slate-300 text-sm">Use a text-based configuration layer for advanced customization.</p>
+</div>
+<div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-3">Recent Sessions Menu</h3>
+<p class="text-slate-300 text-sm">Jump back into recent work quickly.</p>
+</div>
+</div>
+</div></section><section class="py-16 bg-slate-950"><div class="max-w-6xl mx-auto px-6"><div class="flex justify-center"><div class="space-y-6">
+<h2 class="text-3xl font-bold text-white text-center">Platform Notes</h2>
+<div class="flex flex-wrap justify-center gap-3">
+<div class="p-4 bg-slate-900/50 rounded-lg border border-slate-800">
+<h3 class="text-lg font-semibold text-cyan-400 mb-2">Unix Plugin Support</h3>
+<p class="text-slate-300">Linux and FreeBSD builds support CLAP, VST3, and LV2 plugins.</p>
+</div>
+<div class="p-4 bg-slate-900/50 rounded-lg border border-slate-800">
+<h3 class="text-lg font-semibold text-cyan-400 mb-2">Windows Plugin Support</h3>
+<p class="text-slate-300">Windows builds support CLAP and VST3. The audio backend is WASAPI. LV2 remains Unix-only.</p>
+</div>
+<div class="p-4 bg-slate-900/50 rounded-lg border border-slate-800">
+<h3 class="text-lg font-semibold text-cyan-400 mb-2">Plugin Support</h3>
+<p class="text-slate-300">LV2 remains Unix-only in the current codebase.</p>
+</div>
+<div class="p-4 bg-slate-900/50 rounded-lg border border-slate-800">
+<h3 class="text-lg font-semibold text-cyan-400 mb-2">Window Backend</h3>
+<p class="text-slate-300">Linux and FreeBSD builds run on Wayland when available and fall back to X11 (Xorg) when Wayland is unavailable. Plugin UI embedding on Unix still uses X11, so an X11 server must be reachable even under Wayland (for example via XWayland). Windows builds use the Win32 API.</p>
+</div>
+<div class="p-4 bg-slate-900/50 rounded-lg border border-slate-800">
+<h3 class="text-lg font-semibold text-cyan-400 mb-2">MIDI 2.0 Roadmap</h3>
+<p class="text-slate-300">FreeBSD roadmap notes still mark MIDI 2.0 support as N/A.</p>
+</div>
+</div>
+<div class="flex flex-wrap gap-3">
+<span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">Linux</span> <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">FreeBSD</span> <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">Windows</span> <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">Wayland</span> <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">X11</span> <span class="px-3 py-1 bg-cyan-400/10 text-cyan-400 rounded-full text-sm font-medium border border-cyan-400/20">WASAPI</span>
+</div>
+</div></div></div></section><section class="py-16 bg-slate-900"><div class="max-w-6xl mx-auto px-6">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-white mb-4">Known Boundaries</h2>
+<p class="text-xl text-slate-400 max-w-3xl mx-auto">Transparent development includes the current limitations and active areas of improvement.</p>
+</div>
+<div class="flex justify-center"><div class="space-y-6">
+<div class="p-6 bg-slate-950/50 rounded-xl border border-slate-800">
+<h3 class="text-lg font-semibold text-white mb-2">Plugin Compatibility</h3>
+<p class="text-slate-400">Compatibility can vary depending on plugin implementation and system configuration.</p>
+</div>
+<div class="p-6 bg-slate-950/50 rounded-xl border border-slate-800">
+<h3 class="text-lg font-semibold text-white mb-2">Evolving Integration</h3>
+<p class="text-slate-400">Some integration paths are still developing as the project continues to grow.</p>
+</div>
+</div></div>
+</div></section><section class="py-16 bg-slate-950"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-white mb-4">Pitch Correction</h2>
+<p class="text-lg text-slate-300 max-w-3xl mx-auto">Fine-grained pitch correction for audio clips with cached analysis and editable correction windows.</p>
+</div>
+<div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+<div class="rounded-lg border border-slate-700 bg-slate-800/50 mb-4 overflow-hidden"><img src="/img/pitch-correction.png" alt="Maolan pitch correction and tuning interface" width="1492" height="860" loading="lazy" class="w-full h-auto block"></div>
+<ul class="text-slate-300 space-y-2 list-disc list-inside">
+<li>Cached source analysis per session in the <code>pitch/</code> directory for quick revisits.</li>
+<li>Saved clip correction points can reopen without re-analyzing when source segment details still match.</li>
+<li>Tune detection granularity and merge-aware segmentation.</li>
+<li>Manual retargeting, optional inertia/merging behavior, and formant compensation support.</li>
+<li>Local segment editing is undoable and can be applied without destructively rewriting source audio.</li>
+<li>Real-time playback and freeze rendering use the corrected output path for exports and monitoring.</li>
+<li>MP3/OGG/FLAC/WAV export targets remain standard outputs.</li>
+</ul>
+</div>
+</div></section><section class="py-16 bg-slate-900"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-white mb-4">Per-Process Plugin Hosting</h2>
+<p class="text-lg text-slate-300 max-w-3xl mx-auto">Every plugin instance runs in its own isolated OS process. A plugin crash stops only that track — the rest of the session keeps playing.</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-3">Crash Isolation</h3>
+<p class="text-slate-300 text-sm">A segfaulting plugin is killed by the OS without touching the DAW process. The engine detects the dead child within one audio block (&lt;6 ms at 256 samples / 48 kHz), mutes the channel, and continues playback.</p>
+</div>
+<div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-3">Shared-Memory IPC</h3>
+<p class="text-slate-300 text-sm">Audio buffers travel through memory-mapped shared memory — no copy through sockets or pipes. Lock-free SPSC ring buffers carry parameter events, MIDI, and transport state. Round-trip latency measured at ~50–200 µs per block.</p>
+</div>
+<div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-3">DAW-Owned Scheduling</h3>
+<p class="text-slate-300 text-sm">The DAW decides how many worker threads each plugin process may use per audio block. CLAP plugins use <code>clap_host_thread_pool</code>; the DAW avoids core collisions by keeping a global view of CPU load across all managers.</p>
+</div>
+<div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-3">Sample-Accurate Automation</h3>
+<p class="text-slate-300 text-sm">Parameter changes carry an exact sample offset within each block. Automation curves are subdivided into per-sample <code>ParameterEvent</code>s and written to the ring buffer — no smoothing layer in the host.</p>
+</div>
+<div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-3">Format Coverage</h3>
+<p class="text-slate-300 text-sm">Out-of-process hosting covers CLAP, VST3, and LV2. CLAP uses native thread-pool sharing. VST3 and LV2 run as single-threaded workers with the same IPC protocol and crash-bypass path.</p>
+</div>
+<div class="bg-slate-950 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-3">Watchdog &amp; Recovery</h3>
+<p class="text-slate-300 text-sm">A per-block watchdog timer kills any plugin manager that fails to respond within the timeout. The track is muted and a reload prompt is shown. The remaining session is unaffected and continues playing.</p>
+</div>
+</div>
+</div></section><section class="py-16 bg-slate-950"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12">
+<h2 class="text-3xl font-bold text-white mb-4">Hybrid Buffers</h2>
+<p class="text-lg text-slate-300 max-w-3xl mx-auto">Anticipative double-buffered rendering that pre-fills audio ahead of the playhead, keeping playback smooth even when heavy processing would otherwise stall the real-time thread.</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-3">Double-Buffered Architecture</h3>
+<p class="text-slate-300 text-sm">Each track maintains an <em>active</em> buffer for playback consumption and a <em>refill</em> buffer that background rendering continuously writes into. When the active buffer drains below a configurable low-watermark threshold, the two buffers are atomically swapped so playback never waits on DSP.</p>
+</div>
+<div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-3">Anticipative Pre-Rendering</h3>
+<p class="text-slate-300 text-sm">Non-realtime tracks pre-render their plugin graphs ahead of the transport playhead into the refill buffer. The real-time audio thread simply copies pre-computed samples instead of running FX chains, drastically reducing CPU spikes and dropouts.</p>
+</div>
+<div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-3">Seamless Seek &amp; Loop Handling</h3>
+<p class="text-slate-300 text-sm">Large seeks, loop wraps, and transport discontinuities instantly invalidate the cached buffers and reset the prefetch position. Playback falls back to live rendering for the first block, then resumes anticipative filling — all without audible glitches.</p>
+</div>
+<div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-3">Realtime Domain Bypass</h3>
+<p class="text-slate-300 text-sm">Tracks running in the realtime domain bypass hybrid buffering entirely and use direct process-render blocks. This ensures live input monitoring and real-time MIDI instrument tracks maintain the lowest possible latency path.</p>
+</div>
+<div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-3">Adaptive Watermark Refill</h3>
+<p class="text-slate-300 text-sm">A low-watermark frame counter triggers refill requests automatically. The engine renders in chunks equal to the preferred process block size, appending output into the refill buffer until the target pre-fill level is restored.</p>
+</div>
+<div class="bg-slate-900 border border-slate-800 rounded-xl p-6">
+<h3 class="text-lg font-semibold text-white mb-3">Underflow Safety</h3>
+<p class="text-slate-300 text-sm">If consumption ever outruns production — for example during extreme CPU contention — the track outputs silence for that cycle, increments an underflow counter, and resumes normal hybrid scheduling on the next block. No crashes, no feedback loops.</p>
+</div>
+</div>
+</div></section><section class="py-16 bg-slate-900"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid lg:grid-cols-2 gap-12 items-start">
+<div>
+<h2 class="text-3xl font-bold text-white mb-6">SIMD Acceleration</h2>
+<p class="text-slate-300 text-lg mb-6">The Maolan audio engine uses SIMD intrinsics throughout the DSP hot path. CPU features are detected at runtime and the best available code path is selected automatically.</p>
+<div class="space-y-4">
+<div class="bg-slate-900 border border-slate-800 rounded-xl p-5">
+<h3 class="text-white font-semibold mb-2">Instruction Sets</h3>
+<ul class="text-slate-300 text-sm space-y-1">
+<li>
+<span class="text-cyan-400 font-mono">AVX</span> — 8-lane f32 (preferred path on x86_64)</li>
+<li>
+<span class="text-cyan-400 font-mono">SSE / SSE2</span> — 4-lane f32 fallback on x86_64</li>
+<li>
+<span class="text-cyan-400 font-mono">Scalar</span> — universal fallback on all architectures</li>
+</ul>
+</div>
+<div class="bg-slate-900 border border-slate-800 rounded-xl p-5">
+<h3 class="text-white font-semibold mb-2">Accelerated Operations</h3>
+<ul class="text-slate-300 text-sm space-y-1">
+<li>Buffer add, multiply, and FMA (fused multiply-add)</li>
+<li>Peak detection and clamp</li>
+<li>NaN / Inf sanitization</li>
+<li>Sine / cosine fade envelopes</li>
+<li>Sample format conversion (i8, i16, i24, i32 ↔ f32)</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+<h3 class="text-white font-semibold mb-4">Runtime Dispatch</h3>
+<p class="text-slate-300 text-sm mb-4">CPU feature detection runs once at engine start. Each DSP call goes to the best available implementation without a per-call branch penalty.</p>
+<div class="space-y-3">
+<div class="flex items-center justify-between bg-slate-950 rounded-lg px-4 py-3">
+<span class="text-slate-300 text-sm font-mono">AVX detected</span>
+<span class="text-cyan-400 text-sm">f32×8 — 8 samples/cycle</span>
+</div>
+<div class="flex items-center justify-between bg-slate-950 rounded-lg px-4 py-3">
+<span class="text-slate-300 text-sm font-mono">SSE only</span>
+<span class="text-cyan-400 text-sm">f32×4 — 4 samples/cycle</span>
+</div>
+<div class="flex items-center justify-between bg-slate-950 rounded-lg px-4 py-3">
+<span class="text-slate-300 text-sm font-mono">No SIMD</span>
+<span class="text-cyan-400 text-sm">scalar loop fallback</span>
+</div>
+</div>
+<p class="text-slate-400 text-xs mt-4">FMA (fused multiply-add) is used for <code>add_scaled_inplace</code> when available, reducing rounding error and instruction count simultaneously.</p>
+</div>
+</div></div></section><section class="py-20 bg-slate-950"><div class="max-w-4xl mx-auto px-6 text-center">
+<div class="mb-12">
+<h2 class="text-4xl font-bold text-white mb-6">Explore Maolan</h2>
+<p class="text-xl text-slate-400 max-w-2xl mx-auto mb-8">Join the open-source audio production revolution. Contribute to development, support the project, or follow our progress.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+<a href="https://github.com/maolan" class="inline-flex items-center gap-2 bg-cyan-400 text-slate-950 px-6 py-3 rounded-lg font-semibold hover:bg-cyan-300 transition-colors"><svg class="w-5 h-5" fill="currentcolor" viewbox="0 0 24 24"><path d="M12 0C5.374.0.0 5.373.0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931.0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176.0.0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221.0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path></svg> View Source on GitHub</a> <a href="https://github.com/maolan/maolan" class="inline-flex items-center gap-2 bg-slate-800 text-white px-6 py-3 rounded-lg font-semibold hover:bg-slate-700 transition-colors border border-slate-700"><svg class="w-5 h-5" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5.0 000 6.364L12 20.364l7.682-7.682a4.5 4.5.0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5.0 00-6.364.0z"></path></svg> Support Development</a> <a href="https://github.com/maolan/maolan" class="inline-flex items-center gap-2 text-cyan-400 px-6 py-3 rounded-lg font-semibold hover:bg-cyan-400/10 transition-colors border border-cyan-400/20"><svg class="w-5 h-5" fill="none" stroke="currentcolor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478.0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477.0-8.268-2.943-9.542-7z"></path></svg> Follow Development</a>
+</div>
+</div></section><footer class="site-footer"><div class="site-footer-inner">
+<div class="site-footer-copy">Maolan is open source under the BSD-2-Clause license powered by <a href="https://sys.it.com">SysIT</a>
+</div>
+<div class="site-footer-links"></div>
+</div></footer></main>
+</body>
+</html>

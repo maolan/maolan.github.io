@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clientConfig version="1.1">
+	<emailProvider id="maolan.rs">
+		<domain>maolan.rs</domain>
+		<displayName>Maolan</displayName>
+		<displayShortName>Maolan</displayShortName>
+		<incomingServer type="imap">
+			<hostname>maolan.rs</hostname>
+			<port>993</port>
+			<socketType>SSL</socketType>
+			<username>%EMAILADDRESS%</username>
+			<authentication>password-cleartext</authentication>
+		</incomingServer>
+		<outgoingServer type="smtp">
+			<hostname>maolan.rs</hostname>
+			<port>587</port>
+			<socketType>STARTTLS</socketType>
+			<username>%EMAILADDRESS%</username>
+			<authentication>password-cleartext</authentication>
+		</outgoingServer>
+	</emailProvider>
+	<addressBook type="carddav">
+		<username>%EMAILADDRESS%</username>
+		<authentication>http-basic</authentication>
+		<serverURL>https://maolan.rs/dav/card</serverURL>
+	</addressBook>
+	<calendar type="caldav">
+		<username>%EMAILADDRESS%</username>
+		<authentication>http-basic</authentication>
+		<serverURL>https://maolan.rs/dav/cal</serverURL>
+	</calendar>
+	<fileShare type="webdav">
+		<username>%EMAILADDRESS%</username>
+		<authentication>http-basic</authentication>
+		<serverURL>https://maolan.rs/dav/file</serverURL>
+	</fileShare>
+	<clientConfigUpdate url="https://maolan.rs/mail/config-v1.1.xml"></clientConfigUpdate>
+</clientConfig>
